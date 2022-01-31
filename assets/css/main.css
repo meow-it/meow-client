@@ -26,8 +26,67 @@ html {
 	scroll-behavior: smooth;
 }
 
-html, body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
+html,
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+.newUserLoading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.loadingTextContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
+}
+
+.loadingText {
+    text-align: center;
+    font-weight: 800;
+    font-size: 2.125rem;
+}
+
+.loadingText:after {
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: bottom;
+	-webkit-animation: ellipsis steps(4, end) 900ms infinite;
+	animation: ellipsis steps(4, end) 900ms infinite;
+	content: "\2026"; /* ascii code for the ellipsis character */
+	width: 0px;
+}
+
+@keyframes ellipsis {
+	to {
+		width: 20px;
+	}
+}
+
+@-webkit-keyframes ellipsis {
+	to {
+		width: 20px;
+	}
+}
+
+.loadingInfo {
+    text-align: center;
+    font-size: 2.125rem;
+    font-weight: 800;
+    max-width: 70vw;
 }
