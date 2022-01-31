@@ -33,7 +33,7 @@ body {
 	padding: 0;
 }
 
-.newUserLoading, .postsLoading {
+.newUserLoading, .postsLoading, .noLocationAccess {
     position: absolute;
     top: 0;
     left: 0;
@@ -46,7 +46,10 @@ body {
     align-items: center;
     justify-content: center;
     gap: 3rem;
-    display: none;
+}
+
+.noLocationAccess {
+    gap: 2.5rem;
 }
 
 .loadingTextContainer {
@@ -85,9 +88,26 @@ body {
 	}
 }
 
-.loadingInfo {
+.loadingInfo, .errorText, .learnMore {
     text-align: center;
     font-size: 2.125rem;
     font-weight: 800;
     max-width: 70vw;
+}
+
+.errorText {
+    font-size: 1.5rem;
+}
+
+.learnMore {
+    color: #0070f3;
+    font-size: 1rem;
+}
+
+.givePermissionButton {
+    padding: 0.2em 0.5em;
+    border-radius: 8px;
+    font-size: 1.8rem;
+    color: #FFF;
+    background-color: #4CD137;
 }
