@@ -212,3 +212,36 @@ function getCurrentPosition() {
         )
     })
 }
+
+function countCharactersInTextField(e) {
+    let parent = e.target.parentElement
+    let maxLength = parent.querySelector(".meowInputCharactersRemainingText").dataset.limit
+    let remainingNumber = parent.querySelector(".meowInputCharactersRemainingNumber")
+    
+    let colorOne = "#0070f3"
+    let colorTwo = "#f35d00"
+    let colorThree = "#ea2027"
+
+
+    let textField = e.target
+    let letterCount = textField.value.length
+    let remaining = maxLength - letterCount
+    
+    if(remaining < 0) {
+        e.target.value = e.target.value.slice(0, maxLength)
+        return
+    }
+    
+    remainingNumber.innerText = remaining
+
+    let percent = remaining / maxLength
+
+    if (percent > 0.75) {
+        remainingNumber.style.color = colorOne
+    } else if (percent > 0.4) {
+        remainingNumber.style.color = colorTwo
+    } else {
+        remainingNumber.style.color = colorThree
+    }
+
+}
