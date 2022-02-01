@@ -74,6 +74,11 @@ async function main () {
         document.querySelector(".meowsContainer").innerHTML = html
 
 
+        setTimeout(() => {
+            elements.postsLoading.style.display = "none"
+            elements.wrapper.style.display = "flex"
+        }, 1000)
+
     }
 
     return user
