@@ -133,6 +133,19 @@ async function getPlaceInfo(coords) {
     let responseJSON = await response.json()
     return responseJSON
 }
+
+function generateNoMeows() {
+    let html = ""
+    html += `<div class="noMeows">
+        <img class="noDataGif" src="./assets/image/nodata.gif" alt="No Meows" height="200" width="200">
+        <span class="noMeowsText">No meows nearby 🙁</span>
+        <span class="askUserToCreate">Create a new meow by clicking on the plus icon 😽</span>
+    </div>`
+    return html
+}
+
+
+  
 function escapeHtml(string) {
     let entityMap = {
         "&": "&amp;",
