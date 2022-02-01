@@ -35,5 +35,13 @@ async function register() {
 		return null
 	}
 }
+
+async function checkLocationPermission () {
+    if(!navigator.permissions) return false
+    let permission = await navigator.permissions.query({name: 'geolocation'})
+    if(permission.state == 'granted') return true
+    return false
+}
+
     }
 }
