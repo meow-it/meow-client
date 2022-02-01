@@ -43,5 +43,11 @@ async function checkLocationPermission () {
     return false
 }
 
+function setDisplayNone(elements) {
+    for (let key in elements) {
+        elements[key].style.display = "none"
+    }
+}
+
     }
 }
