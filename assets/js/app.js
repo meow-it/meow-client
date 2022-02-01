@@ -66,3 +66,24 @@ function handleCloseNewMeowModal() {
     let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
     newMeowModalContainer.style.display = "none"
 }
+
+async function createMeow() {
+    
+    let textField = document.querySelector(".meowInput")
+    let text = textField.value
+
+    let { coords } = await getCurrentPosition()
+
+    let meow = await newMeow(text, coords)
+
+    let html = generateMeows([meow])
+    let existingStuff = document.querySelector(".meowsContainer").innerHTML
+
+    if(meowCount == 0) {
+        document.querySelector(".meowsContainer").innerHTML = html
+    } else {
+        document.querySelector(".meowsContainer").innerHTML = html + existingStuff
+    }
+
+    handleCloseNewMeowModal()
+}
