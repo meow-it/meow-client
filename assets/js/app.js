@@ -12,6 +12,16 @@ document.querySelector(".givePermissionButton").addEventListener("click" , () =>
         window.location.reload()
     })
 })
+
+
+let params = new URLSearchParams(window.location.search)
+if (!params.has("meow")) {
+    main()
+} else {
+    showMeow()
+}
+
+
 let userItem = {}
 userItem.username = document.querySelector(".username")
 userItem.profilePicture = document.querySelector(".profilePicture")
@@ -85,7 +95,26 @@ async function main () {
     return user
 }
 
-main()
+async function showMeow() {
+    document.querySelector(".meowFromId").style.display = "flex"
+    let meowid = params.get("meow")
+    let meow = await getSingleMeow(meowid)
+    
+    if(meow == null) window.location.href = window.location.origin
+
+    let coords = {
+        longitude: meow.location.coordinates[0],
+        latitude: meow.location.coordinates[1]
+    }
+
+    let placeInfo = await getPlaceInfo(coords)
+    let localityString = getLocationString(placeInfo)
+    let locationTextSpan = document.querySelector(".meowLocationText")
+    locationTextSpan.textContent = localityString
+
+    let html = generateMeow(meow)
+    document.querySelector(".meowContainer").innerHTML = html
+}
 
 document.addEventListener("click" , e => {
     if(e.target.classList.contains("likeButton")) {
@@ -104,6 +133,8 @@ document.addEventListener("click" , e => {
         handleShareButton(e)
     } else if (e.target.classList.contains("currentLocation")) {
         handleLocationIconClick(e)
+    } else if (e.target.classList.contains("promotion") || e.target.classList.contains("promotionHolder")) {
+        handlePromotionClick()
     }
 })
 
@@ -118,6 +149,10 @@ function handleCreateButtonClick() {
 function handleCloseNewMeowModal() {
     let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
     newMeowModalContainer.style.display = "none"
+}
+
+function handlePromotionClick() {
+    window.location.href = window.location.origin
 }
 
 async function createMeow() {
