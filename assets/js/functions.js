@@ -98,6 +98,13 @@ function generateMeows(elements) {
 
     return html
 }
+
+async function getPlaceInfo(coords) {
+    let PlaceAPIEndpoint = "https://api.bigdatacloud.net/data/reverse-geocode-client"
+    let response = await fetch(`${PlaceAPIEndpoint}?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`)
+    let responseJSON = await response.json()
+    return responseJSON
+}
 function escapeHtml(string) {
     let entityMap = {
         "&": "&amp;",
