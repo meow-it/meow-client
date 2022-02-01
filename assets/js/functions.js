@@ -75,6 +75,8 @@ function generateMeows(elements) {
         let toxic = element.toxic ? `toxic` : ""
         let isLiked = !element.likedBy.includes(user._id) ? `./assets/image/unliked.png` : "./assets/image/paw.png"
         let likeStatus = !element.likedBy.includes(user._id) ? `unliked` : "liked"
+        let reviewIcon = element.isReviewed ? `./assets/image/reviewed.png` : `./assets/image/kitty.png`
+        let reviewClass = element.isReviewed ? `reviewed` : `reportButton`
 
         html+= `<div class="meow" data-id="${element._id}">
             <div class="meowTop">
@@ -84,7 +86,7 @@ function generateMeows(elements) {
                 </div>
                 <span class="timeMeowed">${time}</span>
                 ${hide}
-                <img data-id="${element._id}" class="reportButton" src="./assets/image/kitty.png" alt="Report Message" height="30" width="30">
+                <img data-id="${element._id}" class="${reviewClass}" src="${reviewIcon}" alt="Report Message" height="30" width="30">
             </div>
             <span class="meowContent ${toxic}">${escapeHtml(element.text)}</span>
             <div class="meowBottom">
