@@ -275,3 +275,25 @@ body {
 	font-weight: 600;
 }
 
+.noMeows {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 70vh;
+}
+.noDataGif {
+    border: 1px solid #f8f8f8;
+    border-radius: 10px;
+}
+.noMeowsText {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.askUserToCreate {
+    text-align: center;
+    font-size: 1.2rem;
+    max-width: 80vw;
+    font-weight: 600;
+}
