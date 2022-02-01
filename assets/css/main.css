@@ -116,6 +116,33 @@ body {
 	background-color: #0070f3;
 }
 
+.meowFromId {
+	display: none;
+	flex-direction: column;
+	padding: 1rem 0.5rem 0;
+}
+
+.meowContainer {
+	padding-top: 1rem;
+	display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.promotionHolder {
+	display: flex;
+	justify-content: center;
+}
+
+.promotion {
+	padding: 0.2em 0.5em;
+	border-radius: 8px;
+	font-size: 1.6rem;
+	color: #fff;
+	background-color: #0070f3;
+	width: max-content;
+}
+
 .newMeowModalContainer {
 	display: none; 
 	position: fixed; 
@@ -228,7 +255,7 @@ body {
 	padding: 0.5rem 0.5rem 0.1rem 1.1rem;
 }
 
-.locationText {
+.locationText, .meowLocationText {
 	font-size: 1.2rem;
 	font-weight: 600;
 }
