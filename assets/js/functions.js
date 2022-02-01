@@ -100,6 +100,33 @@ function generateMeows(elements) {
     return html
 }
 
+async function handleLike(e) {
+    let id = e.target.dataset.id
+    let status = e.target.dataset.status
+    let like = status == "unliked" ? 1 : -1
+
+    if (like == 1)  {
+        e.target.src = "./assets/image/paw.png"
+        e.target.dataset.status = "liked"
+    } else {
+        e.target.src = "./assets/image/unliked.png"
+        e.target.dataset.status = "unliked"
+    }
+    e.target.parentElement.querySelector(".likeCount").innerText = parseInt(e.target.parentElement.querySelector(".likeCount").innerText) + like
+
+    fetch(serverURLAPIEndpoint + `meow/like`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            userid: user._id,
+            meowid: id,
+            like: like
+        })
+    })
+}
+
 async function getPlaceInfo(coords) {
     let PlaceAPIEndpoint = "https://api.bigdatacloud.net/data/reverse-geocode-client"
     let response = await fetch(`${PlaceAPIEndpoint}?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`)
