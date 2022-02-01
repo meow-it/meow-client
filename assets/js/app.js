@@ -63,8 +63,11 @@ async function main () {
 
         let placeInfo = await getPlaceInfo(coords)
 
+        let locationTextSpan = document.querySelector(".locationText")
+        
         let localityString = `${placeInfo.locality}, ${placeInfo.city}, ${placeInfo.principalSubdivision}`
-        document.querySelector(".locationText").textContent = localityString
+        locationTextSpan.textContent = localityString
+        locationTextSpan.dataset.accuracy = position.coords.accuracy
         
 
         let meows = await getPosts(position.coords)
