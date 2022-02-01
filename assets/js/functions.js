@@ -131,6 +131,13 @@ async function handleLike(e) {
     })
 }
 
+function handleLocationIconClick(e) {
+    let parent = e.target.parentElement
+    let locationText = parent.querySelector(".locationText")
+    let accuracy = locationText.dataset.accuracy
+    alert(`Accuracy: ${accuracy}m`)
+}
+
 function handleEye(e) {
     let state = e.target.dataset.state
     let spanElement = e.target.parentElement.parentElement.parentElement.querySelector(".meowContent")
