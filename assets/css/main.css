@@ -111,3 +111,60 @@ body {
     color: #FFF;
     background-color: #4CD137;
 }
+
+.createNewMeow {
+    height: 80vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 2rem;
+}
+
+.optionsHolder {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.2rem;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.optionText {
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.meowInputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-height: 200px;
+    padding: 0.5rem;
+    border: 2px solid #44444444;
+    border-radius: 8px;
+}
+
+.meowInput {
+    resize: none;
+    height: 200px;
+    border: 0;
+    outline: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.meowInputCharactersRemaining {
+    text-align: right;
+    color: #0070f3;
+}
+
+.meowInputCharactersRemainingNumber , .meowInputCharactersRemainingText {
+    font-weight: 700;
+}
