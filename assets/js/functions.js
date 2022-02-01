@@ -138,6 +138,10 @@ function handleLocationIconClick(e) {
     alert(`Accuracy: ${accuracy}m`)
 }
 
+function getLocationString(placeInfo) {
+    return `${placeInfo.locality} ${placeInfo.locality != null ? "," : ""} ${placeInfo.city} ${placeInfo.city != null ? "," : ""} ${placeInfo.principalSubdivision}`
+}
+
 function handleEye(e) {
     let state = e.target.dataset.state
     let spanElement = e.target.parentElement.parentElement.parentElement.querySelector(".meowContent")
