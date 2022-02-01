@@ -142,6 +142,23 @@ function getLocationString(placeInfo) {
     return `${placeInfo.locality} ${placeInfo.locality != null ? "," : ""} ${placeInfo.city} ${placeInfo.city != null ? "," : ""} ${placeInfo.principalSubdivision}`
 }
 
+async function getSingleMeow(id) {
+    try {
+        let response = await fetch(serverURLAPIEndpoint + `meow/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        if(response.status !== 200) throw new Error("Something Happened: 😓")
+        let responseJSON = await response.json()
+        return responseJSON
+    } catch (err) {
+        console.log("Something Happened: 😓", err)
+        return null
+    }
+}
+
 function handleEye(e) {
     let state = e.target.dataset.state
     let spanElement = e.target.parentElement.parentElement.parentElement.querySelector(".meowContent")
