@@ -166,6 +166,18 @@ async function handleReview(e) {
     })
 }
 
+async function handleShareButton (e) {
+    let id = e.target.dataset.id
+    let text = e.target.parentElement.parentElement.parentElement.querySelector(".meowContent").innerText
+    let shareObject = {
+        title: "Check out this Meow!",
+        text: text,
+        url: `${window.location.href}?meow=${id}`
+    }
+
+    await shareStuff(shareObject)
+}
+
 async function getPlaceInfo(coords) {
     let PlaceAPIEndpoint = "https://api.bigdatacloud.net/data/reverse-geocode-client"
     let response = await fetch(`${PlaceAPIEndpoint}?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`)
