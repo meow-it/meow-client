@@ -62,6 +62,10 @@ async function main () {
         }
 
         let placeInfo = await getPlaceInfo(coords)
+
+        let localityString = `${placeInfo.locality}, ${placeInfo.city}, ${placeInfo.principalSubdivision}`
+        document.querySelector(".locationText").textContent = localityString
+        
     }
 
     return user
