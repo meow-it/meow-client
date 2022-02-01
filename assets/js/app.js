@@ -1,4 +1,5 @@
 let user
+let meowCount = 0
 let elements = {
     newUser : document.querySelector(".newUserLoading"),
     postsLoading : document.querySelector(".postsLoading"),
