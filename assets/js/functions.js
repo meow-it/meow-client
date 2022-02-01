@@ -51,7 +51,7 @@ function setDisplayNone(elements) {
 
 async function getPosts({latitude, longitude}) {
     try {
-        let response = await fetch(``, {
+        let response = await fetch(serverURLAPIEndpoint + "meow/all", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
