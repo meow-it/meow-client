@@ -58,6 +58,24 @@ async function main () {
 
 main()
 
+document.addEventListener("click" , e => {
+    if(e.target.classList.contains("likeButton")) {
+        handleLike(e)
+    } else if (e.target.classList.contains("hideMessage")) {
+        handleEye(e)
+    } else if (e.target.classList.contains("createNewMeowButton")) {
+        handleCreateButtonClick()
+    } else if (e.target.classList.contains("cancelMeow")) {
+        handleCloseNewMeowModal()
+    } else if (e.target.classList.contains("reportButton")) {
+        handleReview(e)
+    } else if (e.target.classList.contains("createMeow")) {
+        createMeow(e)
+    } else if (e.target.classList.contains("shareMeowButton")) {
+        handleShareButton(e)
+    }
+})
+
 document.querySelector(".meowInput").addEventListener("input" , countCharactersInTextField)
 
 
