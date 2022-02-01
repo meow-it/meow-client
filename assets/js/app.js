@@ -57,3 +57,12 @@ async function main () {
 }
 
 main()
+function handleCreateButtonClick() {
+    let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
+    newMeowModalContainer.style.display = "block"
+}
+
+function handleCloseNewMeowModal() {
+    let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
+    newMeowModalContainer.style.display = "none"
+}
