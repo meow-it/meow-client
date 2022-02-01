@@ -104,6 +104,8 @@ document.addEventListener("click" , e => {
         createMeow(e)
     } else if (e.target.classList.contains("shareMeowButton")) {
         handleShareButton(e)
+    } else if (e.target.classList.contains("currentLocation")) {
+        handleLocationIconClick(e)
     }
 })
 
