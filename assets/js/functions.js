@@ -84,9 +84,11 @@ function generateMeows(elements) {
                     <img class="meowUserProfilePicture" src="${element.profilePic}" alt="${element.name}" height="30" width="30">
                     <span class="meowUsername">${element.name}</span>
                 </div>
-                <span class="timeMeowed">${time}</span>
-                ${hide}
-                <img data-id="${element._id}" class="${reviewClass}" src="${reviewIcon}" alt="Report Message" height="30" width="30">
+                <div class="meowOptionsStuff">
+                    ${hide}
+                    <span class="timeMeowed">${time}</span>
+                    <img data-id="${element._id}" class="${reviewClass}" src="${reviewIcon}" alt="Report Message" height="30" width="30">
+                </div>
             </div>
             <span class="meowContent ${toxic}">${escapeHtml(element.text)}</span>
             <div class="meowBottom">
