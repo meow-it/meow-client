@@ -133,7 +133,7 @@ async function handleLike(e) {
 
 function handleEye(e) {
     let state = e.target.dataset.state
-    let spanElement = e.target.parentElement.parentElement.querySelector(".meowContent")
+    let spanElement = e.target.parentElement.parentElement.parentElement.querySelector(".meowContent")
 
     if (state == "hidden") {
         e.target.src = "./assets/image/eye.png"
