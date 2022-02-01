@@ -183,8 +183,23 @@ function generateNoMeows() {
     return html
 }
 
+async function newMeow(text, coords) {
+    let response = await fetch(serverURLAPIEndpoint + `meow/new`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            userid: user._id,
+            text: text,
+            latitude: coords.latitude,
+            longitude: coords.longitude
+        })
+    })
+    let responseJSON = await response.json()
+    return responseJSON
+}
 
-  
 function escapeHtml(string) {
     let entityMap = {
         "&": "&amp;",
