@@ -3,7 +3,6 @@ let elements = {
     newUser : document.querySelector(".newUserLoading"),
     postsLoading : document.querySelector(".postsLoading"),
     location : document.querySelector(".noLocationAccess"),
-    createNew : document.querySelector(".createNewMeow"),
     wrapper: document.querySelector(".wrapper")
 }
 
