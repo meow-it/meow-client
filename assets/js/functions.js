@@ -250,6 +250,17 @@ function getCurrentPosition() {
     })
 }
 
+async function shareStuff(object) {
+    try {
+        if (navigator.share) {
+            await navigator.share(object)
+        }
+    } catch (err) {
+        alert("Couldn't share the content 🙁")
+        console.log(err)
+    }
+}
+
 function countCharactersInTextField(e) {
     let parent = e.target.parentElement
     let maxLength = parent.querySelector(".meowInputCharactersRemainingText").dataset.limit
