@@ -49,5 +49,20 @@ function setDisplayNone(elements) {
     }
 }
 
+async function getPosts({latitude, longitude}) {
+    try {
+        let response = await fetch(``, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({latitude, longitude})
+        })
+        let responseJSON = await response.json()
+        return responseJSON
+    } catch (err) {
+        console.log("Something Happened: 😓", err)
+        return null
     }
+}
 }
