@@ -116,7 +116,7 @@ async function handleLike(e) {
     }
     e.target.parentElement.querySelector(".likeCount").innerText = parseInt(e.target.parentElement.querySelector(".likeCount").innerText) + like
 
-    fetch(serverURLAPIEndpoint + `meow/like`, {
+    await fetch(serverURLAPIEndpoint + `meow/like`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -145,6 +145,25 @@ function handleEye(e) {
     }
 }
 
+async function handleReview(e) {
+    let id = e.target.dataset.id
+    
+    e.target.src = "./assets/image/kitty.png"
+    
+    e.target.classList.remove("reportButton")
+    e.target.classList.add("reviewed")
+
+    await fetch(serverURLAPIEndpoint + `meow/review`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            userid: user._id,
+            meowid: id
+        })
+    })
+}
 
 async function getPlaceInfo(coords) {
     let PlaceAPIEndpoint = "https://api.bigdatacloud.net/data/reverse-geocode-client"
