@@ -104,6 +104,39 @@ function generateMeows(elements) {
     return html
 }
 
+function generateMeow(element) {
+    let time = timeDifference(new Date(), new Date(element.createdAt))
+    let hide = element.toxic ? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.png" alt="Unhide Message" height="30" width="30">` : ""
+    let toxic = element.toxic ? `toxic` : ""
+    let like = `&nbsp;${element.likes} ${element.likes > 1 ? "likes" : "like"}`
+       
+    let html = `<div class="meow" data-id="${element._id}">
+        <div class="meowTop">
+            <div class="meowUserStuff">
+                <img class="meowUserProfilePicture" src="${element.profilePic}" alt="${element.name}" height="30" width="30">
+                <span class="meowUsername">${element.name}</span>
+            </div>
+            <div class="meowOptionsStuff">
+                ${hide}
+                <span class="timeMeowed">${time}</span>
+            </div>
+        </div>
+        <span class="meowContent ${toxic}">${escapeHtml(element.text)}</span>
+        <div class="meowBottom">
+            <div class="likeButtonContainer">
+                <span class="likeCount">${like}</span>
+            </div>
+            <img data-id="${element._id}" class="shareMeowButton" src="./assets/image/share.png" alt="Share Meow" height="30" width="30">
+        </div>
+    </div>`
+
+    let promotion = `<div class="promotionHolder">
+                        <span class="promotion">See more on Meow it</span>
+                    </div>`
+
+    return html + promotion
+}
+
 async function handleLike(e) {
     let id = e.target.dataset.id
     let status = e.target.dataset.status
@@ -200,7 +233,7 @@ async function handleShareButton (e) {
     let shareObject = {
         title: "Check out this Meow!",
         text: text,
-        url: `${window.location.href}?meow=${id}`
+        url: `${window.location.origin}/?meow=${id}`
     }
 
     await shareStuff(shareObject)
