@@ -130,7 +130,6 @@ async function handleLike(e) {
 }
 
 function handleEye(e) {
-    let id = e.target.dataset.id
     let state = e.target.dataset.state
     let spanElement = e.target.parentElement.parentElement.querySelector(".meowContent")
 
@@ -148,7 +147,7 @@ function handleEye(e) {
 async function handleReview(e) {
     let id = e.target.dataset.id
     
-    e.target.src = "./assets/image/kitty.png"
+    e.target.src = "./assets/image/reviewed.png"
     
     e.target.classList.remove("reportButton")
     e.target.classList.add("reviewed")
