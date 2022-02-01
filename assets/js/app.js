@@ -57,6 +57,10 @@ async function main () {
 }
 
 main()
+
+document.querySelector(".meowInput").addEventListener("input" , countCharactersInTextField)
+
+
 function handleCreateButtonClick() {
     let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
     newMeowModalContainer.style.display = "block"
