@@ -199,6 +199,10 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0.5rem;
+	position: sticky;
+	top: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #44444444;
 }
 
 .userStuff {
@@ -234,6 +238,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+	padding-bottom: 0.5rem;
 }
 
 .meow {
@@ -256,6 +261,12 @@ body {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+}
+
+.meowOptionsStuff {
+	display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .meowUsername {
