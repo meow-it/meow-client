@@ -61,6 +61,7 @@ async function main () {
             longitude: position.coords.longitude
         }
 
+        let placeInfo = await getPlaceInfo(coords)
     }
 
     return user
