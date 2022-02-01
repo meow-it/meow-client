@@ -211,6 +211,67 @@ body {
 }
 
 .locationText {
-    font-size: 1.2rem;
-    font-weight: 600;
+	font-size: 1.2rem;
+	font-weight: 600;
 }
+
+.meowsContainer {
+    margin-top: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.meow {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #44444444;
+	border-radius: 10px;
+	padding: 0.5rem;
+	gap: 10px;
+	margin: 0.3rem 0.5rem 0;
+}
+
+.meowTop {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.meowUserStuff {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.meowUsername {
+	font-weight: 600;
+}
+
+.toxic {
+	font-family: "Galactico";
+}
+
+.timeMeowed {
+	color: #6f08ff;
+	font-weight: 600;
+}
+.meowContent {
+    font-size: 1.3rem;
+	text-align: justify;
+	padding: 0 0.3em;
+}
+.meowBottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.likeButtonContainer {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.likeCount {
+	font-weight: 600;
+}
+
