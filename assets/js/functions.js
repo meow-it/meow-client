@@ -71,9 +71,10 @@ function generateMeows(elements) {
     elements.forEach(element => {
 
         let time = timeDifference(new Date(), new Date(element.createdAt))
-        let hide = element.toxic ? `<img data-id="${element._id}" class="hideMessage" src="./assets/image/hide.png" alt="Unhide Message" height="30" width="30">` : ""
+        let hide = element.toxic ? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.png" alt="Unhide Message" height="30" width="30">` : ""
         let toxic = element.toxic ? `toxic` : ""
-        let isLiked = element.likedBy.includes(user._id) ? `./assets/image/unliked.png` : "./assets/image/paw.png"
+        let isLiked = !element.likedBy.includes(user._id) ? `./assets/image/unliked.png` : "./assets/image/paw.png"
+        let likeStatus = !element.likedBy.includes(user._id) ? `unliked` : "liked"
 
         html+= `<div class="meow" data-id="${element._id}">
             <div class="meowTop">
@@ -88,7 +89,7 @@ function generateMeows(elements) {
             <span class="meowContent ${toxic}">${escapeHtml(element.text)}</span>
             <div class="meowBottom">
                 <div class="likeButtonContainer">
-                    <img data-id="${element._id}" class="likeButton" src="${isLiked}" alt="Like Button" height="30" width="30">
+                    <img data-status="${likeStatus}" data-id="${element._id}" class="likeButton" src="${isLiked}" alt="Like Button" height="30" width="30">
                     <span class="likeCount">${element.likes}</span>
                 </div>
                 <img data-id="${element._id}" class="shareMeowButton" src="./assets/image/share.png" alt="Share Meow" height="30" width="30">
