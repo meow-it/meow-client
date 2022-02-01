@@ -1,4 +1,11 @@
 let user
+let elements = {
+    newUser : document.querySelector(".newUserLoading"),
+    postsLoading : document.querySelector(".postsLoading"),
+    location : document.querySelector(".noLocationAccess"),
+    createNew : document.querySelector(".createNewMeow"),
+    wrapper: document.querySelector(".wrapper")
+}
 let userItem = {}
 userItem.username = document.querySelector(".username")
 userItem.profilePicture = document.querySelector(".profilePicture")
@@ -9,14 +16,18 @@ async function main () {
     if (userFromStorage == null ) {
         
         requestAnimationFrame(() => {
-            document.querySelector(".newUserLoading").style.display = "flex"
+            elements.newUser.style.display = "flex"
         })
 
         user = await register()
 
         setTimeout(() => {
-            document.querySelector(".newUserLoading").style.display = "none"
+            elements.newUser.style.display = "none"
+            elements.wrapper.style.display = "flex"
+            return main()
         }, 3000)
+
+        return user
 
     } else {
         user = userFromStorage
@@ -24,6 +35,13 @@ async function main () {
 
     userItem.username.textContent = user.name
     userItem.profilePicture.src = user.profilePic
+
+    let locationPermission = await checkLocationPermission()
+
+    if(!locationPermission) {
+        setDisplayNone(elements)
+        elements.location.style.display = "flex"
+    }
 
     return user
 }
