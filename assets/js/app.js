@@ -49,8 +49,18 @@ async function main () {
         elements.location.style.display = "flex"
         return
     } else {
+
+        
         setDisplayNone(elements)
         elements.postsLoading.style.display = "flex"
+        
+        let position = await getCurrentPosition();
+
+        let coords = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        }
+
     }
 
     return user
