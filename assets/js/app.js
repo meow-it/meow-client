@@ -50,7 +50,6 @@ async function main () {
         return
     } else {
 
-        
         setDisplayNone(elements)
         elements.postsLoading.style.display = "flex"
         
@@ -62,10 +61,9 @@ async function main () {
         }
 
         let placeInfo = await getPlaceInfo(coords)
+        let localityString = getLocationString(placeInfo)
 
         let locationTextSpan = document.querySelector(".locationText")
-        
-        let localityString = `${placeInfo.locality}, ${placeInfo.city}, ${placeInfo.principalSubdivision}`
         locationTextSpan.textContent = localityString
         locationTextSpan.dataset.accuracy = position.coords.accuracy
         
