@@ -41,7 +41,7 @@ body {
     height: 100%;
     background-color: #fff;
     z-index: 10;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -115,7 +115,7 @@ body {
 .createNewMeow {
     height: 80vh;
     padding: 1rem;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
