@@ -6,6 +6,12 @@ let elements = {
     createNew : document.querySelector(".createNewMeow"),
     wrapper: document.querySelector(".wrapper")
 }
+
+document.querySelector(".givePermissionButton").addEventListener("click" , () => {
+    navigator.geolocation.getCurrentPosition(() => {
+        window.location.reload()
+    })
+})
 let userItem = {}
 userItem.username = document.querySelector(".username")
 userItem.profilePicture = document.querySelector(".profilePicture")
@@ -41,6 +47,10 @@ async function main () {
     if(!locationPermission) {
         setDisplayNone(elements)
         elements.location.style.display = "flex"
+        return
+    } else {
+        setDisplayNone(elements)
+        elements.postsLoading.style.display = "flex"
     }
 
     return user
