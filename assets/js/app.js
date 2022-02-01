@@ -66,6 +66,14 @@ async function main () {
         let localityString = `${placeInfo.locality}, ${placeInfo.city}, ${placeInfo.principalSubdivision}`
         document.querySelector(".locationText").textContent = localityString
         
+
+        let meows = await getPosts(position.coords)
+        meowCount = meows.length
+
+        let html = meowCount != 0 ? generateMeows(meows) : generateNoMeows()
+        document.querySelector(".meowsContainer").innerHTML = html
+
+
     }
 
     return user
