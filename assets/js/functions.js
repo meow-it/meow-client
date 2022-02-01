@@ -127,6 +127,23 @@ async function handleLike(e) {
     })
 }
 
+function handleEye(e) {
+    let id = e.target.dataset.id
+    let state = e.target.dataset.state
+    let spanElement = e.target.parentElement.parentElement.querySelector(".meowContent")
+
+    if (state == "hidden") {
+        e.target.src = "./assets/image/eye.png"
+        e.target.dataset.state = "visible"
+        spanElement.style.fontFamily = "Inter"
+    } else {
+        e.target.src = "./assets/image/hide.png"
+        e.target.dataset.state = "hidden"
+        spanElement.style.fontFamily = "Galactico"
+    }
+}
+
+
 async function getPlaceInfo(coords) {
     let PlaceAPIEndpoint = "https://api.bigdatacloud.net/data/reverse-geocode-client"
     let response = await fetch(`${PlaceAPIEndpoint}?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`)
@@ -186,4 +203,46 @@ function timeDifference(current, previous) {
 		return Math.round(elapsed / msPerYear) + "y";
 	}
 }
+
+function getCurrentPosition() {
+    return new Promise( (resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            position => resolve(position),
+            error => reject(error)
+        )
+    })
+}
+
+function getLocation() {
+	console.log("getLocation was called")
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition, positionError)
+	} else {
+		hideLoadingDiv()
+		console.log("Geolocation is not supported by this device")
+	}
+}
+
+function positionError() {
+	console.log("Geolocation is not enabled. Please enable to use this feature")
+
+	if (allowGeoRecall && countLocationAttempts < 5) {
+		countLocationAttempts += 1
+		getLocation()
+	}
+}
+
+function showPosition() {
+	console.log("posititon accepted")
+	allowGeoRecall = false
+}
+
+function checkGeoPermission() {
+    navigator.permissions.query({name: 'geolocation'}).then(function(result) {
+        if(result.state == 'denied' || result.state == 'prompt') {
+            console.log(result)
+
+            getLocation()
+        }
+    });
 }
