@@ -65,6 +65,39 @@ async function getPosts({latitude, longitude}) {
         return null
     }
 }
+
+function generateMeows(elements) {
+    let html = ""
+    elements.forEach(element => {
+
+        let time = timeDifference(new Date(), new Date(element.createdAt))
+        let hide = element.toxic ? `<img data-id="${element._id}" class="hideMessage" src="./assets/image/hide.png" alt="Unhide Message" height="30" width="30">` : ""
+        let toxic = element.toxic ? `toxic` : ""
+        let isLiked = element.likedBy.includes(user._id) ? `./assets/image/unliked.png` : "./assets/image/paw.png"
+
+        html+= `<div class="meow" data-id="${element._id}">
+            <div class="meowTop">
+                <div class="meowUserStuff">
+                    <img class="meowUserProfilePicture" src="${element.profilePic}" alt="${element.name}" height="30" width="30">
+                    <span class="meowUsername">${element.name}</span>
+                </div>
+                <span class="timeMeowed">${time}</span>
+                ${hide}
+                <img data-id="${element._id}" class="reportButton" src="./assets/image/kitty.png" alt="Report Message" height="30" width="30">
+            </div>
+            <span class="meowContent ${toxic}">${escapeHtml(element.text)}</span>
+            <div class="meowBottom">
+                <div class="likeButtonContainer">
+                    <img data-id="${element._id}" class="likeButton" src="${isLiked}" alt="Like Button" height="30" width="30">
+                    <span class="likeCount">${element.likes}</span>
+                </div>
+                <img data-id="${element._id}" class="shareMeowButton" src="./assets/image/share.png" alt="Share Meow" height="30" width="30">
+            </div>
+        </div>`
+    })
+
+    return html
+}
 function escapeHtml(string) {
     let entityMap = {
         "&": "&amp;",
