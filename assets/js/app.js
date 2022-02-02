@@ -6,7 +6,6 @@ let elements = {
 	location: document.querySelector(".noLocationAccess"),
 	wrapper: document.querySelector(".wrapper"),
 }
-let permissionToAccessGeoLocationOnNonChrome = false
 let geoPermissionCount = 0
 
 document

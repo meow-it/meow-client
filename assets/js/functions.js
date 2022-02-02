@@ -37,10 +37,11 @@ async function register() {
 }
 
 async function checkLocationPermission() {
+    let test = false
     if(window.chrome == null) {
         try {
-            permissionToAccessGeoLocationOnNonChrome = await getCurrentPosition()
-            return true
+            test = await getCurrentPosition()
+            return test != false ? true : false
         } catch (err) {
             console.log(err)
             return false
