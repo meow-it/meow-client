@@ -1,0 +1,17 @@
+{
+	"short_name": "Meow It",
+	"name": "Meow It",
+	"description": "Send meows to everyone around 5 km from you.",
+	"icons": [
+		{
+			"src": "./logo.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "any maskable"
+		}
+	],
+	"start_url": "/",
+	"background_color": "#ffffff",
+	"display": "standalone",
+	"theme_color": "#ffffff"
+}
