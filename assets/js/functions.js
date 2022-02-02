@@ -37,6 +37,15 @@ async function register() {
 }
 
 async function checkLocationPermission() {
+    if(window.chrome == null) {
+        try {
+            permissionToAccessGeoLocationOnNonChrome = await getCurrentPosition()
+            return true
+        } catch (err) {
+            console.log(err)
+            return false
+        }
+    }
 	if (!navigator.permissions) return false
 	let permission = await navigator.permissions.query({ name: "geolocation" })
 	if (permission.state == "granted") return true

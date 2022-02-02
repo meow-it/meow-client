@@ -6,6 +6,7 @@ let elements = {
 	location: document.querySelector(".noLocationAccess"),
 	wrapper: document.querySelector(".wrapper"),
 }
+let permissionToAccessGeoLocationOnNonChrome = false
 let geoPermissionCount = 0
 
 document
@@ -13,8 +14,8 @@ document
 	.addEventListener("click", (e) => {
 		navigator.geolocation.getCurrentPosition(
 			() => {
-                alert("Permission Granted")
-				// window.location.reload()
+                
+				window.location.reload()
 			},
 			() => {
 				if (geoPermissionCount > 0) {
@@ -69,8 +70,6 @@ async function main() {
 	userItem.profilePicture.src = user.profilePic
 
 	let locationPermission = await checkLocationPermission()
-
-    alert(locationPermission)
 
 	if (!locationPermission) {
 		setDisplayNone(elements)
