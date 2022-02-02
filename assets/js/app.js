@@ -27,6 +27,9 @@ userItem.username = document.querySelector(".username")
 userItem.profilePicture = document.querySelector(".profilePicture")
 
 async function main () {
+
+    NProgress.start()
+
     let userFromStorage = await getLocalForage("user")
 
     if (userFromStorage == null ) {
@@ -49,6 +52,8 @@ async function main () {
         user = userFromStorage
     }
 
+    NProgress.set(0.5)
+
     userItem.username.textContent = user.name
     userItem.profilePicture.src = user.profilePic
 
@@ -57,6 +62,7 @@ async function main () {
     if(!locationPermission) {
         setDisplayNone(elements)
         elements.location.style.display = "flex"
+        NProgress.done()
         return
     } else {
 
@@ -70,6 +76,8 @@ async function main () {
             longitude: position.coords.longitude
         }
 
+        NProgress.set(0.7)
+
         let placeInfo = await getPlaceInfo(coords)
         let localityString = getLocationString(placeInfo)
 
@@ -81,6 +89,8 @@ async function main () {
         let meows = await getPosts(position.coords)
         meowCount = meows.length
 
+        NProgress.set(0.9)
+
         let html = meowCount != 0 ? generateMeows(meows) : generateNoMeows()
         document.querySelector(".meowsContainer").innerHTML = html
 
@@ -88,6 +98,7 @@ async function main () {
         setTimeout(() => {
             elements.postsLoading.style.display = "none"
             elements.wrapper.style.display = "flex"
+            NProgress.done()
         }, 1000)
 
     }
@@ -156,6 +167,8 @@ function handlePromotionClick() {
 }
 
 async function createMeow() {
+
+    NProgress.start()
     
     let textField = document.querySelector(".meowInput")
     let text = textField.value
@@ -163,6 +176,8 @@ async function createMeow() {
     let { coords } = await getCurrentPosition()
 
     let meow = await newMeow(text, coords)
+
+    NProgress.set(0.7)
 
     let html = generateMeows([meow])
     let existingStuff = document.querySelector(".meowsContainer").innerHTML
@@ -172,6 +187,8 @@ async function createMeow() {
     } else {
         document.querySelector(".meowsContainer").innerHTML = html + existingStuff
     }
+
+    NProgress.done()
 
     handleCloseNewMeowModal()
 }
