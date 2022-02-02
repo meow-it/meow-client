@@ -188,6 +188,8 @@ async function createMeow() {
 
 	NProgress.set(0.7)
 
+    textField.value = ""
+
 	let html = generateMeows([meow])
 	let existingStuff = document.querySelector(".meowsContainer").innerHTML
 
