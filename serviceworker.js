@@ -5,7 +5,7 @@ const AUTO_CACHE = [
 	OFFLINE,
 	"/",
 	"/assets/image/add.png",
-	"/assets/image/cance.png",
+	"/assets/image/cancel.png",
 	"/assets/image/cat-face.png",
 	"/assets/image/error.gif",
 	"/assets/image/eye.png",
@@ -13,7 +13,7 @@ const AUTO_CACHE = [
 	"/assets/image/kitty.png",
 	"/assets/image/loading.gif",
 	"/assets/image/location.png",
-	"/assets/image/nodata.png",
+	"/assets/image/nodata.gif",
 	"/assets/image/paw.png",
 	"/assets/image/reviewed.png",
 	"/assets/image/share.png",
@@ -24,7 +24,7 @@ const AUTO_CACHE = [
 	"/assets/css/Galactico-Basic.woff",
 	
     "/assets/js/app.js",
-    "/assets/js/functions.js",
+    "/assets/js/functions.js"
 ]
 
 self.addEventListener("install", (event) => {
