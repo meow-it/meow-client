@@ -44,9 +44,16 @@ body {
 	background-color: #fff;
 	z-index: 10;
 	display: none;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 	gap: 3rem;
 }
 
@@ -55,10 +62,19 @@ body {
 }
 
 .loadingTextContainer {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: space-evenly;
+	    -ms-flex-pack: space-evenly;
+	        justify-content: space-evenly;
 	gap: 2rem;
 }
 
@@ -101,10 +117,11 @@ body {
 
 .learnMore.newAlert {
 	border: 1px solid #44444444;
-    border-radius: 6px;
-    padding: 0.5rem;
-    box-shadow: 0 0 5px 0 #44444444;
-    color: #e84118;
+	border-radius: 6px;
+	padding: 0.5rem;
+	-webkit-box-shadow: 0 0 5px 0 #44444444;
+	        box-shadow: 0 0 5px 0 #44444444;
+	color: #e84118;
 	font-size: 1.3rem;
 }
 
@@ -127,20 +144,32 @@ body {
 
 .meowFromId {
 	display: none;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	padding: 1rem 0.5rem 0;
 }
 
 .meowContainer {
 	padding-top: 1rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    flex-direction: column;
-    gap: 4rem;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	gap: 4rem;
 }
 
 .promotionHolder {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .promotion {
@@ -149,44 +178,68 @@ body {
 	font-size: 1.6rem;
 	color: #fff;
 	background-color: #0070f3;
+	width: -webkit-max-content;
+	width: -moz-max-content;
 	width: max-content;
 }
 
 .newMeowModalContainer {
-	display: none; 
-	position: fixed; 
-	z-index: 5; 
+	display: none;
+	position: fixed;
+	z-index: 5;
 	left: 0;
 	top: 0;
-	width: 100%; 
-	height: 100%; 
-	overflow: auto; 
+	width: 100%;
+	height: 100%;
+	overflow: auto;
 	background-color: white;
 }
 
 .createNewMeow {
 	height: 80vh;
 	padding: 1rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: stretch;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	-webkit-box-align: stretch;
+	    -ms-flex-align: stretch;
+	        align-items: stretch;
 	gap: 2rem;
-	
+
 	margin: 0;
 }
 
 .optionsHolder {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	padding: 0 0.2rem;
 }
 
 .option {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	gap: 3px;
 }
 
@@ -196,8 +249,13 @@ body {
 }
 
 .meowInputContainer {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	gap: 5px;
 	min-height: 200px;
 	padding: 0.5rem;
@@ -226,24 +284,39 @@ body {
 
 .wrapper {
 	display: none;
-	flex-direction: column;
-	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
 }
 
 .header {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 	padding: 0.5rem;
 	position: sticky;
 	top: 0;
-    background-color: #fff;
-    border-bottom: 1px solid #44444444;
+	background-color: #fff;
+	border-bottom: 1px solid #44444444;
 }
 
 .userStuff {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	gap: 0.5rem;
 }
 
@@ -258,28 +331,45 @@ body {
 }
 
 .locationHolder {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	gap: 0.5rem;
 	padding: 0.5rem 0.5rem 0.1rem 1.1rem;
 }
 
-.locationText, .meowLocationText {
+.locationText,
+.meowLocationText {
 	font-size: 1.2rem;
 	font-weight: 600;
 }
 
 .meowsContainer {
-    margin-top: 0.5rem;
+	margin-top: 0.5rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
 	padding-bottom: 0.5rem;
 }
 
 .meow {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	border: 1px solid #44444444;
 	border-radius: 10px;
 	padding: 0.5rem;
@@ -288,21 +378,35 @@ body {
 }
 
 .meowTop {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 
 .meowUserStuff {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	gap: 10px;
 }
 
 .meowOptionsStuff {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
-    gap: 1rem;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	gap: 1rem;
 }
 
 .meowUsername {
@@ -318,18 +422,28 @@ body {
 	font-weight: 600;
 }
 .meowContent {
-    font-size: 1.3rem;
+	font-size: 1.3rem;
 	text-align: justify;
 	padding: 0 0.3em;
 }
 .meowBottom {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
 }
 .likeButtonContainer {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 	gap: 10px;
 }
 .likeCount {
@@ -337,24 +451,33 @@ body {
 }
 
 .noMeows {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    min-height: 70vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: space-evenly;
+	    -ms-flex-pack: space-evenly;
+	        justify-content: space-evenly;
+	min-height: 70vh;
 }
 .noDataGif {
-    border: 1px solid #f8f8f8;
-    border-radius: 10px;
+	border: 1px solid #f8f8f8;
+	border-radius: 10px;
 }
 .noMeowsText {
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: 600;
+	text-align: center;
+	font-size: 1.3rem;
+	font-weight: 600;
 }
 .askUserToCreate {
-    text-align: center;
-    font-size: 1.2rem;
-    max-width: 80vw;
-    font-weight: 600;
+	text-align: center;
+	font-size: 1.2rem;
+	max-width: 80vw;
+	font-weight: 600;
 }
