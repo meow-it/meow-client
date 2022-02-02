@@ -98,5 +98,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
     <script src="./assets/js/functions.js"></script>
     <script src="./assets/js/app.js"></script>
+    <script>
+        if('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('serviceworker.js')
+                    .then((reg) => console.log('Success: ', reg.scope))
+                    .catch((err) => console.log('Failure: ', err));
+            })
+        }
+    </script>
 </body>
 </html>
