@@ -2,7 +2,23 @@
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 400;
-	src: url(./Inter.woff) format("woff");
+	src: url(./SFPRODISPLAYREGULAR.OTF) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 600;
+	src: url(./SFPRODISPLAYMEDIUM.OTF) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 700;
+	src: url(./SFPRODISPLAYBOLD.OTF) format("woff");
 	font-display: swap;
 }
 
@@ -92,7 +108,7 @@ body {
 
 .loadingText {
 	text-align: center;
-	font-weight: 800;
+	font-weight: 700;
 	font-size: 2.125rem;
 }
 
@@ -123,16 +139,16 @@ body {
 .learnMore {
 	text-align: center;
 	font-size: 2.125rem;
-	font-weight: 800;
-	max-width: 70vw;
+	font-weight: 700;
+	max-width: 90vw;
 }
 
 .makeSure {
 	color: #f3624c;
 	text-align: center;
 	font-size: 1.2rem;
-	font-weight: 800;
-	max-width: 70vw;
+	font-weight: 700;
+	max-width: 90vw;
 }
 
 .learnMore.newAlert {
@@ -265,7 +281,7 @@ body {
 
 .optionText {
 	font-size: 0.8rem;
-	font-weight: 800;
+	font-weight: 700;
 }
 
 .meowInputContainer {
@@ -299,7 +315,7 @@ body {
 
 .meowInputCharactersRemainingNumber,
 .meowInputCharactersRemainingText {
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .wrapper {
@@ -347,7 +363,7 @@ body {
 
 .username {
 	font-size: 1.5rem;
-	font-weight: 800;
+	font-weight: 700;
 }
 
 .locationHolder {
