@@ -1,4 +1,4 @@
-let serverURLAPIEndpoint = `https://meow-it.herokuapp.com/api/`
+let serverURLAPIEndpoint = `http://localhost:3003/api/`
 
 async function getLocalForage(key) {
 	try {

@@ -13,7 +13,8 @@ document
 	.addEventListener("click", (e) => {
 		navigator.geolocation.getCurrentPosition(
 			() => {
-				window.location.reload()
+                alert("Permission Granted")
+				// window.location.reload()
 			},
 			() => {
 				if (geoPermissionCount > 0) {
@@ -68,6 +69,8 @@ async function main() {
 	userItem.profilePicture.src = user.profilePic
 
 	let locationPermission = await checkLocationPermission()
+
+    alert(locationPermission)
 
 	if (!locationPermission) {
 		setDisplayNone(elements)
