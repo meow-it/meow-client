@@ -20,7 +20,9 @@ const AUTO_CACHE = [
 	"/assets/image/unliked.png",
 
 	"/assets/css/main.css",
-	"/assets/css/Inter.woff",
+	"/assets/css/SFPRODISPLAYBOLD.otf",
+	"/assets/css/SFPRODISPLAYMEDIUM.otf",
+	"/assets/css/SFPRODISPLAYREGULAR.otf",
 	"/assets/css/Galactico-Basic.woff",
 	
     "/assets/js/app.js",

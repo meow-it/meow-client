@@ -2,7 +2,7 @@
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 400;
-	src: url(./SFPRODISPLAYREGULAR.OTF) format("woff");
+	src: url(./SFPRODISPLAYREGULAR.OTF) format("otf");
 	font-display: swap;
 }
 
@@ -10,7 +10,7 @@
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 600;
-	src: url(./SFPRODISPLAYMEDIUM.OTF) format("woff");
+	src: url(./SFPRODISPLAYMEDIUM.OTF) format("otf");
 	font-display: swap;
 }
 
@@ -18,7 +18,7 @@
 	font-family: "Inter";
 	font-style: normal;
 	font-weight: 700;
-	src: url(./SFPRODISPLAYBOLD.OTF) format("woff");
+	src: url(./SFPRODISPLAYBOLD.OTF) format("otf");
 	font-display: swap;
 }
 
