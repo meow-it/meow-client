@@ -6,10 +6,18 @@ let elements = {
     location : document.querySelector(".noLocationAccess"),
     wrapper: document.querySelector(".wrapper")
 }
+let geoPermissionCount = 0
 
-document.querySelector(".givePermissionButton").addEventListener("click" , () => {
+document.querySelector(".givePermissionButton").addEventListener("click" , (e) => {
     navigator.geolocation.getCurrentPosition(() => {
         window.location.reload()
+    }, () => {
+        if(geoPermissionCount > 0) {
+            let text = e.target.parentElement.querySelector(".learnMore")
+            text.textContent = "You have denied access to your location. You can change this in your browser settings. Click here to learn more ↗"
+            text.classList.add("newAlert")
+        } 
+        geoPermissionCount++
     })
 })
 
