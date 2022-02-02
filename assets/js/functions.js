@@ -197,9 +197,12 @@ function handleLocationIconClick(e) {
 }
 
 function getLocationString(placeInfo) {
-	return `${placeInfo.locality} ${placeInfo.locality != null ? "," : ""} ${
-		placeInfo.city
-	} ${placeInfo.city != null ? "," : ""} ${placeInfo.principalSubdivision}`
+
+    let firstComma = placeInfo.locality != "" ? ", " : ""
+    let secondComma = placeInfo.city != "" ? ", " : ""
+
+    return `${placeInfo.locality}${firstComma}${placeInfo.city}${secondComma}${placeInfo.principalSubdivision}`
+
 }
 
 async function getSingleMeow(id) {
