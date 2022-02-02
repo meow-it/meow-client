@@ -262,10 +262,7 @@ async function handleReview(e) {
 
 async function handleShareButton(e) {
 	let id = e.target.dataset.id
-	let text =
-		e.target.parentElement.parentElement.parentElement.querySelector(
-			".meowContent"
-		).innerText
+	let text = "Check out this Meow on Meow it! 😺"
 	let shareObject = {
 		title: "Check out this Meow!",
 		text: text,
