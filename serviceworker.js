@@ -1,4 +1,4 @@
-const CACHE = "content-v2" // name of the current cache
+const CACHE = "content-v3" // name of the current cache
 const OFFLINE = "/offline.html"
 
 const AUTO_CACHE = [
@@ -57,6 +57,11 @@ self.addEventListener("activate", (event) => {
 	)
 })
 
+function isCached(url) {
+	if (url.includes("assets")) return true
+	return false
+}
+
 self.addEventListener("fetch", (event) => {
 	if (
 		!event.request.url.startsWith(self.location.origin) ||
@@ -65,8 +70,10 @@ self.addEventListener("fetch", (event) => {
 		return void event.respondWith(fetch(event.request))
 	}
 
-	event.respondWith(
-		fetch(event.request)
+	if(isCached(event.request.url)){
+		event.respondWith(
+			
+			fetch(event.request)
 			.then((response) => {
 				caches.open(CACHE).then((cache) => {
 					cache.put(event.request, response)
@@ -85,5 +92,23 @@ self.addEventListener("fetch", (event) => {
 					})
 				})
 			})
-	)
+			
+		)
+	} else {
+		event.respondWith(
+			caches.match(event.request).then((response) => {
+				if (response) {
+					return response
+				}
+
+				return fetch(event.request).then((response) => {
+					caches.open(CACHE).then((cache) => {
+						cache.put(event.request, response)
+					})
+					return response.clone()
+				})
+			})
+		)
+	}
+
 })
