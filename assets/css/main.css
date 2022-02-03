@@ -36,6 +36,7 @@
 		"Helvetica Neue", sans-serif;
 	font-weight: 400;
 	font-style: normal;
+	-webkit-tap-highlight-color: #00000000;
 }
 
 html {
