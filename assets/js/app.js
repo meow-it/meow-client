@@ -9,6 +9,22 @@ let elements = {
 }
 let geoPermissionCount = 0
 
+let faqItems = document.querySelectorAll(".accordion button");
+
+function toggleAccordion() {
+	let itemToggle = this.getAttribute("aria-expanded")
+
+	for (i = 0; i < faqItems.length; i++) {
+		faqItems[i].setAttribute("aria-expanded", "false")
+	}
+
+	if (itemToggle == "false") {
+		this.setAttribute("aria-expanded", "true")
+	}
+}
+
+faqItems.forEach(item => item.addEventListener('click', toggleAccordion));
+
 document.querySelector(".whatIsThis button").addEventListener("click", async () => {
 	await setLocalForage("firstTimeVisit", true)
 	window.location.reload()
@@ -45,8 +61,21 @@ let userItem = {}
 userItem.username = document.querySelector(".username")
 userItem.profilePicture = document.querySelector(".profilePicture")
 
+function renderFirstVisit() {
+	setDisplayNone(elements)
+	elements.firstTimeVisit.style.display = "flex"
+}
+
 async function main() {
 	NProgress.start()
+
+	let firstTimeVisit = await getLocalForage("firstTimeVisit")
+
+	if (firstTimeVisit == null) {
+		renderFirstVisit()
+		NProgress.done()
+		return
+	}
 
 	let userFromStorage = await getLocalForage("user")
 
