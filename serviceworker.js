@@ -1,4 +1,4 @@
-const CACHE = "content-v1" // name of the current cache
+const CACHE = "content-v2" // name of the current cache
 const OFFLINE = "/offline.html"
 
 const AUTO_CACHE = [
@@ -20,9 +20,9 @@ const AUTO_CACHE = [
 	"/assets/image/unliked.png",
 
 	"/assets/css/main.css",
-	"/assets/css/SFPRODISPLAYBOLD.otf",
-	"/assets/css/SFPRODISPLAYMEDIUM.otf",
-	"/assets/css/SFPRODISPLAYREGULAR.otf",
+	"/assets/css/SFRegular.woff",
+	"/assets/css/SFMedium.woff",
+	"/assets/css/SFBold.woff",
 	"/assets/css/Galactico-Basic.woff",
 	
     "/assets/js/app.js",

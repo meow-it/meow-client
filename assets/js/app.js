@@ -5,9 +5,14 @@ let elements = {
 	postsLoading: document.querySelector(".postsLoading"),
 	location: document.querySelector(".noLocationAccess"),
 	wrapper: document.querySelector(".wrapper"),
+	firstTimeVisit: document.querySelector(".firstTimeVisit"),
 }
 let geoPermissionCount = 0
 
+document.querySelector(".whatIsThis button").addEventListener("click", async () => {
+	await setLocalForage("firstTimeVisit", true)
+	window.location.reload()
+})
 document
 	.querySelector(".givePermissionButton")
 	.addEventListener("click", (e) => {
