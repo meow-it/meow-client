@@ -1,4 +1,4 @@
-const CACHE = "content-v3" // name of the current cache
+const CACHE = "content-v4" // name of the current cache
 const OFFLINE = "/offline.html"
 
 const AUTO_CACHE = [
