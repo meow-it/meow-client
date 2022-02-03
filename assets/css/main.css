@@ -75,6 +75,7 @@ a {
 .hideMessage,
 .learnMore,
 .givePermissionButton,
+.cancelGoBack,
 .promotion {
 	cursor: pointer;
 }
@@ -155,17 +156,24 @@ a {
 	margin-right: auto;
 }
 
-.whyLocationInfo {
-	
+.cancelGoBack {
+	display: flex;
+	align-items: center;
+}
+
+span.cancelGoBack {
+	padding-left: 10px;
+	font-size: 1.3rem;
 }
 
 .overflowDiv {
 	max-height: 80vh;
 	overflow-y: auto;
 	border: 1px solid #44444444;
-	margin: auto 0.8rem;
+	margin-left: 0.8rem;
 	border-radius: 10px;
 	box-shadow: 2px 2px 13px 0px #44444444;
+	margin-right: 0.8rem;
 }
 
 /* The Location Info */
@@ -186,7 +194,6 @@ a {
 	text-align: left;
 	width: 100%;
 	padding: 1em 0;
-	color: #7288a2;
 	font-size: 1.15rem;
 	font-weight: 400;
 	border: none;
@@ -208,7 +215,8 @@ a {
 	border: 1px solid #0070f3;
 }
 .accordion button .accordion-title {
-	padding-right: 25px;
+	padding-right: 30px;
+	text-align: center;
 }
 .accordion button .icon {
 	display: inline-block;

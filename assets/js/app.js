@@ -6,6 +6,7 @@ let elements = {
 	location: document.querySelector(".noLocationAccess"),
 	wrapper: document.querySelector(".wrapper"),
 	firstTimeVisit: document.querySelector(".firstTimeVisit"),
+	whyLocationInfo: document.querySelector(".whyLocationInfo"),
 }
 let geoPermissionCount = 0
 
@@ -28,6 +29,11 @@ faqItems.forEach(item => item.addEventListener('click', toggleAccordion));
 document.querySelector(".whatIsThis button").addEventListener("click", async () => {
 	await setLocalForage("firstTimeVisit", true)
 	window.location.reload()
+})
+document.querySelector(".learnMore").addEventListener("click", () => {
+	setDisplayNone(elements)
+	elements.whyLocationInfo.style.display = "flex"
+
 })
 document
 	.querySelector(".givePermissionButton")
@@ -190,6 +196,8 @@ document.addEventListener("click", (e) => {
 		e.target.classList.contains("promotionHolder")
 	) {
 		handlePromotionClick()
+	} else if (e.target.classList.contains("cancelGoBack")) {
+		closeLocationFAQ()
 	}
 })
 
@@ -209,6 +217,11 @@ function handleCloseNewMeowModal() {
 
 function handlePromotionClick() {
 	window.location.href = window.location.origin
+}
+
+function closeLocationFAQ () {
+	setDisplayNone(elements)
+	elements.location.style.display = "flex"
 }
 
 async function createMeow() {

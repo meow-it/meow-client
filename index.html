@@ -25,8 +25,7 @@
     <title>Meow It</title>
 </head>
 <body>
-    <div class="firstTimeVisit" style="display: none;">
-        
+    <div class="firstTimeVisit">
         <img src="./assets/image/kitty.png" alt="Meow It" width="150" height="150">
         <div class="firstTimeontent">
             <span class="welcomeText">Welcome to Meow It!</span>
@@ -55,13 +54,17 @@
         </div>
     </div>
     <div class="whyLocationInfo">
+        <div class="cancelGoBack">
+            <img class="cancelGoBack" src="./assets/image/cancel.png" alt="Cancel" height="50" width="50">
+            <span class="cancelGoBack">Go Back</span>
+        </div>
         <div class="overflowDiv">
             <div class="container">
                 <h2>Frequently Asked Questions</h2>
                 <div class="accordion">
                     <div class="accordion-item">
                         <button id="accordion-button-1" aria-expanded="false">
-                            <span class="accordion-title">Why does Meow require Location</span>
+                            <span class="accordion-title">Why does Meow require Location?</span>
                             <span class="icon" aria-hidden="true"></span>
                         </button>
                         <div class="accordion-content">
@@ -93,42 +96,44 @@
                         </button>
                         <div class="accordion-content">
                             <p> Meow doesn't have huge storage. It is basically impossible for us to store your loation data. 
-                                Don't believe us? Check out the source code on <a href="https://github.com/meow-it">GitHub↗</a>
+                                Hard to believe? Check out the source code on <a href="https://github.com/meow-it">GitHub↗</a> 
+                                and feel free to contribute!
                             </p>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <button id="accordion-button-4" aria-expanded="false">
-                            <span class="accordion-title">Nothing happens when I press "Give Permission". What should I do?</span>
+                            <span class="accordion-title">What should I do if nothing happens when I press <q>Give Permission</q> ?</span>
                             <span class="icon" aria-hidden="true"></span>
                         </button>
                         <div class="accordion-content">
-                            <p class="font600">There are things which might be causing this problem. They are listed below:</p>
+                            <p class="font600">There are many things which might be causing this problem. They are listed below:</p>
                             <ol>
-                                <li>You didn't allow Meow to access your device permission</li>
-                                <li>Your browser doesn't have access to device location</li>
+                                <li>You didn't allow Meow to access your device permission multiple times</li>
+                                <li>Your browser doesn't have access to your device location</li>
                                 <li>You didn't turn on GPS on your device</li>
                                 <li>Your browser does not support this application</li>
-                                <li>You're using an outdated version of modern browsers. Kindly update it.</li>
+                                <li>You're using an outdated version of modern browsers. If yes, try again after updating it.</li>
                             </ol>
                 
-                            <p>If your browser doesn't have permission, try the following:</p>
+                            <p>Hopefully you can trouble shoot this problem:</p>
                             <p class="font600">On Android:</p>
                             <ol>
-                                <li>On Android, Go to System Settings -> All Apps -> Browser -> Permissions and grant permission</li>
+                                <li>Go to System Settings -> All Apps -> Browser -> Permissions and grant permission</li>
                                 <li>Now, open the website and click on the PadLock icon next to the URL and grant location access</li>
-                                <li>If the PadLock icon is not visible, go to site settings and grant location permission</li>
+                                <li>If the PadLock icon is not visible, go to site settings and grant the location permission</li>
                             </ol>
                             <p class="font600">On iOS:</p>
                             <ol>
-                                <li>On iOS Settings -> Privacy -> Location Services and make sure it is ON and the browser has location access. </li>
-                                <li>If you're a Safari user, Go to Settings -> Safari -> Location and set it to 'Allow'</li>
-                                <li>And open the site settings for Meow on Safari and grant location permission</li>
+                                <li>Go to Settings -> Privacy -> Location Services and make sure it is ON and the browser has location access. </li>
+                                <li>If you're a Safari user, go to Settings -> Safari -> Location and set it to <q>Allow</q> </li>
+                                <li>And open the site settings for Meow on Safari and grant the location permission</li>
                             </ol>
                             <p class="font600">On Windows 10</p>
                             <ol>
                                 <li>Click on the PadLock Icon next to the URL in the browser.</li>
                                 <li>In the Permissions Options, grant Location access and reload the page</li>
+                                <li>Or click on the location icon to the right of the address bar and set it to <q>Always allow Meow to access your location</q></li>
                             </ol>
                         </div>
                     </div>
@@ -140,7 +145,7 @@
         <img src="./assets/image/error.gif" alt="Error" height="225" width="300">
         <span class="errorText">This app requires your Geolocation to refresh the feed</span>
         <span class="makeSure">Make sure the GPS is turned ON and the browser has location access</span>
-        <span class="learnMore">Learn more about how to turn it on and why we need it and how it is used ↗</span>
+        <span class="learnMore">Learn more about how to turn it on, or why we need it, or how it is used ↗</span>
         <span class="givePermissionButton">Give Permission</span>
     </div>
     <div class="newMeowModalContainer">   
