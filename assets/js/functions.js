@@ -1,4 +1,4 @@
-let serverURLAPIEndpoint = `https://meow-it.herokuapp.com/api/`
+let serverURLAPIEndpoint = `https://meow-ruby.vercel.app/api/`
 
 async function getLocalForage(key) {
 	try {
