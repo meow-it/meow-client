@@ -682,7 +682,7 @@ span.cancelGoBack {
 	font-weight: 600;
 	padding-left: 1rem;
 }
-.reportButton {
+.reportButton, .reviewed {
 	padding-left: 1rem;
 }
 .hideMessage {
