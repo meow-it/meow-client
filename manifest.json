@@ -44,7 +44,7 @@
 			"label": "Feeds for your location!"
 		},
 		{
-			"src": "./screenshots/refreshingFeed.webp",
+			"src": "./screenshots/noMeowsNearby.webp",
 			"sizes": "2340x1081",
 			"type": "image/webp",
 			"platform": "narrow",
