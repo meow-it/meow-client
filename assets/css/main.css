@@ -77,6 +77,7 @@ a {
 .learnMore,
 .givePermissionButton,
 .cancelGoBack,
+.logoutButton,
 .promotion {
 	cursor: pointer;
 }
@@ -404,6 +405,15 @@ span.cancelGoBack {
 	background-color: #0070f3;
 }
 
+.logoutButton {
+	margin-top: 1rem;
+	padding: 0.2em 1em;
+	border-radius: 8px;
+	font-size: 1.8rem;
+	color: #fff;
+	background-color: #ff5b5b;
+}
+
 .meowFromId {
 	display: none;
 	-webkit-box-orient: vertical;
@@ -553,6 +563,54 @@ span.cancelGoBack {
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
+}
+
+.userInfo {
+	display: none;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 0.5rem;
+	height: 70vh;
+}
+
+.userInfo .optionsHolder {
+	padding-left: 1rem;
+	padding-top: 1rem;
+}
+
+.userInfo .actualUserInfoContent {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex: 1;
+}
+
+.userInfo .infoUserProfilePicture {
+	border-radius: 50%;
+	border: 1px solid #44444444;
+	box-shadow: 0 0 5px 0 #44444444;
+	margin-bottom: 1rem;
+}
+
+.userInfo .madeHowMany, .userInfo .meowsMadeText {
+	font-size: 2rem;
+	padding-bottom: 1rem;
+	padding-top: 1rem;
+}
+
+.userInfo .infoUsername , .userInfo .meowsMade {
+	font-size: 3rem;
+	text-align: center;
+}
+
+.userInfo .deleteCache {
+	margin-top: 1rem;
+	padding: 0.2em 1em;
+	border-radius: 8px;
+	font-size: 1.8rem;
+	color: #fff;
+	background-color: #0070f3;
 }
 
 .header {

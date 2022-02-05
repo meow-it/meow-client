@@ -413,3 +413,12 @@ function countCharactersInTextField(e) {
 		remainingNumber.style.color = colorThree
 	}
 }
+
+async function deleteCache() {
+	await caches.keys().then((keyList) => {
+		Promise.all(keyList.map((key) => {
+			caches.delete(key)
+		}))
+	})
+	alert("Request sent to clear browser cache! 🙌")
+}

@@ -7,6 +7,7 @@ let elements = {
 	wrapper: document.querySelector(".wrapper"),
 	firstTimeVisit: document.querySelector(".firstTimeVisit"),
 	whyLocationInfo: document.querySelector(".whyLocationInfo"),
+	userInfo: document.querySelector(".userInfo"),
 }
 let geoPermissionCount = 0
 
@@ -198,6 +199,14 @@ document.addEventListener("click", (e) => {
 		handlePromotionClick()
 	} else if (e.target.classList.contains("cancelGoBack")) {
 		closeLocationFAQ()
+	} else if (e.target.classList.contains("closeUserInfo")){
+		closeUserInfo()
+	} else if (e.target.classList.contains("profilePicture")) {
+		showUserInfo()
+	} else if (e.target.classList.contains("deleteCache")) {
+		deleteCache()
+	} else if (e.target.classList.contains("logoutButton")) {
+		logoutUser()
 	}
 })
 
@@ -222,6 +231,24 @@ function handlePromotionClick() {
 function closeLocationFAQ () {
 	setDisplayNone(elements)
 	elements.location.style.display = "flex"
+}
+
+function showUserInfo () {
+	setDisplayNone(elements)
+	document.querySelector(".infoUsername").textContent = user.name
+	document.querySelector(".infoUserProfilePicture").src = user.profilePic
+	document.querySelector(".infoUserProfilePicture").alt = user.name
+	elements.userInfo.style.display = "flex"
+}
+
+function closeUserInfo () {
+	setDisplayNone(elements)
+	elements.wrapper.style.display = "flex"
+}
+
+async function logoutUser () {
+	await localforage.clear()
+	window.location.href = "./"
 }
 
 async function createMeow() {
