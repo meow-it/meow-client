@@ -73,5 +73,6 @@
 		}
 	],
 	"orientation": "portrait-primary",
-	"categories": ["explore", "play", "location", "social"]
+	"categories": ["explore", "play", "location", "social"],
+	"lang": "en-US"
 }
