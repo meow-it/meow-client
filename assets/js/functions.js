@@ -60,20 +60,26 @@ function setDisplayNone(elements) {
 }
 
 async function getPosts({ latitude, longitude }) {
+
+	let response = null
+
 	try {
-		let response = await fetch(serverURLAPIEndpoint + "meow/all", {
+		response = await fetch(serverURLAPIEndpoint + "meow/all", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ latitude, longitude }),
 		})
-		let responseJSON = await response.json()
-		return responseJSON
 	} catch (err) {
 		console.log("Something Happened: 😓", err)
 		return null
 	}
+
+	if (response == null) return null
+
+	let responseJSON = await response.json()
+	return responseJSON
 }
 
 function generateMeows(elements) {
@@ -196,6 +202,11 @@ async function handleLike(e) {
 			meowid: id,
 			like: like,
 		}),
+	}).catch(() => {
+		showStatus("Something went wrong. Please try again later.")
+		setTimeout(() => {
+			hideStatus()
+		}, 2000)
 	})
 }
 
@@ -283,13 +294,17 @@ async function handleShareButton(e) {
 }
 
 async function getPlaceInfo(coords) {
-	let PlaceAPIEndpoint =
-		"https://api.bigdatacloud.net/data/reverse-geocode-client"
-	let response = await fetch(
-		`${PlaceAPIEndpoint}?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`
-	)
-	let responseJSON = await response.json()
-	return responseJSON
+	try {
+		let PlaceAPIEndpoint = "https://api.bigdatacloud.net/data/reverse-geocode-client"
+		let response = await fetch(
+			`${PlaceAPIEndpoint}?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`
+		)
+		let responseJSON = await response.json()
+		return responseJSON
+	} catch (error) {
+		console.log("Something Happened: 😓", error)
+		return null
+	}
 }
 
 function generateNoMeows() {
@@ -421,4 +436,13 @@ async function deleteCache() {
 		}))
 	})
 	alert("Request sent to clear browser cache! 🙌")
+}
+
+async function getPostsFromIndexedDB() {
+	let posts = await localforage.getItem("meows")
+	if (posts) {
+		return posts
+	} else {
+		return []
+	}
 }

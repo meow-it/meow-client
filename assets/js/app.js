@@ -9,6 +9,10 @@ let elements = {
 	whyLocationInfo: document.querySelector(".whyLocationInfo"),
 	userInfo: document.querySelector(".userInfo"),
 }
+let statusElements = {
+	currentFeedStatus: document.querySelector(".currentFeedStatus"),
+	locationHolder: document.querySelector(".locationHolder")
+}
 let geoPermissionCount = 0
 
 let faqItems = document.querySelectorAll(".accordion button");
@@ -74,84 +78,142 @@ function renderFirstVisit() {
 }
 
 async function main() {
-	NProgress.start()
 
-	let firstTimeVisit = await getLocalForage("firstTimeVisit")
-
-	if (firstTimeVisit == null) {
-		renderFirstVisit()
-		NProgress.done()
-		return
-	}
-
-	let userFromStorage = await getLocalForage("user")
-
-	if (userFromStorage == null) {
-		requestAnimationFrame(() => {
-			elements.newUser.style.display = "flex"
-		})
-
-		user = await register()
-
-		setTimeout(() => {
-			elements.newUser.style.display = "none"
-			elements.wrapper.style.display = "flex"
-			return main()
-		}, 3000)
-
-		return user
-	} else {
-		user = userFromStorage
-	}
-
-	NProgress.set(0.5)
-
-	userItem.username.textContent = user.name
-	userItem.profilePicture.src = user.profilePic
-
-	let locationPermission = await checkLocationPermission()
-
-	if (!locationPermission) {
-		setDisplayNone(elements)
-		elements.location.style.display = "flex"
-		NProgress.done()
-		return
-	} else {
-		setDisplayNone(elements)
-		elements.postsLoading.style.display = "flex"
-
-		let position = await getCurrentPosition()
-
-		let coords = {
-			latitude: position.coords.latitude,
-			longitude: position.coords.longitude,
-		}
-
-		NProgress.set(0.7)
-
-		let placeInfo = await getPlaceInfo(coords)
-		let localityString = getLocationString(placeInfo)
-
-		let locationTextSpan = document.querySelector(".locationText")
-		locationTextSpan.textContent = localityString
-		locationTextSpan.dataset.accuracy = position.coords.accuracy
-
-		let meows = await getPosts(position.coords)
-		meowCount = meows.length
-
-		NProgress.set(0.9)
-
-		let html = meowCount != 0 ? generateMeows(meows) : generateNoMeows()
-		document.querySelector(".meowsContainer").innerHTML = html
-
-		setTimeout(() => {
-			elements.postsLoading.style.display = "none"
-			elements.wrapper.style.display = "flex"
+	try {
+		
+		NProgress.start()
+	
+		let firstTimeVisit = await getLocalForage("firstTimeVisit")
+	
+		if (firstTimeVisit == null) {
+			renderFirstVisit()
 			NProgress.done()
-		}, 1000)
+			return
+		}
+	
+		let userFromStorage = await getLocalForage("user")
+	
+		if (userFromStorage == null) {
+			requestAnimationFrame(() => {
+				elements.newUser.style.display = "flex"
+			})
+	
+			user = await register()
+	
+			if (user == null || user.status == false) {
+				NProgress.done()
+				window.location.reload()
+			} 
+	
+			setTimeout(() => {
+				elements.newUser.style.display = "none"
+				elements.wrapper.style.display = "flex"
+				return main()
+			}, 3000)
+	
+			return user
+		} else {
+			user = userFromStorage
+		}
+	
+		NProgress.set(0.5)
+	
+		userItem.username.textContent = user.name
+		userItem.profilePicture.src = user.profilePic
+	
+		let locationPermission = await checkLocationPermission()
+	
+		if (!locationPermission) {
+			setDisplayNone(elements)
+			elements.location.style.display = "flex"
+			NProgress.done()
+			return
+		} else {
+			setDisplayNone(elements)
+	
+			let posts = await getPostsFromIndexedDB()
+			meowCount = posts.length
+			
+			let html = meowCount != 0 ? generateMeows(posts) : generateNoMeows()
+			document.querySelector(".meowsContainer").innerHTML = html
+	
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					elements.wrapper.style.display = "flex"
+					NProgress.done()
+				})
+			})
+
+			let position = await getCurrentPosition()
+	
+			await setLocalForage("position", {
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude,
+				accuracy: position.coords.accuracy
+			})
+	
+			let coords = {
+				latitude: position.coords.latitude,
+				longitude: position.coords.longitude,
+			}
+			
+			updatePlaceInfo(coords, position.coords.accuracy)
+			NProgress.set(0.7)
+	
+			let meows = await getPosts(coords)
+			if (meows == null) {
+				showStatus("You're Offline! 😢 Unable to refresh meows.")
+				return
+			}
+			await setLocalForage("meows", meows)
+			NProgress.done()
+	
+			if(meowCount == 0) {
+				let html = meows.length != 0 ? generateMeows(meows) : generateNoMeows()
+				document.querySelector(".meowsContainer").innerHTML = html
+			} else {
+				let firstMeowFromDb = posts[0]._id
+				if (meows.length == 0) {
+					showStatus("No meows found here! Reload to update 😶")
+					return
+				}
+				let firstMeowFromNetwork = meows[0]._id
+				if(firstMeowFromDb != firstMeowFromNetwork) {
+					showStatus("Reload to see new meows!")
+				}
+			}
+		}
+	
+		return user
+	} catch (error) {
+		console.log("Something went wrong 😟" + error)
+		showStatus("Something went wrong 😟")
 	}
 
-	return user
+}
+
+async function updatePlaceInfo(coords, accuracy, individual = false) {
+	let placeInfo = await getPlaceInfo(coords)
+	if (placeInfo == null) return
+	let localityString = getLocationString(placeInfo)
+
+	let element = individual ? ".meowLocationText" : ".locationText"
+
+	let locationTextSpan = document.querySelector(element)
+	locationTextSpan.textContent = localityString
+	individual ? "" : locationTextSpan.dataset.accuracy = accuracy
+	individual ? "" : await setLocalForage("placeInfo", localityString)
+}
+
+function hideStatus() {
+	statusElements.currentFeedStatus.style.top = "-3.125rem"
+	statusElements.locationHolder.style.marginTop = "0px"
+}
+
+function showStatus(message) {
+	statusElements.currentFeedStatus.innerHTML = message
+	statusElements.currentFeedStatus.style.top = "4.1875rem"
+	statusElements.locationHolder.style.marginTop = "1.875rem"
 }
 
 async function showMeow() {
@@ -166,10 +228,7 @@ async function showMeow() {
 		latitude: meow.location.coordinates[1],
 	}
 
-	let placeInfo = await getPlaceInfo(coords)
-	let localityString = getLocationString(placeInfo)
-	let locationTextSpan = document.querySelector(".meowLocationText")
-	locationTextSpan.textContent = localityString
+	updatePlaceInfo(coords, 0.1, true)
 
 	let html = generateMeow(meow)
 	document.querySelector(".meowContainer").innerHTML = html
@@ -215,6 +274,7 @@ document
 	.addEventListener("input", countCharactersInTextField)
 
 function handleCreateButtonClick() {
+	setDisplayNone(elements)
 	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
 	newMeowModalContainer.style.display = "block"
 }
@@ -222,6 +282,7 @@ function handleCreateButtonClick() {
 function handleCloseNewMeowModal() {
 	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
 	newMeowModalContainer.style.display = "none"
+	elements.wrapper.style.display = "flex"
 }
 
 function handlePromotionClick() {
@@ -259,23 +320,35 @@ async function createMeow() {
 
 	let { coords } = await getCurrentPosition()
 
-	let meow = await newMeow(text, coords)
+	if(navigator.onLine) {
 
-	NProgress.set(0.7)
-
-    textField.value = ""
-
-	let html = generateMeows([meow])
-	let existingStuff = document.querySelector(".meowsContainer").innerHTML
-
-	if (meowCount == 0) {
-		document.querySelector(".meowsContainer").innerHTML = html
-	} else {
-		document.querySelector(".meowsContainer").innerHTML =
-			html + existingStuff
+		let meow = await newMeow(text, coords)
+	
+		NProgress.set(0.7)
+	
+		await refreshDBWithCreatedMeow(meow)
+	
+		textField.value = ""
+	
+		let html = generateMeows([meow])
+		let existingStuff = document.querySelector(".meowsContainer").innerHTML
+	
+		if (meowCount == 0) {
+			document.querySelector(".meowsContainer").innerHTML = html
+		} else {
+			document.querySelector(".meowsContainer").innerHTML =
+				html + existingStuff
+		}
+	
+		NProgress.done()
+	
+		handleCloseNewMeowModal()
 	}
 
-	NProgress.done()
+}
 
-	handleCloseNewMeowModal()
+async function refreshDBWithCreatedMeow(meow) {
+	let meowsFromIDB = await getLocalForage("meows")
+	meowsFromIDB.unshift(meow)
+	await setLocalForage("meows", meowsFromIDB)
 }

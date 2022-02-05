@@ -1,4 +1,4 @@
-const CACHE = "content-v6" // name of the current cache
+const CACHE = "content-v7" // name of the current cache
 const OFFLINE = "/offline.html"
 
 const AUTO_CACHE = [
@@ -26,7 +26,9 @@ const AUTO_CACHE = [
 	"/assets/css/Galactico-Basic.woff",
 	
     "/assets/js/app.js",
-    "/assets/js/functions.js"
+    "/assets/js/functions.js",
+
+	"./manifest.json"
 ]
 
 self.addEventListener("install", (event) => {
@@ -59,6 +61,8 @@ self.addEventListener("activate", (event) => {
 
 function isCached(url) {
 	if (url.includes("assets")) return true
+	if (url == self.location.origin + "/") return true
+	if (url.includes("logo.png") || url.includes("favicon.ico") || url.includes("manifest.json")) return true
 	return false
 }
 
@@ -67,10 +71,10 @@ self.addEventListener("fetch", (event) => {
 		!event.request.url.startsWith(self.location.origin) ||
 		event.request.method !== "GET"
 	) {
-		return void event.respondWith(fetch(event.request))
+		return void event.respondWith(fetch(event.request).catch((err) => console.log(err)))
 	}
 
-	if(isCached(event.request.url)){
+	if(!isCached(event.request.url)){
 		event.respondWith(
 			
 			fetch(event.request)
