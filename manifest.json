@@ -72,5 +72,6 @@
 			"label": "Filters Toxic Content - Safe for children"
 		}
 	],
-	"orientation": "portrait-primary"
+	"orientation": "portrait-primary",
+	"categories": ["explore", "play", "location", "social"]
 }
