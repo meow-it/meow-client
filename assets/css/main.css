@@ -66,8 +66,7 @@ a {
 
 .noselect {
 	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none; /* Safari */
-	-khtml-user-select: none; /* Konqueror HTML */
+	-webkit-user-select: none; /* Safari */ /* Konqueror HTML */
 	-moz-user-select: none; /* Old versions of Firefox */
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently
@@ -123,11 +122,11 @@ a {
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
 	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
 .welcomeText {
@@ -150,8 +149,8 @@ a {
 	text-align: center;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
-	    -ms-flex-direction: column;
-	        flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
 }
 
 .whatIsThis span {
@@ -171,7 +170,7 @@ a {
 	outline: none;
 	margin-top: 1rem;
 	-webkit-box-shadow: 4px 4px 3px 1px #44444444;
-	        box-shadow: 4px 4px 3px 1px #44444444;
+	box-shadow: 4px 4px 3px 1px #44444444;
 	width: -webkit-fit-content;
 	width: -moz-fit-content;
 	width: fit-content;
@@ -184,8 +183,8 @@ a {
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
 span.cancelGoBack {
@@ -200,7 +199,7 @@ span.cancelGoBack {
 	margin-left: 0.8rem;
 	border-radius: 10px;
 	-webkit-box-shadow: 2px 2px 13px 0px #44444444;
-	        box-shadow: 2px 2px 13px 0px #44444444;
+	box-shadow: 2px 2px 13px 0px #44444444;
 	margin-right: 0.8rem;
 	margin-top: 3rem;
 }
@@ -232,11 +231,11 @@ span.cancelGoBack {
 	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
 	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
 }
 .accordion button:hover,
 .accordion button:focus {
@@ -577,7 +576,12 @@ span.cancelGoBack {
 
 .userInfo {
 	display: none;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-pack: start;
+	-ms-flex-pack: start;
 	justify-content: flex-start;
 	padding: 0.5rem;
 	height: 70vh;
@@ -589,27 +593,41 @@ span.cancelGoBack {
 }
 
 .userInfo .actualUserInfoContent {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
 	justify-content: center;
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
 	flex: 1;
 }
 
 .userInfo .infoUserProfilePicture {
 	border-radius: 50%;
 	border: 1px solid #44444444;
+	-webkit-box-shadow: 0 0 5px 0 #44444444;
 	box-shadow: 0 0 5px 0 #44444444;
 	margin-bottom: 1rem;
 }
 
-.userInfo .madeHowMany, .userInfo .meowsMadeText {
+.userInfo .madeHowMany,
+.userInfo .meowsMadeText {
 	font-size: 2rem;
 	padding-bottom: 1rem;
 	padding-top: 1rem;
 }
 
-.userInfo .infoUsername , .userInfo .meowsMade {
+.userInfo .infoUsername,
+.userInfo .meowsMade {
 	font-size: 3rem;
 	text-align: center;
 }
@@ -750,7 +768,8 @@ span.cancelGoBack {
 	font-weight: 600;
 	padding-left: 1rem;
 }
-.reportButton, .reviewed {
+.reportButton,
+.reviewed {
 	padding-left: 1rem;
 }
 .hideMessage {
@@ -817,7 +836,6 @@ span.cancelGoBack {
 	font-weight: 600;
 }
 
-
 @media screen and (max-height: 700px) {
 	.whatIsThis span {
 		font-size: 1rem;
@@ -826,17 +844,24 @@ span.cancelGoBack {
 	.welcomeText {
 		font-size: 2.5rem;
 	}
-}.example {
-    display: -ms-grid;
-    display: grid;
-    -webkit-transition: all .5s;
-    -o-transition: all .5s;
-    transition: all .5s;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-    background: -o-linear-gradient(top, white, black);
-    background: -webkit-gradient(linear, left top, left bottom, from(white), to(black));
-    background: linear-gradient(to bottom, white, black);
+}
+.example {
+	display: -ms-grid;
+	display: grid;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background: -o-linear-gradient(top, white, black);
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		from(white),
+		to(black)
+	);
+	background: linear-gradient(to bottom, white, black);
 }
