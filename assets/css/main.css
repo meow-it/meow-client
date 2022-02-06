@@ -78,7 +78,12 @@ a {
 }
 
 .createNewMeowButton,
+.cancelMeow,
+.createMeow,
+.deleteCache,
+.installPWAFromUser,
 .currentLocation,
+.closeUserInfo,
 .likeButton,
 .reportButton,
 .shareMeowButton,
@@ -89,6 +94,8 @@ a {
 .logoutButton,
 .notNowButton,
 .installButton,
+.goBackToHomeButton,
+.whatIsThis button,
 .promotion {
 	cursor: pointer;
 }
@@ -969,4 +976,23 @@ span.cancelGoBack {
 		to(black)
 	);
 	background: linear-gradient(to bottom, white, black);
+}
+
+@media screen and (min-width: 480px) {
+	body {
+		max-width: 480px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	body * {
+		max-width: 480px;
+	}
+	
+	.newUserLoading, .postsLoading, .firstTimeVisit, .whyLocationInfo, .noLocationAccess, .newMeowModalContainer {
+		max-width: 480px;
+		margin-left: auto;
+		margin-right: auto;
+		left: unset;
+	}
 }

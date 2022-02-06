@@ -37,8 +37,8 @@ function showInstallPromotion () {
 
 async function beforeinstallpromptHandler (e) {
 	let userConcern = await shouldWeShowInstallPrompt()
-	deferredPrompt = e
 	if (userConcern) {
+		deferredPrompt = e
 		showInstallPromotion()
 	} 
 	return
@@ -120,7 +120,7 @@ async function main() {
 	
 		let userFromStorage = await getLocalForage("user")
 	
-		if (userFromStorage == null) {
+		if (userFromStorage == null || userFromStorage.status == false) {
 			requestAnimationFrame(() => {
 				elements.newUser.style.display = "flex"
 			})
@@ -216,17 +216,30 @@ async function main() {
 				if(launchDisplayType == "twa" || launchDisplayType == "standalone") {
 					installPWAButtonOnUserInfo.style.display = "none"
 				}
+
+				if(deferredPrompt != null) {
+					if(!doesElementWithClassNameExists("installationPromotionCard")) {
+						showInstallPromotion()
+					}
+				}
 			})
 		})
 	
 		return user
 	} catch (error) {
-		console.log("Something went wrong 😟" + error)
+		console.trace("Something went wrong 😟" + error)
 		showStatus("Something went wrong 😟")
 	}
 
 
 
+}
+
+function doesElementWithClassNameExists(classname) {
+
+	let element = document.querySelector(`.${classname}`)
+	if (element == null) return false
+	return true
 }
 
 async function updatePlaceInfo(coords, accuracy, individual = false) {
@@ -325,6 +338,7 @@ function handleCreateButtonClick() {
 }
 
 function handleCloseNewMeowModal() {
+	if(doesElementWithClassNameExists("newMeowStatusMessage")) document.querySelector(".newMeowStatusMessage").style.display = "none"
 	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
 	newMeowModalContainer.style.display = "none"
 	elements.wrapper.style.display = "flex"
@@ -464,8 +478,4 @@ async function refreshDBWithCreatedMeow(meow) {
 	let meowsFromIDB = await getLocalForage("meows")
 	meowsFromIDB.unshift(meow)
 	await setLocalForage("meows", meowsFromIDB)
-}
-
-if(deferredPrompt != null) {
-	showInstallPromotion()
 }

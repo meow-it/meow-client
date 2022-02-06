@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v8" // name of the current cache
+const CACHE = "content-v9" // name of the current cache
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 
