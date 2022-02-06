@@ -377,6 +377,14 @@ async function createMeow() {
 	}
 }
 
+function closeMeowWhileOffline () {
+	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
+	let newMeowStatusMessage = document.querySelector(".newMeowStatusMessage")
+
+	newMeowModalContainer.style.display = "none"
+	newMeowStatusMessage.style.display = "none"
+
+	elements.wrapper.style.display = "flex"
 }
 
 async function refreshDBWithCreatedMeow(meow) {
