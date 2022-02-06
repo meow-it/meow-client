@@ -191,6 +191,21 @@ function generateInstallationPromotionDiv() {
 	</div>`
 }
 
+function isPWAInstalled () {
+	return window.matchMedia('(display-mode: standalone)').matches
+}
+
+async function shouldWeShowInstallPrompt() {
+	let disUserSayNOForInstallation = await getLocalForage("disUserSayNowForInstallation")
+	if(disUserSayNOForInstallation != null 
+		|| disUserSayNOForInstallation == undefined 
+		|| disUserSayNOForInstallation == false
+	) {
+		return true
+	}
+	return false
+}
+
 async function handleLike(e) {
 	let id = e.target.dataset.id
 	let status = e.target.dataset.status
