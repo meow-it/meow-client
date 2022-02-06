@@ -266,6 +266,8 @@ document.addEventListener("click", (e) => {
 		deleteCache()
 	} else if (e.target.classList.contains("logoutButton")) {
 		logoutUser()
+	} else if (e.target.classList.contains("goBackToHomeButton")) {
+		closeMeowWhileOffline()
 	}
 })
 
