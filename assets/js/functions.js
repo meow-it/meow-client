@@ -452,9 +452,9 @@ async function getPostsFromIndexedDB() {
 	}
 }
 
-async function addToBGSyncMeowRegistry({text, userid, latitude, longitude}) {
+async function addToBGSyncMeowRegistry({text, userid, coords}) {
 	let currentQueue = await getLocalForage("meowQueue")
 	if (currentQueue == null) currentQueue = []
-	currentQueue.push({text, userid, latitude, longitude})
+	currentQueue.push({text, userid, coords})
 	await setLocalForage("meowQueue", currentQueue)
 }
