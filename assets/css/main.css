@@ -710,13 +710,6 @@ span.cancelGoBack {
 	margin-bottom: 1rem;
 }
 
-.userInfo .madeHowMany,
-.userInfo .meowsMadeText {
-	font-size: 2rem;
-	padding-bottom: 1rem;
-	padding-top: 1rem;
-}
-
 .userInfo .infoUsername,
 .userInfo .meowsMade {
 	font-size: 3rem;
@@ -1026,26 +1019,6 @@ span.cancelGoBack {
 	.welcomeText {
 		font-size: 2.5rem;
 	}
-}
-.example {
-	display: -ms-grid;
-	display: grid;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
-	transition: all 0.5s;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background: -o-linear-gradient(top, white, black);
-	background: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		from(white),
-		to(black)
-	);
-	background: linear-gradient(to bottom, white, black);
 }
 
 @media screen and (min-width: 480px) {
