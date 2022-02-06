@@ -317,21 +317,26 @@ function generateNoMeows() {
 	return html
 }
 
-async function newMeow(text, coords) {
-	let response = await fetch(serverURLAPIEndpoint + `meow/new`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			userid: user._id,
-			text: text,
-			latitude: coords.latitude,
-			longitude: coords.longitude,
-		}),
-	})
-	let responseJSON = await response.json()
-	return responseJSON
+async function newMeow(text, coords, userid) {
+	try {
+		let response = await fetch(serverURLAPIEndpoint + `meow/new`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				userid: userid,
+				text: text,
+				latitude: coords.latitude,
+				longitude: coords.longitude,
+			}),
+		})
+		let responseJSON = await response.json()
+		return responseJSON
+	} catch (err) {
+		console.log("Something Happened: 😓", err)
+		return 
+	}
 }
 
 function escapeHtml(string) {

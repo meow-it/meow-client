@@ -324,7 +324,7 @@ async function createMeow() {
 
 	if(navigator.onLine) {
 
-		let meow = await newMeow(text, coords)
+		let meow = await newMeow(text, coords, user._id)
 	
 		NProgress.set(0.7)
 	
