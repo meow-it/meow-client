@@ -29,6 +29,7 @@ const AUTO_CACHE = [
     "/assets/js/app.js",
     "/assets/js/functions.js",
 	"/assets/js/nprogress.js",
+	"/assets/js/localforage.js",
 
 	"./manifest.json"
 ]
