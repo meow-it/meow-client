@@ -226,10 +226,21 @@
     <script src="./assets/js/app.js"></script>
     <script>
         if('serviceWorker' in navigator) {
+
+            let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
+
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('serviceworker.js')
                     .then((reg) => console.log('Success: ', reg.scope))
-                    .catch((err) => console.log('Failure: ', err));
+                    .catch((err) => console.log('Failure: ', err))
+            })
+
+            navigator.serviceWorker.ready.then(async registration => {
+                if (registration.sync) {
+                    await registration.sync.register(meowsUpdateBackgroundSyncTagName)
+                } else {
+                    console.log('Background Sync not supported: ' + registration.sync)
+                }
             })
         }
     </script>
