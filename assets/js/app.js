@@ -1,5 +1,18 @@
+let deferredPrompt
+window.addEventListener("beforeinstallprompt", async (e) => {
+	await beforeinstallpromptHandler(e)
+})
+
+window.addEventListener("appinstalled", () => {
+	console.log("App installed! 🎉")
+	hideInstallationPromotion()
+	deferredPrompt = null
+})
+
 let user
 let meowCount = 0
+let launchDisplayType = getPWADisplayMode()
+let installPWAButtonOnUserInfo = document.querySelector(".installPWAFromUser")
 let elements = {
 	newUser: document.querySelector(".newUserLoading"),
 	postsLoading: document.querySelector(".postsLoading"),
@@ -15,7 +28,21 @@ let statusElements = {
 }
 let geoPermissionCount = 0
 
-let faqItems = document.querySelectorAll(".accordion button");
+let faqItems = document.querySelectorAll(".accordion button")
+
+function showInstallPromotion () {
+	let html = generateInstallationPromotionDiv()
+	document.querySelector(".meowsContainer").insertAdjacentHTML("afterbegin", html)
+}
+
+async function beforeinstallpromptHandler (e) {
+	let userConcern = await shouldWeShowInstallPrompt()
+	deferredPrompt = e
+	if (userConcern) {
+		showInstallPromotion()
+	} 
+	return
+}
 
 function toggleAccordion() {
 	let itemToggle = this.getAttribute("aria-expanded")
@@ -183,12 +210,22 @@ async function main() {
 				}
 			}
 		}
+		
+		requestAnimationFrame(() => {
+			requestAnimationFrame(() => {
+				if(launchDisplayType == "twa" || launchDisplayType == "standalone") {
+					installPWAButtonOnUserInfo.style.display = "none"
+				}
+			})
+		})
 	
 		return user
 	} catch (error) {
 		console.log("Something went wrong 😟" + error)
 		showStatus("Something went wrong 😟")
 	}
+
+
 
 }
 
@@ -268,6 +305,12 @@ document.addEventListener("click", (e) => {
 		logoutUser()
 	} else if (e.target.classList.contains("goBackToHomeButton")) {
 		closeMeowWhileOffline()
+	} else if (e.target.classList.contains("installButton")) {
+		installApp()
+	} else if (e.target.classList.contains("notNowButton")) {
+		userSaidNOToInstall()
+	} else if (e.target.classList.contains("installPWAFromUser")) {
+		installApp()
 	}
 })
 
@@ -314,7 +357,30 @@ async function logoutUser () {
 	window.location.href = "./"
 }
 
+function hideInstallationPromotion () {
+	try {
+		let installationPromotionCard = document.querySelector(".installationPromotionCard")
+		installationPromotionCard.style.display = "none"
+	} catch (err) {
+		console.log(`Couldn't find any div with class .installationPromotionCard 😢: ${err}`)
+	}
+}
+
+async function userSaidNOToInstall() {
+	await setLocalForage("disUserSayNOForInstallation", true)
+	hideInstallationPromotion()
+}
+
+async function installApp() {
+	hideInstallationPromotion()
+	deferredPrompt.prompt()
+	let { outcome } = await deferredPrompt.userChoice
+	console.log(`User response to the install prompt: ${outcome}`)
+	deferredPrompt = null
+}
+
 async function createMeow() {
+
 	NProgress.start()
 
 	let textField = document.querySelector(".meowInput")
@@ -379,6 +445,9 @@ async function createMeow() {
 		}
 		NProgress.done()
 	}
+
+	await setLocalForage("disUserSayNOForInstallation", false)
+
 }
 
 function closeMeowWhileOffline () {
@@ -395,4 +464,8 @@ async function refreshDBWithCreatedMeow(meow) {
 	let meowsFromIDB = await getLocalForage("meows")
 	meowsFromIDB.unshift(meow)
 	await setLocalForage("meows", meowsFromIDB)
+}
+
+if(deferredPrompt != null) {
+	showInstallPromotion()
 }
