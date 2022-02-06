@@ -142,3 +142,11 @@ async function requestBackgroundSync(backgroundSyncTagName) {
     await self.registration.sync.register(backgroundSyncTagName);
 }
 
+requestBackgroundSync(meowsUpdateBackgroundSyncTagName)
+
+self.addEventListener('sync', event => {
+    if (event.tag === meowsUpdateBackgroundSyncTagName) {
+		console.log("SYNCING MEOWS")
+        event.waitUntil(syncScheduledMeows());
+    }
+});
