@@ -158,6 +158,9 @@ async function main() {
 			return
 		} else {
 			setDisplayNone(elements)
+
+			let text = getSavedTextData()
+			document.querySelector(".meowInput").value = text
 	
 			let posts = await getPostsFromIndexedDB()
 			meowCount = posts.length
@@ -225,6 +228,8 @@ async function main() {
 				}
 			})
 		})
+
+		
 	
 		return user
 	} catch (error) {
@@ -422,6 +427,7 @@ async function createMeow() {
 		await refreshDBWithCreatedMeow(meow)
 	
 		textField.value = ""
+		clearTextData()
 	
 		let html = generateMeows([meow])
 		let existingStuff = document.querySelector(".meowsContainer").innerHTML
@@ -467,6 +473,7 @@ async function createMeow() {
 				})
 			})
 			textField.value = ""
+			clearTextData()
 		}
 		NProgress.done()
 	}

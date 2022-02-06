@@ -444,6 +444,7 @@ function countCharactersInTextField(e) {
 		".meowInputCharactersRemainingNumber"
 	)
 
+	
 	let colorOne = "#0070f3"
 	let colorTwo = "#f35d00"
 	let colorThree = "#ea2027"
@@ -456,7 +457,10 @@ function countCharactersInTextField(e) {
 		e.target.value = e.target.value.slice(0, maxLength)
 		return
 	}
-
+	
+	let text = textField.value
+	window.localStorage.setItem("text", text)
+	
 	remainingNumber.innerText = remaining
 
 	let percent = remaining / maxLength
@@ -493,4 +497,13 @@ async function addToBGSyncMeowRegistry({text, userid, coords}) {
 	if (currentQueue == null) currentQueue = []
 	currentQueue.push({text, userid, coords})
 	await setLocalForage("meowQueue", currentQueue)
+}
+
+function clearTextData() {
+	localStorage.removeItem("text")
+}
+
+function getSavedTextData() {
+	let text = localStorage.getItem("text")
+	return text
 }
