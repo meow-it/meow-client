@@ -593,12 +593,27 @@ span.cancelGoBack {
 }
 
 .newMeowStatusMessage {
-	margin-top: 1rem;
+	margin-bottom: 1rem;
     text-align: center;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     font-size: 1.5rem;
     color: #fff;
     background-color: #f3624c;
+    border-radius: 10px;
+    box-shadow: 6px 8px 7px 2px #44444444;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.goBackToHomeButton {
+	border: 1px solid #fff;
+    box-shadow: 2px 2px 6px 3px #44444444;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #c54f3e;
 }
 
 .userInfo {
