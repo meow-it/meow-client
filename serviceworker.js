@@ -126,6 +126,7 @@ self.addEventListener("fetch", (event) => {
 
 async function syncScheduledMeows () {
 	let scheduledMeows = await getLocalForage("meowQueue")
+	if (scheduledMeows == null) return
 	if(scheduledMeows.length > 0){
 		scheduledMeows.forEach(async (meow) => {
 			let sentMeow = await newMeow(meow.text, meow.coords, meow.userid)
@@ -140,7 +141,12 @@ async function syncScheduledMeows () {
 }
 
 async function requestBackgroundSync(backgroundSyncTagName) {
-    await self.registration.sync.register(backgroundSyncTagName);
+    try {
+		await self.registration.sync.register(backgroundSyncTagName)
+	} catch (error) {
+		console.log("Unable to REGISTER background sync", error)
+		setTimeout(() => requestBackgroundSync(backgroundSyncTagName), 5000)
+	}
 }
 
 requestBackgroundSync(meowsUpdateBackgroundSyncTagName)
