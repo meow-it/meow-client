@@ -362,8 +362,10 @@ async function createMeow() {
 			let data = {
 				text,
 				userid: user._id,
-				latitude: coords.latitude,
-				longitude: coords.longitude,
+				coords: {
+					latitude: coords.latitude,
+					longitude: coords.longitude,
+				}
 			}
 			await addToBGSyncMeowRegistry(data)	
 			requestAnimationFrame(() => {
