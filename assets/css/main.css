@@ -87,6 +87,8 @@ a {
 .givePermissionButton,
 .cancelGoBack,
 .logoutButton,
+.notNowButton,
+.installButton,
 .promotion {
 	cursor: pointer;
 }
@@ -674,13 +676,25 @@ span.cancelGoBack {
 	text-align: center;
 }
 
-.userInfo .deleteCache {
+.userInfo .deleteCache, .userInfo .installPWAFromUser {
 	margin-top: 1rem;
 	padding: 0.2em 1em;
 	border-radius: 8px;
 	font-size: 1.8rem;
-	color: #fff;
+	background-color: #8e44ad;
+	color: white;
+}
+
+.userInfo .installPWAFromUser {
 	background-color: #0070f3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0.5em;
+}
+
+.userInfo .installPWAFromUser span {
+	padding-top: 1rem;
 }
 
 .header {
