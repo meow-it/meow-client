@@ -343,7 +343,39 @@ async function createMeow() {
 		NProgress.done()
 	
 		handleCloseNewMeowModal()
+	} else {
+		let newMeowStatusMessage = document.querySelector(".newMeowStatusMessage")
+		let textSpan = newMeowStatusMessage.querySelectorAll("span")[0]
+		let buttonSpan = newMeowStatusMessage.querySelector(".goBackToHomeButton")
+
+		if(window.chrome == undefined) {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					newMeowStatusMessage.style.display = "flex"
+					textSpan.innerHTML = "You're Offline! Try sending the meow when you're online. 😞 Bruh, Try using Chromium Browsers for a rich offline experience!"
+					buttonSpan.style.color = "#f3624c"
+				})
+			})
+		} else {
+			let data = {
+				text,
+				userid: user._id,
+				latitude: coords.latitude,
+				longitude: coords.longitude,
+			}
+			await addToBGSyncMeowRegistry(data)	
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					newMeowStatusMessage.style.display = "flex"
+					textSpan.innerHTML = "You're Offline! But don't worry 🤠 Your meow is scheduled to be sent automatically 🤖 when your device gets connected to the internet 🌐"
+					buttonSpan.style.color = "#0070f3"
+				})
+			})
+			textField.value = ""
+		}
+		NProgress.done()
 	}
+}
 
 }
 
