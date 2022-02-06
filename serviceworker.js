@@ -122,3 +122,23 @@ self.addEventListener("fetch", (event) => {
 	}
 
 })
+
+async function syncScheduledMeows () {
+	let scheduledMeows = await getLocalForage("meowQueue")
+	if(scheduledMeows.length > 0){
+		scheduledMeows.forEach(async (meow) => {
+			let sentMeow = await newMeow(meow.text, meow.coords, meow.userid)
+			let meows = await getLocalForage("meows")
+			meows.unshift(sentMeow)
+			await setLocalForage("meows", meows)
+		})
+	}
+	await setLocalForage("meowQueue", [])
+
+	return true
+}
+
+async function requestBackgroundSync(backgroundSyncTagName) {
+    await self.registration.sync.register(backgroundSyncTagName);
+}
+
