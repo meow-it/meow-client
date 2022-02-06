@@ -182,7 +182,7 @@ function generateInstallationPromotionDiv() {
 			Install to get the most out of Meow It!
 		</span>
 		<span class="noFearHeading">
-			Installing uses almost no storage and provides a quick way to return to this app including the ability to send meows offline!
+			Installing uses almost no storage and provides a quick way to return to this app including the ability to send meows even offline!
 		</span>
 		<div class="installationPromotionButtonsContainer">
 			<span class="notNowButton">Not now</span>
@@ -191,13 +191,19 @@ function generateInstallationPromotionDiv() {
 	</div>`
 }
 
-function isPWAInstalled () {
-	return window.matchMedia('(display-mode: standalone)').matches
+function getPWADisplayMode() {
+	const isStandalone = window.matchMedia("(display-mode: standalone)").matches
+	if (document.referrer.startsWith("android-app://")) {
+		return "twa"
+	} else if (navigator.standalone || isStandalone) {
+		return "standalone"
+	}
+	return "browser"
 }
 
 async function shouldWeShowInstallPrompt() {
-	let disUserSayNOForInstallation = await getLocalForage("disUserSayNowForInstallation")
-	if(disUserSayNOForInstallation != null 
+	let disUserSayNOForInstallation = await getLocalForage("disUserSayNOForInstallation")
+	if(disUserSayNOForInstallation == null 
 		|| disUserSayNOForInstallation == undefined 
 		|| disUserSayNOForInstallation == false
 	) {
