@@ -176,6 +176,21 @@ function generateMeow(element) {
 	return html + promotion
 }
 
+function generateInstallationPromotionDiv() {
+	return `<div class="installationPromotionCard">
+		<span class="installPromotionHeading">
+			Install to get the most out of Meow It!
+		</span>
+		<span class="noFearHeading">
+			Installing uses almost no storage and provides a quick way to return to this app including the ability to send meows offline!
+		</span>
+		<div class="installationPromotionButtonsContainer">
+			<span class="notNowButton">Not now</span>
+			<span class="installButton">Install</span>
+		</div>
+	</div>`
+}
+
 async function handleLike(e) {
 	let id = e.target.dataset.id
 	let status = e.target.dataset.status

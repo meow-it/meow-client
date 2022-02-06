@@ -768,6 +768,53 @@ span.cancelGoBack {
 	margin: 0.3rem 0.5rem 0;
 }
 
+.installationPromotionCard {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #44444444;
+	border-radius: 10px;
+	padding: 0.7rem 1rem;
+	margin: 0.3rem 0.5rem;
+	background-color: #0070f3;
+	color: #FFFFFF;
+}
+
+.installPromotionHeading {
+	font-size: 1.7rem;
+	color: #FFFFFF;
+	font-weight: 400;
+	text-align: justify;
+	padding-bottom: 0.8rem;
+}
+
+.noFearHeading {
+	font-size: 1.4rem;
+	color: #FFFFFF;
+	font-weight: 400;
+	text-align: justify;
+	padding-bottom: 0.8rem;
+}
+
+.installationPromotionButtonsContainer {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.notNowButton {
+	padding: 0.5rem 1rem;
+	font-size: 1.3rem;
+	color: #fff;
+}
+
+.installButton {
+	padding: 0.5rem 1rem;
+	font-size: 1.5rem;
+	background-color: #fff;
+	color: #0070f3;
+	border-radius: 8px;
+}
+
 .meowTop {
 	display: -webkit-box;
 	display: -ms-flexbox;
