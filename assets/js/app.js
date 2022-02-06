@@ -1,4 +1,6 @@
 let deferredPrompt
+let wasPromptDeferred = false
+let faqButtonWasPressed = false
 window.addEventListener("beforeinstallprompt", async (e) => {
 	await beforeinstallpromptHandler(e)
 })
@@ -6,7 +8,6 @@ window.addEventListener("beforeinstallprompt", async (e) => {
 window.addEventListener("appinstalled", () => {
 	console.log("App installed! 🎉")
 	hideInstallationPromotion()
-	deferredPrompt = null
 })
 
 let user
@@ -37,8 +38,9 @@ function showInstallPromotion () {
 
 async function beforeinstallpromptHandler (e) {
 	let userConcern = await shouldWeShowInstallPrompt()
+	deferredPrompt = e
 	if (userConcern) {
-		deferredPrompt = e
+		wasPromptDeferred = true
 		showInstallPromotion()
 	} 
 	return
@@ -63,8 +65,7 @@ document.querySelector(".whatIsThis button").addEventListener("click", async () 
 	window.location.reload()
 })
 document.querySelector(".learnMore").addEventListener("click", () => {
-	setDisplayNone(elements)
-	elements.whyLocationInfo.style.display = "flex"
+	showFAQ()
 
 })
 document
@@ -217,7 +218,7 @@ async function main() {
 					installPWAButtonOnUserInfo.style.display = "none"
 				}
 
-				if(deferredPrompt != null) {
+				if(wasPromptDeferred == true) {
 					if(!doesElementWithClassNameExists("installationPromotionCard")) {
 						showInstallPromotion()
 					}
@@ -230,8 +231,6 @@ async function main() {
 		console.trace("Something went wrong 😟" + error)
 		showStatus("Something went wrong 😟")
 	}
-
-
 
 }
 
@@ -307,7 +306,7 @@ document.addEventListener("click", (e) => {
 	) {
 		handlePromotionClick()
 	} else if (e.target.classList.contains("cancelGoBack")) {
-		closeLocationFAQ()
+		faqButtonWasPressed ? closeLocationFAQ(true) : closeLocationFAQ()
 	} else if (e.target.classList.contains("closeUserInfo")){
 		closeUserInfo()
 	} else if (e.target.classList.contains("profilePicture")) {
@@ -322,8 +321,11 @@ document.addEventListener("click", (e) => {
 		installApp()
 	} else if (e.target.classList.contains("notNowButton")) {
 		userSaidNOToInstall()
-	} else if (e.target.classList.contains("installPWAFromUser")) {
+	} else if (e.target.classList.contains("installPWAButtonFromUserInfo")) {
 		installApp()
+	} else if (e.target.classList.contains("showFaqSpan")) {
+		showFAQ()
+		faqButtonWasPressed = true
 	}
 })
 
@@ -348,9 +350,9 @@ function handlePromotionClick() {
 	window.location.href = window.location.origin
 }
 
-function closeLocationFAQ () {
+function closeLocationFAQ (userInfo = false) {
 	setDisplayNone(elements)
-	elements.location.style.display = "flex"
+	userInfo ? elements.userInfo.style.display = "flex" : elements.location.style.display = "flex"
 }
 
 function showUserInfo () {
@@ -359,6 +361,11 @@ function showUserInfo () {
 	document.querySelector(".infoUserProfilePicture").src = user.profilePic
 	document.querySelector(".infoUserProfilePicture").alt = user.name
 	elements.userInfo.style.display = "flex"
+}
+
+function showFAQ() {
+	setDisplayNone(elements)
+	elements.whyLocationInfo.style.display = "flex"
 }
 
 function closeUserInfo () {
@@ -390,7 +397,6 @@ async function installApp() {
 	deferredPrompt.prompt()
 	let { outcome } = await deferredPrompt.userChoice
 	console.log(`User response to the install prompt: ${outcome}`)
-	deferredPrompt = null
 }
 
 async function createMeow() {
