@@ -346,7 +346,12 @@ async function getPlaceInfo(coords) {
 function generateNoMeows() {
 	let html = ""
 	html += `<div class="noMeows">
-        <img class="noDataGif" src="./assets/image/nodata.gif" alt="No Meows" height="200" width="200">
+		<video 
+			height="200" width="200" 
+			src = "./assets/image/nodata.webm" 
+			autoplay loop muted aria-label="No Meows Nearby" 
+			title="No Meows Nearby">
+		</video>
         <span class="noMeowsText">No meows nearby 🙁</span>
         <span class="askUserToCreate">Create a new meow by clicking on the plus icon 😽</span>
     </div>`

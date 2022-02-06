@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v10" // name of the current cache
+const CACHE = "content-v11" // name of the current cache
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 
@@ -11,13 +11,13 @@ const AUTO_CACHE = [
 	"/assets/image/add.png",
 	"/assets/image/cancel.png",
 	"/assets/image/cat-face.png",
-	"/assets/image/error.gif",
+	"/assets/image/error.webm",
 	"/assets/image/eye.png",
 	"/assets/image/hide.png",
 	"/assets/image/kitty.png",
-	"/assets/image/loading.gif",
+	"/assets/image/loading.webm",
 	"/assets/image/location.png",
-	"/assets/image/nodata.gif",
+	"/assets/image/nodata.webm",
 	"/assets/image/paw.png",
 	"/assets/image/reviewed.png",
 	"/assets/image/share.png",
