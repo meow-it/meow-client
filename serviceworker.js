@@ -20,6 +20,7 @@ const AUTO_CACHE = [
 	"/assets/image/unliked.png",
 
 	"/assets/css/main.css",
+	"/assets/css/nprogress.css",
 	"/assets/css/SFRegular.woff",
 	"/assets/css/SFMedium.woff",
 	"/assets/css/SFBold.woff",
@@ -27,6 +28,7 @@ const AUTO_CACHE = [
 	
     "/assets/js/app.js",
     "/assets/js/functions.js",
+	"/assets/js/nprogress.js",
 
 	"./manifest.json"
 ]
