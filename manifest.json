@@ -17,56 +17,56 @@
 	"screenshots": [
 		{
 			"src": "./screenshots/startPage.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Welcome Screen"
 		},
 		{
 			"src": "./screenshots/homePage.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Home Page of Meow it"
 		},
 		{
 			"src": "./screenshots/userOptions.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Logout anytime!"
 		},
 		{
 			"src": "./screenshots/refreshingFeed.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Feeds for your location!"
 		},
 		{
 			"src": "./screenshots/noMeowsNearby.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Always make a one if you don't see any! LOL"
 		},
 		{
 			"src": "./screenshots/meowing.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "It's easy and fun!"
 		},
 		{
 			"src": "./screenshots/gpsRequired.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Requires you to enable GPS mate"
 		},
 		{
 			"src": "./screenshots/blocksToxic.webp",
-			"sizes": "2340x1081",
+			"sizes": "1081x2340",
 			"type": "image/webp",
 			"platform": "narrow",
 			"label": "Filters Toxic Content - Safe for children"
