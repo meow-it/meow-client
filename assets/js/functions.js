@@ -376,7 +376,7 @@ async function newMeow(text, coords, userid) {
 		return responseJSON
 	} catch (err) {
 		console.log("Something Happened: 😓", err)
-		return 
+		return {}
 	}
 }
 

@@ -447,6 +447,8 @@ async function createMeow() {
 		let textSpan = newMeowStatusMessage.querySelectorAll("span")[0]
 		let buttonSpan = newMeowStatusMessage.querySelector(".goBackToHomeButton")
 
+		let isBackgroundSyncAvailable = await getLocalForage("backgroundSync")
+
 		if(window.chrome == undefined) {
 			requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
@@ -456,24 +458,40 @@ async function createMeow() {
 				})
 			})
 		} else {
-			let data = {
-				text,
-				userid: user._id,
-				coords: {
-					latitude: coords.latitude,
-					longitude: coords.longitude,
+
+			if(isBackgroundSyncAvailable) {
+
+				let data = {
+					text,
+					userid: user._id,
+					coords: {
+						latitude: coords.latitude,
+						longitude: coords.longitude,
+					}
 				}
-			}
-			await addToBGSyncMeowRegistry(data)	
-			requestAnimationFrame(() => {
+				await addToBGSyncMeowRegistry(data)	
 				requestAnimationFrame(() => {
-					newMeowStatusMessage.style.display = "flex"
-					textSpan.innerHTML = "You're Offline! But don't worry 🤠 Your meow is scheduled to be sent automatically 🤖 when your device gets connected to the internet 🌐"
-					buttonSpan.style.color = "#0070f3"
+					requestAnimationFrame(() => {
+						newMeowStatusMessage.style.display = "flex"
+						newMeowStatusMessage.style.backgroundColor = "#0070f3"
+						textSpan.innerHTML = "You're Offline! But don't worry 🤠 Your meow is scheduled to be sent automatically 🤖 when your device gets connected to the internet 🌐"
+						buttonSpan.style.color = "#0070f3"
+					})
 				})
-			})
-			textField.value = ""
-			clearTextData()
+				textField.value = ""
+				clearTextData()
+			} else {
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => {
+						newMeowStatusMessage.style.display = "flex"
+						newMeowStatusMessage.style.backgroundColor = "#f3624c"
+						textSpan.style.fontSize = "1.2rem"
+						textSpan.innerHTML = "You're Offline! Background Sync is not allowed in your browser. Try allowing it in site settings to schedule this meow to be posted automatically in the background when your device gets connected to the internet or try sending this meow when you're online. 😞"
+						buttonSpan.style.color = "#f3624c"
+					})
+				})
+			}
+
 		}
 		NProgress.done()
 	}

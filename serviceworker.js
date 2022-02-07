@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v11" // name of the current cache
+const CACHE = "content-v12" // name of the current cache
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 
@@ -126,26 +126,32 @@ self.addEventListener("fetch", (event) => {
 
 async function syncScheduledMeows () {
 	let scheduledMeows = await getLocalForage("meowQueue")
+	let newQueue = []
 	if (scheduledMeows == null) return
 	if(scheduledMeows.length > 0){
 		scheduledMeows.forEach(async (meow) => {
 			let sentMeow = await newMeow(meow.text, meow.coords, meow.userid)
+			if(sentMeow._id == undefined) {
+				newQueue.push(meow)
+				return
+			}
 			let meows = await getLocalForage("meows")
 			meows.unshift(sentMeow)
 			await setLocalForage("meows", meows)
 		})
 	}
-	await setLocalForage("meowQueue", [])
-
+	await setLocalForage("meowQueue", newQueue)
 	return true
 }
 
 async function requestBackgroundSync(backgroundSyncTagName) {
     try {
 		await self.registration.sync.register(backgroundSyncTagName)
+		await setLocalForage("backgroundSync", true)
 	} catch (error) {
 		console.log("Unable to REGISTER background sync", error)
-		setTimeout(() => requestBackgroundSync(backgroundSyncTagName), 5000)
+		setTimeout(() => requestBackgroundSync(backgroundSyncTagName), 10000)
+		await setLocalForage("backgroundSync", false)
 	}
 }
 
