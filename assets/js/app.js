@@ -198,11 +198,10 @@ async function main() {
 			}
 			await setLocalForage("meows", meows)
 			NProgress.done()
-			
-			let firstMeowFromDb = posts[0]._id
-			let firstMeowFromNetwork = meows[0]._id
 	
-			if(meowCount == 0 || firstMeowFromDb == firstMeowFromNetwork) {
+			// If there are no meows in the IDB, 
+			// or if the first post from network is different from the first post from IDB
+			if(meowCount == 0 || posts[0]._id == meows[0]._id) {
 				let html = meows.length != 0 ? generateMeows(meows) : generateNoMeows()
 				document.querySelector(".meowsContainer").innerHTML = html
 			} else {
