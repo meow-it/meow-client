@@ -87,18 +87,18 @@ function generateMeows(elements) {
 	elements.forEach((element) => {
 		let time = timeDifference(new Date(), new Date(element.createdAt))
 		let hide = element.toxic
-			? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.png" alt="Unhide Message" height="30" width="30">`
+			? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.webp" alt="Unhide Message" height="30" width="30">`
 			: ""
 		let toxic = element.toxic ? `toxic` : ""
 		let isLiked = !element.likedBy.includes(user._id)
-			? `./assets/image/unliked.png`
-			: "./assets/image/paw.png"
+			? `./assets/image/unliked.webp`
+			: "./assets/image/paw.webp"
 		let likeStatus = !element.likedBy.includes(user._id)
 			? `unliked`
 			: "liked"
 		let reviewIcon = element.isReviewed
-			? `./assets/image/reviewed.png`
-			: `./assets/image/kitty.png`
+			? `./assets/image/reviewed.webp`
+			: `./assets/image/kitty.webp`
 		let reviewClass = element.isReviewed ? `reviewed` : `reportButton`
 
 		html += `<div class="meow" data-id="${element._id}">
@@ -129,7 +129,7 @@ function generateMeows(elements) {
                 </div>
                 <img data-id="${
 					element._id
-				}" class="shareMeowButton" src="./assets/image/share.png" alt="Share Meow" height="30" width="30">
+				}" class="shareMeowButton" src="./assets/image/share.webp" alt="Share Meow" height="30" width="30">
             </div>
         </div>`
 	})
@@ -140,7 +140,7 @@ function generateMeows(elements) {
 function generateMeow(element) {
 	let time = timeDifference(new Date(), new Date(element.createdAt))
 	let hide = element.toxic
-		? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.png" alt="Unhide Message" height="30" width="30">`
+		? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.webp" alt="Unhide Message" height="30" width="30">`
 		: ""
 	let toxic = element.toxic ? `toxic` : ""
 	let like = `&nbsp;${element.likes} ${element.likes > 1 ? "likes" : "like"}`
@@ -165,7 +165,7 @@ function generateMeow(element) {
             </div>
             <img data-id="${
 				element._id
-			}" class="shareMeowButton" src="./assets/image/share.png" alt="Share Meow" height="30" width="30">
+			}" class="shareMeowButton" src="./assets/image/share.webp" alt="Share Meow" height="30" width="30">
         </div>
     </div>`
 
@@ -218,10 +218,10 @@ async function handleLike(e) {
 	let like = status == "unliked" ? 1 : -1
 
 	if (like == 1) {
-		e.target.src = "./assets/image/paw.png"
+		e.target.src = "./assets/image/paw.webp"
 		e.target.dataset.status = "liked"
 	} else {
-		e.target.src = "./assets/image/unliked.png"
+		e.target.src = "./assets/image/unliked.webp"
 		e.target.dataset.status = "unliked"
 	}
 	e.target.parentElement.querySelector(".likeCount").innerText =
@@ -287,11 +287,11 @@ function handleEye(e) {
 		)
 
 	if (state == "hidden") {
-		e.target.src = "./assets/image/eye.png"
+		e.target.src = "./assets/image/eye.webp"
 		e.target.dataset.state = "visible"
 		spanElement.style.fontFamily = "Inter"
 	} else {
-		e.target.src = "./assets/image/hide.png"
+		e.target.src = "./assets/image/hide.webp"
 		e.target.dataset.state = "hidden"
 		spanElement.style.fontFamily = "Galactico"
 	}
@@ -300,7 +300,7 @@ function handleEye(e) {
 async function handleReview(e) {
 	let id = e.target.dataset.id
 
-	e.target.src = "./assets/image/reviewed.png"
+	e.target.src = "./assets/image/reviewed.webp"
 
 	e.target.classList.remove("reportButton")
 	e.target.classList.add("reviewed")
