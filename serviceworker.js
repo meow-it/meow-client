@@ -35,7 +35,7 @@ const AUTO_CACHE = [
 	"/assets/js/nprogress.js",
 	"/assets/js/localforage.js",
 
-	"./manifest.json"
+	"./site.webmanifest"
 ]
 
 self.addEventListener("install", (event) => {
