@@ -198,19 +198,19 @@ async function main() {
 			}
 			await setLocalForage("meows", meows)
 			NProgress.done()
+			
+			let firstMeowFromDb = posts[0]._id
+			let firstMeowFromNetwork = meows[0]._id
 	
-			if(meowCount == 0) {
+			if(meowCount == 0 || firstMeowFromDb == firstMeowFromNetwork) {
 				let html = meows.length != 0 ? generateMeows(meows) : generateNoMeows()
 				document.querySelector(".meowsContainer").innerHTML = html
 			} else {
-				let firstMeowFromDb = posts[0]._id
 				if (meows.length == 0) {
-					showStatus("No meows found here! Reload to update 😶")
+					showStatus("No meows found here! 😶 Reload to update!")
 					return
-				}
-				let firstMeowFromNetwork = meows[0]._id
-				if(firstMeowFromDb != firstMeowFromNetwork) {
-					showStatus("Reload to see new meows!")
+				} else {
+					showStatus("New meows found! 🎉 Reload to update!")
 				}
 			}
 		}
