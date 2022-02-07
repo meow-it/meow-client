@@ -230,7 +230,7 @@ async function main() {
 		})
 
 		
-	
+		NProgress.done()
 		return user
 	} catch (error) {
 		console.trace("Something went wrong 😟" + error)
