@@ -127,6 +127,10 @@ function generateMeows(elements) {
 		}" class="likeButton" src="${isLiked}" alt="Like Button" height="30" width="30">
                     <span class="likeCount">${element.likes}</span>
                 </div>
+				<div class="commentButtonContainer">
+					<img data-id="${element._id}" class="commentButton" src="./assets/image/comment.webp" alt="Comment Button" height="30" width="30">
+					<span class="commentCount">${element.comments.length}</span>
+				</div>
                 <img data-id="${
 					element._id
 				}" class="shareMeowButton" src="./assets/image/share.webp" alt="Share Meow" height="30" width="30">
