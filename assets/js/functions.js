@@ -97,6 +97,26 @@ async function getComments(meowId) {
 	return responseJSON
 }
 
+async function handleReviewComment (e) {
+	let id = e.target.dataset.id
+
+	e.target.src = "./assets/image/reviewed.webp"
+
+	e.target.classList.remove("reportComment")
+	e.target.classList.add("reviewed")
+
+	await fetch(serverURLAPIEndpoint + `comment/review`, {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			userId: user._id,
+			commentId: id,
+		}),
+	})
+}
+
 function generateMeows(elements) {
 	let html = ""
 	elements.forEach((element) => {
