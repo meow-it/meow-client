@@ -1,6 +1,7 @@
 let deferredPrompt
 let wasPromptDeferred = false
 let faqButtonWasPressed = false
+let selectedMeowForShowingComments = null
 window.addEventListener("beforeinstallprompt", async (e) => {
 	await beforeinstallpromptHandler(e)
 })
@@ -294,6 +295,10 @@ document.addEventListener("click", (e) => {
 		handleEye(e)
 	} else if (e.target.classList.contains("createNewMeowButton")) {
 		handleCreateButtonClick()
+	} else if (e.target.classList.contains("commentButton")) {
+		handleCommentsButtonClick(e)
+	} else if (e.target.classList.contains("closeComments")) {
+		handleCloseCommentsButtonClick()
 	} else if (e.target.classList.contains("cancelMeow")) {
 		handleCloseNewMeowModal()
 	} else if (e.target.classList.contains("reportButton")) {
@@ -336,6 +341,17 @@ document.addEventListener("click", (e) => {
 document
 	.querySelector(".meowInput")
 	.addEventListener("input", countCharactersInTextField)
+
+function handleCommentsButtonClick(e) {
+	selectedMeowForShowingComments = e.target.dataset.id
+	setDisplayNone(elements)
+	document.querySelector(".commentsModalContainer").style.display = "flex"
+}
+
+function handleCloseCommentsButtonClick() {
+	document.querySelector(".commentsModalContainer").style.display = "none"
+	elements.wrapper.style.display = "flex"
+}
 
 function handleCreateButtonClick() {
 	setDisplayNone(elements)
