@@ -82,6 +82,21 @@ async function getPosts({ latitude, longitude }) {
 	return responseJSON
 }
 
+async function getComments(meowId) {
+	let response = null
+	try {
+		response = await fetch(serverURLAPIEndpoint + `comment/${meowId}`)
+	} catch (err) {
+		console.log("Something Happened: 😓", err)
+		return null
+	}
+
+	if (response == null) return null
+
+	let responseJSON = await response.json()
+	return responseJSON
+}
+
 function generateMeows(elements) {
 	let html = ""
 	elements.forEach((element) => {
