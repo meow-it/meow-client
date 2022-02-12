@@ -154,6 +154,7 @@ a {
 .installButton,
 .postCommentButton,
 .closeComments,
+.reportComment,
 .goBackToHomeButton,
 .whatIsThis button,
 .promotion {
@@ -1045,8 +1046,19 @@ span.cancelGoBack {
 	display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 0.5rem 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+.loadingComments {
+	display: flex;
+	flex-direction: column;
 	padding: 0.5rem 1rem;
-	max-height: 90vh;
+	align-items: center;
+}
+.loadingComments span {
+	padding-top: 1rem;
+	text-align: center;
 }
 .commentsHeading {
 	font-size: 1.4rem;
@@ -1061,6 +1073,7 @@ span.cancelGoBack {
     align-items: center;
     justify-content: space-evenly;
 	padding-bottom: 1rem;
+	margin: 0.3rem 0.5rem 0;
 }
 .commentInput {
     flex: 1;
@@ -1070,12 +1083,15 @@ span.cancelGoBack {
     border: 1px solid var(--boxShadowColor);
     border-radius: 5px;
     padding: 0.1rem 0.4rem;
+	transition: width 0.5s ease-in-out;
 }
 .comment {
 	display: flex;
     flex-direction: column;
 	padding: 0.5rem;
 	margin: 0.3rem 0.5rem;
+	border: 1px solid var(--boxShadowColor);
+    border-radius: 5px;
 }
 .commentTop {
 	display: flex;
@@ -1087,9 +1103,15 @@ span.cancelGoBack {
     align-items: center;
 }
 .commentedUserProfilePicture {
-	padding-right: 0.5rem;
+	margin-right: 0.5rem;
 	border-radius: 50%;
-    border: 1px solid var(--boxShadowColor);
+}
+.postingCommentSpinner {
+	border: 1px solid var(--boxShadowColor);
+    margin-right: 0.4rem;
+    border-radius: 50%;
+    margin-left: 0.2rem;
+	display: none;
 }
 .commentOptions {
 	display: flex;
@@ -1097,6 +1119,9 @@ span.cancelGoBack {
 }
 .timeCommented, .hideComment, .unHideComment, .reportComment {
 	padding-left: 1rem;
+}
+.timeCommented {
+	color: var(--darkPurpleForTime);
 }
 .commentText {
 	margin-top: 0.5rem;
