@@ -1151,6 +1151,14 @@ span.cancelGoBack {
 		max-width: 480px;
 	}
 
+	.wrapper {
+		max-height: 98vh;
+		overflow-y: hidden;
+	}
+	.meowsContainer {
+		overflow: auto;
+	}
+
 	.newUserLoading,
 	.postsLoading,
 	.firstTimeVisit,
