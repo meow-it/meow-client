@@ -287,7 +287,8 @@ function hideStatus() {
 function showStatus(message) {
 	statusElements.currentFeedStatus.innerHTML = message
 	statusElements.currentFeedStatus.style.top = "4.1875rem"
-	statusElements.locationHolder.style.marginTop = "1.875rem"
+	let feedHeight = getComputedStyle(statusElements.currentFeedStatus).height
+	statusElements.locationHolder.style.marginTop = feedHeight
 }
 
 async function showMeow() {
