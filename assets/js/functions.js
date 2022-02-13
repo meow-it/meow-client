@@ -166,7 +166,7 @@ function generateComments(elements) {
 					<img data-id="${element._id}" class="${reviewClass}" src="${reviewIconSrc}" alt="Report Comment" height="25" width="25">
 				</div>
 			</div>
-			<span class="commentText ${toxic}">${element.text}</span>
+			<span class="commentText ${toxic}">${escapeHtml(element.text)}</span>
 		</div>`
 	})
 
