@@ -227,6 +227,10 @@ async function main() {
 						showInstallPromotion()
 					}
 				}
+
+				let commentingUserProfilePicture = document.querySelector(".commentingUserProfilePicture")
+				commentingUserProfilePicture.src = user.profilePic
+				commentingUserProfilePicture.alt = user.name
 			})
 		})
 
