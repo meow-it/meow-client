@@ -375,6 +375,7 @@ async function handleCommentsButtonClick(e) {
 
 function handleCloseCommentsButtonClick() {
 	document.querySelector(".commentsModalContainer").style.display = "none"
+	document.querySelector(".commentMeowContainer").innerHTML = ""
 	elements.wrapper.style.display = "flex"
 }
 
