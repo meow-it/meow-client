@@ -246,6 +246,13 @@ async function main() {
 				let commentingUserProfilePicture = document.querySelector(".commentingUserProfilePicture")
 				commentingUserProfilePicture.src = user.profilePic
 				commentingUserProfilePicture.alt = user.name
+
+				if(isUpdated) {
+					showStatus("Using your last known location for refreshing the feed 🎉 <br> Turn on GPS to get the meows for your current location 📍")
+					setTimeout(() => {
+						hideStatus()
+					}, 5000)
+				}
 			})
 		})
 
