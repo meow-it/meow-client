@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
-importScripts("/assets/js/functions.min.js")
+importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v14" // name of the current cache
+const CACHE = "content-v15" // name of the current cache
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 let commentsUpdateBackgroundSyncTagName = 'commentsUpdateBackgroundSync'
@@ -26,15 +26,15 @@ const AUTO_CACHE = [
 	"/assets/image/error.gif",
 	"/assets/image/nodata.gif",
 
-	"/assets/css/main.min.css", // Minified
+	"/assets/css/main.css",
 	"/assets/css/nprogress.css",
 	"/assets/css/SFRegular.woff",
 	"/assets/css/SFMedium.woff",
 	"/assets/css/SFBold.woff",
 	"/assets/css/Galactico-Basic.woff",
 	
-    "/assets/js/app.min.js", // Minified
-    "/assets/js/functions.min.js", // Minified
+    "/assets/js/app.js",
+    "/assets/js/functions.js",
 	"/assets/js/nprogress.js",
 	"/assets/js/localforage.js",
 
