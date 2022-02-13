@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v13" // name of the current cache
+const CACHE = "content-v14" // name of the current cache
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 let commentsUpdateBackgroundSyncTagName = 'commentsUpdateBackgroundSync'
@@ -12,17 +12,24 @@ const AUTO_CACHE = [
 	"/assets/image/add.webp",
 	"/assets/image/cancel.webp",
 	"/assets/image/cat-face.webp",
-	"/assets/image/error.webm",
 	"/assets/image/eye.webp",
 	"/assets/image/hide.webp",
 	"/assets/image/kitty.webp",
-	"/assets/image/loading.webm",
 	"/assets/image/location.webp",
-	"/assets/image/nodata.webm",
 	"/assets/image/paw.webp",
 	"/assets/image/reviewed.webp",
 	"/assets/image/share.webp",
 	"/assets/image/unliked.webp",
+	
+	"/assets/image/loading.webm",
+	"/assets/image/spinner.webm",
+	"/assets/image/error.webm",
+	"/assets/image/nodata.webm",
+	
+	"/assets/image/loading.mp4",
+	"/assets/image/spinner.mp4",
+	"/assets/image/error.mp4",
+	"/assets/image/nodata.mp4",
 
 	"/assets/css/main.css",
 	"/assets/css/nprogress.css",
