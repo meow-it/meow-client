@@ -145,6 +145,24 @@ async function syncScheduledMeows () {
 	return true
 }
 
+async function syncScheduledComments() {
+	let scheduledComments = await getLocalForage("commentQueue")
+	let newQueue = []
+	if (scheduledComments == null) return
+	
+	if(scheduledComments.length > 0){
+		scheduledComments.forEach(async (element) => {
+			let sentComment = await createNewComment(element)
+			if(sentComment._id == undefined) {
+				newQueue.push(element)
+				return
+			}
+		})
+	}
+	await setLocalForage("commentQueue", newQueue)
+	return true
+}
+
 async function requestBackgroundSync(backgroundSyncTagName) {
     try {
 		await self.registration.sync.register(backgroundSyncTagName)
