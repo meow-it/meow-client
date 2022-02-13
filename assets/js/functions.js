@@ -655,3 +655,31 @@ async function getUpdatedPosition() {
 	}
 }
 
+/***
+ * @typedef {Object} BooleanForLocation
+ * @property {boolean} isUpdated
+ * @property {boolean} locationPermission
+ */
+/**
+ * 
+ * @param {Boolean} permission 
+ * @returns {Promise<BooleanForLocation>}
+ * @description Function returns a promise that resolves to an object with two properties:
+ * - If the location was granted, it returns `{ false, true }`
+ * - If the location was denied, it checks in the IDB for last known location. 
+ * - It it exists and the time difference is less than 3 hours, it returns `{ true, true }`
+ * - If the location was denied and there is no last known location, it returns `{ false, <argument permission> }`
+ */
+async function getBooleanForLocation(permission) {
+
+	if(permission) return { isUpdated: false, locationPermission: permission }
+	
+	let lastKnownPosition = await getLocalForage("position")
+	if(lastKnownPosition != null) {
+		let lastKnownUpdatedTime = lastKnownPosition.time
+		if (lastKnownUpdatedTime > Date.now() - 10800000) {
+			return {isUpdated: true, locationPermission: true}
+		} 
+	}
+	return {isUpdated: false, locationPermission: permission}
+}
