@@ -136,6 +136,43 @@ function commentsPlaceholderDiv(noMeows = false) {
 				<span>${text}</span>
 			</div>`
 }
+
+function generateComments(elements) {
+	let html = ""
+	elements.forEach((element) => {
+
+		let imageUrl = element.profilePic
+		let name = element.name
+		let time = timeDifference(new Date(), new Date(element.createdAt))
+		let hide = element.toxic
+			? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.webp" alt="Unhide Message" height="30" width="30">`
+			: ""
+		let toxic = element.toxic ? `toxic` : ""
+
+		let reviewIconSrc = element.isReviewed
+			? `./assets/image/reviewed.webp`
+			: `./assets/image/kitty.webp`
+		let reviewClass = element.isReviewed ? `reviewed` : `reportButton reportComment`
+
+		html += `<div class="comment">
+			<div class="commentTop">
+				<div class="commentedUser">
+					<img src="${imageUrl}" alt="${name}" class="commentedUserProfilePicture" width="25" height="25">
+					<span class="commentedUserName">${name}</span>
+				</div>
+				<div class="commentOptions">
+					<span class="timeCommented">${time}</span>
+					${hide}
+					<img data-id="${element._id}" class="${reviewClass}" src="${reviewIconSrc}" alt="Report Comment" height="25" width="25">
+				</div>
+			</div>
+			<span class="commentText ${toxic}">${element.text}</span>
+		</div>`
+	})
+
+	return html
+}
+
 function generateMeows(elements) {
 	let html = ""
 	elements.forEach((element) => {
