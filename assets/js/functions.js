@@ -319,16 +319,24 @@ async function getSingleMeow(id) {
 }
 
 function handleEye(e) {
+	let spanElement = null
 	let state = e.target.dataset.state
-	let spanElement =
-		e.target.parentElement.parentElement.parentElement.querySelector(
+	spanElement = e.target.parentElement.parentElement.parentElement.querySelector(".commentText")
+	
+	try {
+		// checking if the user is selecting the eye in the comments
+		spanElement.style
+	} catch (err) {
+		// no? then we are selecting the eye in the meows
+		spanElement = e.target.parentElement.parentElement.parentElement.querySelector(
 			".meowContent"
 		)
+	}
 
 	if (state == "hidden") {
 		e.target.src = "./assets/image/eye.webp"
 		e.target.dataset.state = "visible"
-		spanElement.style.fontFamily = "Inter"
+		spanElement.style.fontFamily = "SFPro"
 	} else {
 		e.target.src = "./assets/image/hide.webp"
 		e.target.dataset.state = "hidden"
