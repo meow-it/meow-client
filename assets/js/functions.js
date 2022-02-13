@@ -117,6 +117,25 @@ async function handleReviewComment (e) {
 	})
 }
 
+function commentsPlaceholderDiv(noMeows = false) {
+
+	let className = "loadingComments"
+	let src = noMeows ? "./assets/image/nodata.webm" : "./assets/image/loading.webm"
+	let title = noMeows ? "No Comments Yet" : "Loading Comments"
+	let text = noMeows ? "No Comments Yet. Try sending a new one 🤩" : "Loading Comments.."
+	let size = noMeows ? "150" : "80"
+
+	return `<div class="${className}">
+				<video 
+					src="${src}" 
+					height="${size}" width="${size}" 
+					autoplay="autoplay" loop="loop" 
+					muted="muted" aria-label="Loading Comments" 
+					title="${title}">
+				</video>	
+				<span>${text}</span>
+			</div>`
+}
 function generateMeows(elements) {
 	let html = ""
 	elements.forEach((element) => {
