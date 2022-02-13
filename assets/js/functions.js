@@ -120,18 +120,21 @@ async function handleReviewComment (e) {
 function commentsPlaceholderDiv(noMeows = false) {
 
 	let className = "loadingComments"
-	let src = noMeows ? "./assets/image/nodata.webm" : "./assets/image/loading.webm"
+	let webmSrc = noMeows ? "./assets/image/nodata.webm" : "./assets/image/loading.webm"
+	let mp4Src = noMeows ? "./assets/image/nodata.mp4" : "./assets/image/loading.mp4"
 	let title = noMeows ? "No Comments Yet" : "Loading Comments"
 	let text = noMeows ? "No Comments Yet. Try sending a new one 🤩" : "Loading Comments.."
 	let size = noMeows ? "150" : "80"
 
 	return `<div class="${className}">
 				<video 
-					src="${src}" 
 					height="${size}" width="${size}" 
 					autoplay="autoplay" loop="loop" 
 					muted="muted" aria-label="Loading Comments" 
-					title="${title}">
+					title="${title}"
+					<source src="${webmSrc}" type="video/webm">
+					<source src="${mp4Src}" type="video/mp4">
+				>
 				</video>	
 				<span>${text}</span>
 			</div>`
@@ -483,9 +486,11 @@ function generateNoMeows() {
 	html += `<div class="noMeows">
 		<video 
 			height="200" width="200" 
-			src = "./assets/image/nodata.webm" 
+			title="No Meows Nearby"
 			autoplay loop muted aria-label="No Meows Nearby" 
-			title="No Meows Nearby">
+			<source src = "./assets/image/nodata.webm" type = "video/webm">
+			<source src = "./assets/image/nodata.mp4" type = "video/mp4"> 
+			>
 		</video>
         <span class="noMeowsText">No meows nearby 🙁</span>
         <span class="askUserToCreate">Create a new meow by clicking on the plus icon 😽</span>

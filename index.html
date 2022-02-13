@@ -41,11 +41,13 @@
     </div>
     <div class="newUserLoading">
         <video 
-            src="./assets/image/loading.webm" 
             height="250" width="250" 
             autoplay="autoplay" loop="loop" 
             muted="muted" title="Loading..."
-            aria-label="Loading Animation">
+            aria-label="Loading Animation"
+            <source src="./assets/image/loading.webm" type="video/webm">
+            <source src="./assets/image/loading.webm" type="video/mp4">
+        >
         </video>
         <div class="loadingTextContainer">
             <span class="loadingText">Loading</span>
@@ -54,11 +56,13 @@
     </div>
     <div class="postsLoading">
         <video 
-            src="./assets/image/loading.webm" 
             height="250" width="250" 
             autoplay="autoplay" loop="loop" 
             muted="muted" title="Loading..."
-            aria-label="Loading Animation">
+            aria-label="Loading Animation"
+            <source src="./assets/image/loading.webm" type="video/webm">
+            <source src="./assets/image/loading.webm" type="video/mp4">
+        >
         </video>
         <div class="loadingTextContainer">
             <span class="loadingText">Loading</span>
@@ -168,11 +172,13 @@
     </div>
     <div class="noLocationAccess">
         <video 
-            src="./assets/image/error.webm" 
             height="225" width="300" 
             autoplay="autoplay" loop="loop" 
             muted="muted" aria-label="Error" 
-            title="Error">
+            title="Error"
+            <source src="./assets/image/error.webm" type="video/webm">
+            <source src="./assets/image/error.mp4" type="video/mp4"> 
+        >
         </video>
         <span class="errorText">This app requires your Geolocation to refresh the feed</span>
         <span class="makeSure">Make sure the GPS is turned ON and the browser has location access</span>
@@ -225,12 +231,15 @@
             <div class="addNewComment">
                 <img src="" alt="" class="commentingUserProfilePicture" height="25" width="25" aria-label="Profile Pic">
                 <input type="text" aria-label="Textbox to type comments" class="commentInput" placeholder="Comment something 😼">
-                <video src="./assets/image/spinner.webm"
+                <video 
                     height="25" width="25" 
                     class="postingCommentSpinner"
                     autoplay="autoplay" loop="loop" 
                     muted="muted" aria-label="Posting Comment" 
-                    title="Posting Comment">
+                    title="Posting Comment"
+                    <source src="./assets/image/spinner.webm" type="video/webm">
+                    <source src="./assets/image/spinner.mp4" type="video/mp4">
+                >
                 </video>
                 <img src="./assets/image/comment.webp" aria-label="Comment" alt="Comment" class="postCommentButton" height="25" width="25">
             </div>
