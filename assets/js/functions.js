@@ -639,6 +639,13 @@ async function addToBGSyncMeowRegistry({text, userid, coords}) {
 	await setLocalForage("meowQueue", currentQueue)
 }
 
+async function addToBGSyncCommentsRegistry(data) {
+	let currentQueue = await getLocalForage("commentQueue")
+	if (currentQueue == null) currentQueue = []
+	currentQueue.push(data)
+	await setLocalForage("commentQueue", currentQueue)
+}
+
 function clearTextData() {
 	localStorage.removeItem("text")
 }
