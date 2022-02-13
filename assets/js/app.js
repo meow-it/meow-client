@@ -543,6 +543,7 @@ async function createMeow() {
 		}
 	
 		NProgress.done()
+		meowCount++
 	
 		handleCloseNewMeowModal()
 	} else {
@@ -581,6 +582,7 @@ async function createMeow() {
 				})
 				textField.value = ""
 				clearTextData()
+				meowCount++
 			} else {
 				requestAnimationFrame(() => {
 					requestAnimationFrame(() => {
