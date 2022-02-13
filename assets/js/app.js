@@ -541,6 +541,61 @@ async function createMeow() {
 
 }
 
+async function postingComments(max) {
+	let commentsContainer = document.querySelector(".commentsContainer")
+	let BG_IS_AVAILABLE = 'serviceWorker' in navigator && 'SyncManager' in window
+	let inputTextBox = document.querySelector(".commentInput")
+	let text = inputTextBox.value
+	if (text.trim() == "") return
+	text = text.substring(0, max)
+	let userId = user._id
+	let meowId = selectedMeowForShowingComments
+	let addedToBG = false
+	let postingCommentSpinner = document.querySelector(".postingCommentSpinner")
+	postingCommentSpinner.style.display = "block"
+
+	// if backgroundsync is available
+	if (BG_IS_AVAILABLE) {
+		let data = { text, userId, meowId }
+		await addToBGSyncCommentsRegistry(data)
+		let temporaryComment = { ...data, 
+			_id: "", 
+			isReviewed: false, 
+			toxic: false, 
+			createdAt: new Date(), 
+			name: user.name, 
+			profilePic: user.profilePic 
+		}
+		let html = generateComments([temporaryComment])
+		commentsContainer.innerHTML = html + commentsContainer.innerHTML
+		addedToBG = true
+		inputTextBox.value = ""
+		postingCommentSpinner.style.display = "none"
+	}
+
+	let comment = await createNewComment({text, userId, meowId})
+	if(comment != null) {
+		let html = generateComments([comment])
+		
+		addedToBG ? commentsContainer.removeChild(commentsContainer.firstChild) : null
+
+		commentsContainer.innerHTML = html + commentsContainer.innerHTML
+		inputTextBox.value = ""
+
+		if(BG_IS_AVAILABLE) {
+			let commentsFromIDB = await getLocalForage("commentQueue")
+			if(commentsFromIDB != null) {
+				commentsFromIDB.pop()
+				await setLocalForage("commentQueue", commentsFromIDB)
+			}
+		}
+
+	}
+	
+	postingCommentSpinner.style.display = "none"
+
+}
+
 function closeMeowWhileOffline () {
 	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
 	let newMeowStatusMessage = document.querySelector(".newMeowStatusMessage")
