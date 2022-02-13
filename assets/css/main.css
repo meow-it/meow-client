@@ -1047,8 +1047,8 @@ span.cancelGoBack {
     flex-direction: column;
     width: 100%;
     padding: 0.5rem 1rem;
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: 95vh;
+    overflow-y: hidden;
 }
 .loadingComments {
 	display: flex;
@@ -1084,6 +1084,9 @@ span.cancelGoBack {
     border-radius: 5px;
     padding: 0.1rem 0.4rem;
 	transition: width 0.5s ease-in-out;
+}
+.commentsContainer {
+	overflow: auto;
 }
 .comment {
 	display: flex;
