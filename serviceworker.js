@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v12" // name of the current cache
+const CACHE = "content-v13" // name of the current cache
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 let commentsUpdateBackgroundSyncTagName = 'commentsUpdateBackgroundSync'
@@ -181,5 +181,8 @@ self.addEventListener('sync', event => {
     if (event.tag === meowsUpdateBackgroundSyncTagName) {
 		console.log("SYNCING MEOWS")
         event.waitUntil(syncScheduledMeows());
-    }
-});
+    } else if (event.tag === commentsUpdateBackgroundSyncTagName) {
+		console.log("SYNCING COMMENTS")
+		event.waitUntil(syncScheduledComments());
+	}
+})
