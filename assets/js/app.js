@@ -470,8 +470,15 @@ async function createMeow() {
 	let textField = document.querySelector(".meowInput")
 	let text = textField.value
 	let isBackgroundSyncAvailable = await getLocalForage("backgroundSync")
+	let coords = {}
 
-	let { coords } = await getCurrentPosition()
+	try {
+		let position = await getCurrentPosition()
+		coords = position.coords
+	} catch (error) {
+		let position = await getUpdatedPosition()
+		coords = position.coords
+	}
 
 	if(navigator.onLine) {
 
