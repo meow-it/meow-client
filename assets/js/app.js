@@ -164,7 +164,8 @@ async function main() {
 		userItem.username.textContent = user.name
 		userItem.profilePicture.src = user.profilePic
 	
-		let locationPermission = await checkLocationPermission()
+		let permissionForLocation = await checkLocationPermission()
+		let {isUpdated, locationPermission} = await getBooleanForLocation(permissionForLocation)
 	
 		if (!locationPermission) {
 			setDisplayNone(elements)
@@ -190,12 +191,13 @@ async function main() {
 				})
 			})
 
-			let position = await getCurrentPosition()
+			let position = isUpdated ? await getUpdatedPosition()  : await getCurrentPosition()
 	
 			await setLocalForage("position", {
 				latitude: position.coords.latitude,
 				longitude: position.coords.longitude,
-				accuracy: position.coords.accuracy
+				accuracy: position.coords.accuracy,
+				time: new Date().getTime()
 			})
 	
 			let coords = {
