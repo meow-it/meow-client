@@ -70,6 +70,19 @@ document.querySelector(".learnMore").addEventListener("click", () => {
 	showFAQ()
 
 })
+document.querySelector(".commentInput").addEventListener("keydown", async (e) => {
+
+	if (e.key == "ENTER" || e.keyCode == 13) {
+		postingComments(max)
+	}
+	
+	let letterCount = e.target.value.length
+	let remaining = max - letterCount
+	if(remaining < 0) {
+		e.target.value = e.target.value.slice(0, max)
+		return
+	}	
+})
 document
 	.querySelector(".givePermissionButton")
 	.addEventListener("click", (e) => {
