@@ -463,21 +463,67 @@ async function installApp() {
 async function createMeow() {
 
 	NProgress.start()
-
+	let meowsContainer = document.querySelector(".meowsContainer")
 	let textField = document.querySelector(".meowInput")
 	let text = textField.value
+	let isBackgroundSyncAvailable = await getLocalForage("backgroundSync")
 
 	let { coords } = await getCurrentPosition()
 
 	if(navigator.onLine) {
 
+		let addedToBG = false
+
+		if(isBackgroundSyncAvailable) {
+			let data = {
+				text,
+				userid: user._id,
+				coords: {
+					latitude: coords.latitude,
+					longitude: coords.longitude,
+				}
+			}
+			await addToBGSyncMeowRegistry(data)	
+			let temporaryMeow = {
+				...data,
+				likes: 0,
+				toxic: false,
+				_id: "temporaryMeow",
+				comments: [],
+				createdAt: new Date(),
+				updatedAt: new Date(),
+				name: user.name,
+				profilePic: user.profilePic,
+				likedBy: [],
+				isReviewed: false,
+			}
+
+			let temporaryHtml = generateMeows([temporaryMeow])
+			meowsContainer.innerHTML = temporaryHtml + meowsContainer.innerHTML
+			addedToBG = true
+			textField.value = ""
+			clearTextData()
+			NProgress.done()
+			handleCloseNewMeowModal()
+		}
+
 		let meow = await newMeow(text, coords, user._id)
 
+		
 		if(meow._id == undefined) {
 			NProgress.done()
 			return
 		}
-	
+		
+		if(isBackgroundSyncAvailable) {
+			if(addedToBG) {
+				let queue = await getLocalForage("meowQueue")
+				queue.pop()
+				await setLocalForage("meowQueue", queue)
+				meowsContainer.removeChild(meowsContainer.firstChild)
+			}
+		}
+
 		NProgress.set(0.7)
 	
 		await refreshDBWithCreatedMeow(meow)
@@ -486,12 +532,12 @@ async function createMeow() {
 		clearTextData()
 	
 		let html = generateMeows([meow])
-		let existingStuff = document.querySelector(".meowsContainer").innerHTML
+		let existingStuff = meowsContainer.innerHTML
 	
 		if (meowCount == 0) {
-			document.querySelector(".meowsContainer").innerHTML = html
+			meowsContainer.innerHTML = html
 		} else {
-			document.querySelector(".meowsContainer").innerHTML =
+			meowsContainer.innerHTML =
 				html + existingStuff
 		}
 	
@@ -502,8 +548,6 @@ async function createMeow() {
 		let newMeowStatusMessage = document.querySelector(".newMeowStatusMessage")
 		let textSpan = newMeowStatusMessage.querySelectorAll("span")[0]
 		let buttonSpan = newMeowStatusMessage.querySelector(".goBackToHomeButton")
-
-		let isBackgroundSyncAvailable = await getLocalForage("backgroundSync")
 
 		if(window.chrome == undefined) {
 			requestAnimationFrame(() => {
