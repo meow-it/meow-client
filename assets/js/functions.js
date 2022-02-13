@@ -643,3 +643,15 @@ function getSavedTextData() {
 	let text = localStorage.getItem("text")
 	return text
 }
+
+async function getUpdatedPosition() {
+	let updatedPosition = await getLocalForage("position")
+	return {
+		coords: {
+			latitude: updatedPosition.latitude,
+			longitude: updatedPosition.longitude,
+			accuracy: updatedPosition.accuracy
+		}
+	}
+}
+
