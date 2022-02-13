@@ -341,6 +341,30 @@ async function handleLike(e) {
 	})
 }
 
+async function createNewComment ({text, userId, meowId}) {
+	let data = { text, userId, meowId }
+	let response = null
+
+	try {
+		response = await fetch(serverURLAPIEndpoint + `comment/new`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data)
+		})
+	} catch (err) {
+		console.log("Something went wrong! 😦" + err)
+	}
+
+	if(response != null) {
+		let responseJSON = await response.json()
+		return responseJSON
+	}
+
+	return null
+}
+
 function handleLocationIconClick(e) {
 	let parent = e.target.parentElement
 	let locationText = parent.querySelector(".locationText")
