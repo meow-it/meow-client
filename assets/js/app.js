@@ -477,6 +477,7 @@ async function createMeow() {
 	let meowsContainer = document.querySelector(".meowsContainer")
 	let textField = document.querySelector(".meowInput")
 	let text = textField.value
+	if(text.trim().length == 0) { NProgress.done(); return }
 	let isBackgroundSyncAvailable = await getLocalForage("backgroundSync")
 	let coords = {}
 
@@ -621,11 +622,12 @@ async function createMeow() {
 }
 
 async function postingComments(max) {
+	NProgress.start()
 	let commentsContainer = document.querySelector(".commentsContainer")
 	let BG_IS_AVAILABLE = 'serviceWorker' in navigator && 'SyncManager' in window
 	let inputTextBox = document.querySelector(".commentInput")
 	let text = inputTextBox.value
-	if (text.trim() == "") return
+	if(text.trim().length == 0) { NProgress.done(); return }
 	text = text.substring(0, max)
 	let userId = user._id
 	let meowId = selectedMeowForShowingComments
@@ -653,6 +655,7 @@ async function postingComments(max) {
 	}
 
 	let comment = await createNewComment({text, userId, meowId})
+	NProgress.set(0.7)
 	if(comment != null) {
 		let html = generateComments([comment])
 		
@@ -670,6 +673,7 @@ async function postingComments(max) {
 		}
 
 	}
+	NProgress.done()
 	
 	postingCommentSpinner.style.display = "none"
 
