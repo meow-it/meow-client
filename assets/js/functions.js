@@ -132,6 +132,7 @@ function commentsPlaceholderDiv(noMeows = false) {
 					autoplay="autoplay" loop="loop" 
 					muted="muted" aria-label="Loading Comments" 
 					title="${title}"
+					playsinline
 					<source src="${webmSrc}" type="video/webm">
 					<source src="${mp4Src}" type="video/mp4">
 				>
@@ -488,9 +489,10 @@ function generateNoMeows() {
 			height="200" width="200" 
 			title="No Meows Nearby"
 			autoplay loop muted aria-label="No Meows Nearby" 
+			playsinline
 			<source src = "./assets/image/nodata.webm" type = "video/webm">
 			<source src = "./assets/image/nodata.mp4" type = "video/mp4"> 
-			>
+		>
 		</video>
         <span class="noMeowsText">No meows nearby 🙁</span>
         <span class="askUserToCreate">Create a new meow by clicking on the plus icon 😽</span>
