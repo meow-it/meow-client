@@ -1,7 +1,9 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v15" // name of the current cache
+const CACHE = "content-v16" // name of the current cache
+const AVATARS = "avatars"
+const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 let commentsUpdateBackgroundSyncTagName = 'commentsUpdateBackgroundSync'
@@ -77,6 +79,24 @@ function isCached(url) {
 }
 
 self.addEventListener("fetch", (event) => {
+
+	if (event.request.url.includes("avatars.dicebear.com")) {
+		event.respondWith(
+			caches.open(AVATARS).then((cache) => {
+				return cache.match(event.request).then((response) => {
+					if (response) return response
+					return fetch(event.request).then((response) => {
+						cache.put(event.request, response.clone())
+						return response
+					}).catch(() => {
+						return caches.match(DEFAULT_AVATAR)
+					})
+				})
+			})
+		)
+		return
+	}
+
 	if (
 		!event.request.url.startsWith(self.location.origin) ||
 		event.request.method !== "GET"
