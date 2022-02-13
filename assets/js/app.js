@@ -2,6 +2,7 @@ let deferredPrompt
 let wasPromptDeferred = false
 let faqButtonWasPressed = false
 let selectedMeowForShowingComments = null
+let max = 140
 window.addEventListener("beforeinstallprompt", async (e) => {
 	await beforeinstallpromptHandler(e)
 })
