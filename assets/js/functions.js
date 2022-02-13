@@ -432,15 +432,23 @@ async function handleReview(e) {
 	e.target.classList.remove("reportButton")
 	e.target.classList.add("reviewed")
 
-	await fetch(serverURLAPIEndpoint + `meow/review`, {
+	let isComment = e.target.classList.contains("reportComment")
+	let endpointType = isComment ? "comment/review" : "meow/review"
+
+	let data = isComment ? {
+		userId: user._id,
+		commentId: id,
+	} : {
+		userid: user._id,
+		meowid: id,
+	}
+
+	await fetch(serverURLAPIEndpoint + endpointType, {
 		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({
-			userid: user._id,
-			meowid: id,
-		}),
+		body: JSON.stringify(data)
 	})
 }
 
