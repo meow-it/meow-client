@@ -1,5 +1,5 @@
 importScripts("/assets/js/localforage.js")
-importScripts("/assets/js/functions.js")
+importScripts("/assets/js/functions.min.js")
 
 const CACHE = "content-v14" // name of the current cache
 const OFFLINE = "/offline.html"
@@ -26,15 +26,15 @@ const AUTO_CACHE = [
 	"/assets/image/error.gif",
 	"/assets/image/nodata.gif",
 
-	"/assets/css/main.css",
+	"/assets/css/main.min.css", // Minified
 	"/assets/css/nprogress.css",
 	"/assets/css/SFRegular.woff",
 	"/assets/css/SFMedium.woff",
 	"/assets/css/SFBold.woff",
 	"/assets/css/Galactico-Basic.woff",
 	
-    "/assets/js/app.js",
-    "/assets/js/functions.js",
+    "/assets/js/app.min.js", // Minified
+    "/assets/js/functions.min.js", // Minified
 	"/assets/js/nprogress.js",
 	"/assets/js/localforage.js",
 
