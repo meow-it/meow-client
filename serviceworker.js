@@ -21,15 +21,10 @@ const AUTO_CACHE = [
 	"/assets/image/share.webp",
 	"/assets/image/unliked.webp",
 	
-	"/assets/image/loading.webm",
-	"/assets/image/spinner.webm",
-	"/assets/image/error.webm",
-	"/assets/image/nodata.webm",
-	
-	"/assets/image/loading.mp4",
-	"/assets/image/spinner.mp4",
-	"/assets/image/error.mp4",
-	"/assets/image/nodata.mp4",
+	"/assets/image/loading.gif",
+	"/assets/image/spinner.gif",
+	"/assets/image/error.gif",
+	"/assets/image/nodata.gif",
 
 	"/assets/css/main.css",
 	"/assets/css/nprogress.css",
