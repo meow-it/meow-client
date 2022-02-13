@@ -340,6 +340,8 @@ document.addEventListener("click", (e) => {
 	} else if (e.target.classList.contains("showFaqSpan")) {
 		showFAQ()
 		faqButtonWasPressed = true
+	} else if (e.target.classList.contains("postCommentButton")) {
+		postingComments(max)
 	}
 })
 
