@@ -4,6 +4,7 @@ importScripts("/assets/js/functions.js")
 const CACHE = "content-v12" // name of the current cache
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
+let commentsUpdateBackgroundSyncTagName = 'commentsUpdateBackgroundSync'
 
 const AUTO_CACHE = [
 	OFFLINE,
@@ -156,6 +157,7 @@ async function requestBackgroundSync(backgroundSyncTagName) {
 }
 
 requestBackgroundSync(meowsUpdateBackgroundSyncTagName)
+requestBackgroundSync(commentsUpdateBackgroundSyncTagName)
 
 self.addEventListener('sync', event => {
     if (event.tag === meowsUpdateBackgroundSyncTagName) {
