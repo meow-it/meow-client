@@ -347,10 +347,30 @@ document
 	.querySelector(".meowInput")
 	.addEventListener("input", countCharactersInTextField)
 
-function handleCommentsButtonClick(e) {
+async function handleCommentsButtonClick(e) {
 	selectedMeowForShowingComments = e.target.dataset.id
 	setDisplayNone(elements)
 	document.querySelector(".commentsModalContainer").style.display = "flex"
+	let cachedMeows = await getLocalForage("meows")
+	let meow = cachedMeows.find((element) => element._id == selectedMeowForShowingComments)
+	let htmlForCachedMeow = generateMeows([meow])
+	document.querySelector(".commentMeowContainer").innerHTML = htmlForCachedMeow
+
+	let commentsContainer = document.querySelector(".commentsContainer")
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			commentsContainer.innerHTML = commentsPlaceholderDiv()
+		})
+	})
+	
+	let comments = await getComments(selectedMeowForShowingComments)
+	if (comments == null) return
+	let html = comments.length == 0 ? commentsPlaceholderDiv(true) : generateComments(comments)
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			commentsContainer.innerHTML = html
+		})
+	})
 }
 
 function handleCloseCommentsButtonClick() {
