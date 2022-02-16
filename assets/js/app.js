@@ -684,6 +684,13 @@ async function postingComments(max) {
 
 }
 
+function incrementCommentCount(meowId) {
+	let spans = document.querySelectorAll(`[data-id="${meowId}"] .commentCount`)
+	let commentCount = parseInt(spans[0].innerHTML)
+	commentCount++
+	spans.forEach(span => span.innerHTML = commentCount)	
+}
+
 function closeMeowWhileOffline () {
 	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
 	let newMeowStatusMessage = document.querySelector(".newMeowStatusMessage")
