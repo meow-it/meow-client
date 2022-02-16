@@ -210,11 +210,11 @@ function generateMeows(elements) {
                     <img data-status="${likeStatus}" data-id="${
 			element._id
 		}" class="likeButton" src="${isLiked}" alt="Like Button" height="30" width="30">
-                    <span class="likeCount">${element.likes}</span>
+                    <span data-status="${likeStatus}" class="likeCount">${element.likes}</span>
                 </div>
 				<div class="commentButtonContainer">
 					<img data-id="${element._id}" class="commentButton" src="./assets/image/comment.webp" alt="Comment Button" height="30" width="30">
-					<span class="commentCount">${element.comments.length}</span>
+					<span data-id="${element._id}" class="commentCount">${element.comments.length}</span>
 				</div>
                 <img data-id="${
 					element._id
