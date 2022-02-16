@@ -166,6 +166,12 @@ async function main() {
 	
 		let permissionForLocation = await checkLocationPermission()
 		let {isUpdated, locationPermission} = await getBooleanForLocation(permissionForLocation)
+
+		requestAnimationFrame(() => {
+			let commentingUserProfilePicture = document.querySelector(".commentingUserProfilePicture")
+			commentingUserProfilePicture.src = user.profilePic
+			commentingUserProfilePicture.alt = user.name
+		})
 	
 		if (!locationPermission) {
 			setDisplayNone(elements)
@@ -246,10 +252,6 @@ async function main() {
 						showInstallPromotion()
 					}
 				}
-
-				let commentingUserProfilePicture = document.querySelector(".commentingUserProfilePicture")
-				commentingUserProfilePicture.src = user.profilePic
-				commentingUserProfilePicture.alt = user.name
 
 				if(isUpdated) {
 					showStatus("Using your last known location for refreshing the feed 🎉 <br> Turn on GPS to get the meows for your current location 📍")
