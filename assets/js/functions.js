@@ -503,7 +503,7 @@ async function getPlaceInfo(coords) {
 function generateNoMeows() {
 	let html = ""
 	html += `<div class="noMeows">
-		<img src="./assets/image/loading.gif" alt="No Meows Nearby" title="No Meows Nearby" height="200" width="200" >
+		<img src="./assets/image/nodata.gif" alt="No Meows Nearby" title="No Meows Nearby" height="200" width="200" >
         <span class="noMeowsText">No meows nearby 🙁</span>
         <span class="askUserToCreate">Create a new meow by clicking on the plus icon 😽</span>
     </div>`
