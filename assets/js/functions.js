@@ -676,8 +676,10 @@ async function getBooleanForLocation(permission) {
 	
 	let lastKnownPosition = await getLocalForage("position")
 	if(lastKnownPosition != null) {
+		let graceHours = 5 // hours before we ask for location again
+		let milliSecondsToSubtract = graceHours * 60 * 60 * 1000
 		let lastKnownUpdatedTime = lastKnownPosition.time
-		if (lastKnownUpdatedTime > Date.now() - 10800000) {
+		if (lastKnownUpdatedTime > Date.now() - milliSecondsToSubtract) {
 			return {isUpdated: true, locationPermission: true}
 		} 
 	}
