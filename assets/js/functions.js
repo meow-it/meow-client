@@ -683,3 +683,12 @@ async function getBooleanForLocation(permission) {
 	}
 	return {isUpdated: false, locationPermission: permission}
 }
+
+async function findBGSYNCAndUpdate() {
+	let permission = await getLocalForage("backgroundSync")
+	if(permission != null) return permission
+
+	permission = 'serviceWorker' in navigator && 'SyncManager' in window
+	await setLocalForage("backgroundSync", permission)
+	return permission
+}
