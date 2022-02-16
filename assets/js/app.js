@@ -211,7 +211,10 @@ async function main() {
 			let meows = await getPosts(coords)
 			if (meows == null) {
 				showStatus("You're Offline! 😢 Unable to refresh meows.")
+				NProgress.done()
 				return
+			} else if(meows.length == 0) {
+				meowCount = 0
 			}
 			await setLocalForage("meows", meows)
 			NProgress.done()
