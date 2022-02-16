@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v16" // name of the current cache
+const CACHE = "content-v17" // name of the current cache
 const AVATARS = "avatars"
 const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
@@ -57,7 +57,7 @@ self.addEventListener("activate", (event) => {
 		caches
 			.keys()
 			.then((cacheNames) => {
-				return cacheNames.filter((cacheName) => CACHE !== cacheName)
+				return cacheNames.filter((cacheName) => CACHE !== cacheName || AVATARS !== cacheName)
 			})
 			.then((unusedCaches) => {
 				console.log("DESTROYING CACHE", unusedCaches.join(","))
