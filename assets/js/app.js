@@ -657,6 +657,8 @@ async function postingComments(max) {
 		addedToBG = true
 		inputTextBox.value = ""
 		postingCommentSpinner.style.display = "none"
+		incrementCommentCount(meowId)
+
 	}
 
 	let comment = await createNewComment({text, userId, meowId})
@@ -669,13 +671,15 @@ async function postingComments(max) {
 		commentsContainer.innerHTML = replaceWithNewComment ? html : html + commentsContainer.innerHTML
 		inputTextBox.value = ""
 
-		if(BG_IS_AVAILABLE) {
+		if(BG_IS_AVAILABLE && addedToBG) {
 			let commentsFromIDB = await getLocalForage("commentQueue")
 			if(commentsFromIDB != null) {
 				commentsFromIDB.pop()
 				await setLocalForage("commentQueue", commentsFromIDB)
 			}
 		}
+
+		if(!addedToBG) incrementCommentCount(meowId)
 
 	}
 	NProgress.done()
