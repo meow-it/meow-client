@@ -22,6 +22,7 @@ const AUTO_CACHE = [
 	"/assets/image/reviewed.webp",
 	"/assets/image/share.webp",
 	"/assets/image/unliked.webp",
+	"/assets/image/sadcat.webp",
 	
 	"/assets/image/loading.gif",
 	"/assets/image/spinner.gif",

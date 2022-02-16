@@ -186,6 +186,36 @@ a {
 	justify-content: center;
 }
 
+.no-js-warning {
+	min-height: 90vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+	padding: 0.5rem 1rem;
+}
+.no-js-warning span:nth-child(2), .no-js-warning span:nth-child(3){
+	font-size: 3rem;
+	font-weight: 600;
+	color: var(--lightRed);
+	padding-top: 1rem;
+}
+.no-js-warning span:nth-child(3){
+	font-size: 2rem;
+	font-weight: 400;
+	color: var(--nextBlue);
+}
+
 .firstTimeontent {
 	display: -webkit-box;
 	display: -ms-flexbox;
