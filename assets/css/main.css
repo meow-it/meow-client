@@ -1043,18 +1043,30 @@ span.cancelGoBack {
 
 /* Comments */
 .createNewComment {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     width: 100%;
     padding: 0.5rem 1rem;
     max-height: 95vh;
     overflow-y: hidden;
 }
 .loadingComments {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
 	padding: 0.5rem 1rem;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 .loadingComments span {
 	padding-top: 1rem;
@@ -1069,41 +1081,66 @@ span.cancelGoBack {
 	margin-bottom: 1rem;
 }
 .addNewComment {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
 	padding-bottom: 1rem;
 	margin: 0.3rem 0.5rem 0;
 }
 .commentInput {
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
     font-size: 1.2rem;
     margin: auto 0.3rem;
     outline: none;
     border: 1px solid var(--boxShadowColor);
     border-radius: 5px;
     padding: 0.1rem 0.4rem;
+	-webkit-transition: width 0.5s ease-in-out;
+	-o-transition: width 0.5s ease-in-out;
 	transition: width 0.5s ease-in-out;
 }
 .commentsContainer {
 	overflow: auto;
 }
 .comment {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 	padding: 0.5rem;
 	margin: 0.3rem 0.5rem;
 	border: 1px solid var(--boxShadowColor);
     border-radius: 5px;
 }
 .commentTop {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 .commentedUser {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .commentedUserProfilePicture {
 	margin-right: 0.5rem;
@@ -1117,8 +1154,12 @@ span.cancelGoBack {
 	display: none;
 }
 .commentOptions {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .timeCommented, .hideComment, .unHideComment, .reportComment {
 	padding-left: 1rem;
