@@ -637,6 +637,7 @@ async function postingComments(max) {
 	let meowId = selectedMeowForShowingComments
 	let addedToBG = false
 	let postingCommentSpinner = document.querySelector(".postingCommentSpinner")
+	let replaceWithNewComment = doesChildExists(commentsContainer, ".loadingComments")
 	postingCommentSpinner.style.display = "block"
 
 	// if backgroundsync is available
@@ -652,7 +653,7 @@ async function postingComments(max) {
 			profilePic: user.profilePic 
 		}
 		let html = generateComments([temporaryComment])
-		commentsContainer.innerHTML = html + commentsContainer.innerHTML
+		commentsContainer.innerHTML = replaceWithNewComment ? html : html + commentsContainer.innerHTML
 		addedToBG = true
 		inputTextBox.value = ""
 		postingCommentSpinner.style.display = "none"
@@ -665,7 +666,7 @@ async function postingComments(max) {
 		
 		addedToBG ? commentsContainer.removeChild(commentsContainer.firstChild) : null
 
-		commentsContainer.innerHTML = html + commentsContainer.innerHTML
+		commentsContainer.innerHTML = replaceWithNewComment ? html : html + commentsContainer.innerHTML
 		inputTextBox.value = ""
 
 		if(BG_IS_AVAILABLE) {
