@@ -357,6 +357,7 @@ async function handleLike(e) {
 			element.likes = parseInt(element.likes) + like
 			// update the user status of the like
 			like == 1 ? element.likedBy.push(user._id) : element.likedBy.splice(element.likedBy.indexOf(user._id), 1)
+			return
 		}
 	})
 	await setLocalForage("meows", meows)
