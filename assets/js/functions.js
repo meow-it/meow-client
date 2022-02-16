@@ -317,22 +317,50 @@ async function handleLike(e) {
 		parseInt(e.target.parentElement.querySelector(".likeCount").innerText) +
 		like
 
-	await fetch(serverURLAPIEndpoint + `meow/like`, {
-		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			userid: user._id,
-			meowid: id,
-			like: like,
-		}),
-	}).catch(() => {
-		showStatus("Something went wrong. Please try again later.")
-		setTimeout(() => {
-			hideStatus()
-		}, 2000)
+	try {
+		await fetch(serverURLAPIEndpoint + `meow/like`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				userid: user._id,
+				meowid: id,
+				like: like,
+			}),
+		})
+	} catch (err) {
+
+		// reverting the UI
+		if (like == 1) {
+			e.target.src = "./assets/image/unliked.webp"
+			e.target.dataset.status = "unliked"
+		} else {
+			e.target.src = "./assets/image/paw.webp"
+			e.target.dataset.status = "liked"
+		}
+		e.target.parentElement.querySelector(".likeCount").innerText =
+			parseInt(e.target.parentElement.querySelector(".likeCount").innerText) -
+			like
+
+		showStatus("Couldn't perform the action 😿. Please try again later 😌")
+		setTimeout(hideStatus, 2000)
+		console.log("Something Happened ☹" + err)
+		return
+	}
+
+	// if the like was successfuly, we make that reflect with the IDB
+	let meows = await getLocalForage("meows")
+	meows.forEach((element) => {
+		if (element._id == id) {
+			// updates the like count
+			element.likes = parseInt(element.likes) + like
+			// update the user status of the like
+			like == 1 ? element.likedBy.push(user._id) : element.likedBy.splice(element.likedBy.indexOf(user._id), 1)
+		}
 	})
+	await setLocalForage("meows", meows)
+
 }
 
 async function createNewComment ({text, userId, meowId}) {
