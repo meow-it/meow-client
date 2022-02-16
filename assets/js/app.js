@@ -229,6 +229,7 @@ async function main() {
 					showStatus("New meows found! 🎉 Reload to update!")
 				}
 			}
+			meowCount = meows.length
 		}
 		
 		requestAnimationFrame(() => {
