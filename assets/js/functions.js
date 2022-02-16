@@ -691,7 +691,7 @@ async function getUpdatedPosition() {
 /**
  * 
  * @param {Boolean} permission 
- * @returns {Promise<BooleanForLocation>}
+ * @returns {Promise<BooleanForLocation>} Returns an `Object<BooleanForLocation>` as a response to what to do for the location to update
  * @description Function returns a promise that resolves to an object with two properties:
  * - If the location was granted, it returns `{ false, true }`
  * - If the location was denied, it checks in the IDB for last known location. 
@@ -712,6 +712,27 @@ async function getBooleanForLocation(permission) {
 		} 
 	}
 	return {isUpdated: false, locationPermission: permission}
+}
+
+/**
+ * 
+ * @param {HTMLDivElement} element - The element to loopup
+ * @param {string} className - The class name to look for
+ * @returns {Boolean} `true` or `false`
+ */
+function doesTheClassExist(element, className) {
+	return element.classList.contains(className)
+}
+
+/**
+ * 
+ * @param {HTMLDivElement} element - The Parent Element to loopup
+ * @param {string} className - The class name of the child element to look for
+ * @returns {Boolean} `true` or `false`
+ */
+function doesChildExists(element, className) {
+	let child = element.querySelector(className)
+	return child != null
 }
 
 async function findBGSYNCAndUpdate() {
