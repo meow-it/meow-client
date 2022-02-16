@@ -478,7 +478,7 @@ async function createMeow() {
 	let textField = document.querySelector(".meowInput")
 	let text = textField.value
 	if(text.trim().length == 0) { NProgress.done(); return }
-	let isBackgroundSyncAvailable = await getLocalForage("backgroundSync")
+	let isBackgroundSyncAvailable = await findBGSYNCAndUpdate()
 	let coords = {}
 
 	try {
@@ -624,7 +624,7 @@ async function createMeow() {
 async function postingComments(max) {
 	NProgress.start()
 	let commentsContainer = document.querySelector(".commentsContainer")
-	let BG_IS_AVAILABLE = 'serviceWorker' in navigator && 'SyncManager' in window
+	let BG_IS_AVAILABLE = await findBGSYNCAndUpdate()
 	let inputTextBox = document.querySelector(".commentInput")
 	let text = inputTextBox.value
 	if(text.trim().length == 0) { NProgress.done(); return }
