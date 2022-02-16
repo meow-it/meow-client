@@ -362,6 +362,16 @@ async function handleLike(e) {
 	})
 	await setLocalForage("meows", meows)
 
+	// it should reflect it in the DOM too if multiple instances are visible or inside the same page
+	// find all spans with data-id as meowid and has class likeCount
+	let spans = document.querySelectorAll(`[data-id="${id}"] .likeCount`)
+	let imgs = document.querySelectorAll(`[data-id="${id}"] .likeButton`)
+	spans.forEach((span) => span.innerText = e.target.parentElement.querySelector(".likeCount").innerText)
+	imgs.forEach((img) => {
+		img.src = e.target.src
+		img.dataset.status = e.target.dataset.status
+	})
+
 }
 
 async function createNewComment ({text, userId, meowId}) {
