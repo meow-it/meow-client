@@ -117,16 +117,16 @@ async function handleReviewComment (e) {
 	})
 }
 
-function commentsPlaceholderDiv(noMeows = false) {
+function commentsPlaceholderDiv(noComments = false) {
 
 	let className = "loadingComments"
-	let src = noMeows ? "./assets/image/nodata.gif" : "./assets/image/loading.gif"
-	let title = noMeows ? "No Comments Yet" : "Loading Comments"
-	let text = noMeows ? "No Comments Yet. Try sending a new one 🤩" : "Loading Comments.."
-	let size = noMeows ? "150" : "80"
+	let src = noComments ? "./assets/image/nodata.gif" : "./assets/image/loading.gif"
+	let title = noComments ? "No Comments Yet" : "Loading Comments"
+	let text = noComments ? "No Comments Yet. Try sending a new one 🤩" : "Loading Comments.."
+	let size = noComments ? "150" : "80"
 
 	return `<div class="${className}">
-				<img src="${src}" alt="Loading Comments" height="${size}" width="${size}" >	
+				<img src="${src}" alt="Loading Comments" height="${size}" width="${size}" title="${title}">	
 				<span>${text}</span>
 			</div>`
 }
