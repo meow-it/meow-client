@@ -7,6 +7,7 @@ const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 let commentsUpdateBackgroundSyncTagName = 'commentsUpdateBackgroundSync'
+let periodicMeowSyncTagName = 'periodicMeowSync'
 
 const AUTO_CACHE = [
 	OFFLINE,
@@ -187,6 +188,19 @@ async function syncScheduledComments() {
 	return true
 }
 
+async function periodicallySyncMeows() {
+	let position = await getLocalForage("position")
+	if(position == null) return true
+	
+	let meows = await getPosts(position)
+	if(meows == null) return true
+
+	await setLocalForage("meows", meows)
+	await setLocalForage("lastSynced", new Date().getTime())
+	console.log("PERIODIC SYNCING MEOWS")
+	return true
+}
+
 async function requestBackgroundSync(backgroundSyncTagName) {
     try {
 		await self.registration.sync.register(backgroundSyncTagName)
@@ -198,15 +212,35 @@ async function requestBackgroundSync(backgroundSyncTagName) {
 	}
 }
 
+async function requestPeriodicBGSync(tagName, hours) {
+	try {
+		await self.registration.periodicSync.register(tagName, {
+			minInterval: hours * 60 * 60 * 1000,
+		})
+		await setLocalForage("periodicBGSync", true)
+	} catch (err) {
+		console.log(`Unable to REGISTER periodic sync`, err)
+		setTimeout(() => requestPeriodicBGSync(tagName, hours), 10000)
+		await setLocalForage("periodicBGSync", false)
+	}
+}
+
 requestBackgroundSync(meowsUpdateBackgroundSyncTagName)
 requestBackgroundSync(commentsUpdateBackgroundSyncTagName)
+requestPeriodicBGSync(periodicMeowSyncTagName, 1)
 
 self.addEventListener('sync', event => {
     if (event.tag === meowsUpdateBackgroundSyncTagName) {
 		console.log("SYNCING MEOWS")
-        event.waitUntil(syncScheduledMeows());
+        event.waitUntil(syncScheduledMeows())
     } else if (event.tag === commentsUpdateBackgroundSyncTagName) {
 		console.log("SYNCING COMMENTS")
-		event.waitUntil(syncScheduledComments());
+		event.waitUntil(syncScheduledComments())
+	}
+})
+
+self.addEventListener("periodicsync", (event) => {
+	if (event.tag == periodicMeowSyncTagName) {
+		event.waitUntil(periodicallySyncMeows())
 	}
 })
