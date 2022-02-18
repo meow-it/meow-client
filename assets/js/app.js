@@ -242,7 +242,7 @@ async function main() {
 		}
 		
 		requestAnimationFrame(() => {
-			requestAnimationFrame(() => {
+			requestAnimationFrame(async () => {
 				if(launchDisplayType == "twa" || launchDisplayType == "standalone") {
 					installPWAButtonOnUserInfo.style.display = "none"
 				}
@@ -254,7 +254,14 @@ async function main() {
 				}
 
 				if(isUpdated) {
-					showStatus("Using your last known location for refreshing the feed 🎉 <br> Turn on GPS to get the meows for your current location 📍")
+
+					let position = await getLocalForage("position")
+					let string = timeDifference(new Date().getTime(), position.time)
+
+					showStatus(`Using your last known location for refreshing the feed 🎉 
+								<br> Last updated ${string} ago 📆
+								<br> Turn on GPS to get the meows for your current location 📍
+							`)
 					setTimeout(() => {
 						hideStatus()
 					}, 5000)
