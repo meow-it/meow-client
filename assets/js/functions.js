@@ -686,6 +686,7 @@ function getSavedTextData() {
 async function getUpdatedPosition() {
 	let updatedPosition = await getLocalForage("position")
 	return {
+		time: updatedPosition.time,
 		coords: {
 			latitude: updatedPosition.latitude,
 			longitude: updatedPosition.longitude,
