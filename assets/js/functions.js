@@ -126,7 +126,7 @@ function commentsPlaceholderDiv(noComments = false) {
 	let size = noComments ? "150" : "80"
 
 	return `<div class="${className}">
-				<img src="${src}" alt="Loading Comments" height="${size}" width="${size}" title="${title}">	
+				<img class="roundedGif10px" src="${src}" alt="Loading Comments" height="${size}" width="${size}" title="${title}">	
 				<span>${text}</span>
 			</div>`
 }

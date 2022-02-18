@@ -4,6 +4,11 @@
 		#db469f 0%,
 		#2188ff 100%
 	);
+	--bodyBackground: #FFFFFF;
+	--buttonWhite: #FFFFFF;
+	--imageBorder: #ffffff38;
+	--textColor: #000000;
+	--borderColor: #44444444;
 	--tabTransition: opacity 200ms linear, max-height 200ms linear;
 	--faqItemWhiteColor: #e5e5e5;
 	--faqItemColor: #03b5d2;
@@ -78,6 +83,8 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	padding: 0;
+	background-color: var(--bodyBackground);
+	color: var(--textColor);
 }
 
 ::-webkit-scrollbar {
@@ -129,6 +136,10 @@ a {
 	-ms-user-select: none; /* Internet Explorer/Edge */
 	user-select: none; /* Non-prefixed version, currently
 									supported by Chrome, Edge, Opera and Firefox */
+}
+
+.roundedGif10px {
+	border-radius: 10px;
 }
 
 .font600 {
@@ -351,6 +362,7 @@ span.cancelGoBack {
 }
 .accordion button .accordion-title {
 	padding-right: 30px;
+	color: var(--textColor);
 }
 .accordion button .icon {
 	display: inline-block;
@@ -361,6 +373,7 @@ span.cancelGoBack {
 	height: 22px;
 	border: 1px solid;
 	border-radius: 22px;
+	color: var(--textColor);
 }
 .accordion button .icon::before {
 	display: block;
@@ -652,6 +665,8 @@ span.cancelGoBack {
 	outline: 0;
 	font-size: 1.1rem;
 	font-weight: 600;
+	background-color: var(--bodyBackground);
+	color: var(--textColor);
 }
 
 .meowInputCharactersRemaining {
@@ -695,6 +710,7 @@ span.cancelGoBack {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	text-align: center;
+	border-radius: 5px;
 }
 
 .newMeowStatusMessage {
@@ -724,7 +740,7 @@ span.cancelGoBack {
 	padding: 0.5rem 1rem;
 	margin-top: 0.5rem;
 	border-radius: 8px;
-	background-color: var(--backgroundWhite);
+	background-color: var(--buttonWhite);
 	color: var(--goBackButtonFALSE);
 }
 
@@ -864,6 +880,7 @@ span.cancelGoBack {
 
 .profilePicture {
 	border: 1px solid var(--boxShadowColor);
+	box-shadow: 0 0 3px 2px var(--imageBorder);
 	border-radius: 50%;
 }
 
@@ -916,7 +933,7 @@ span.cancelGoBack {
 	-webkit-box-direction: normal;
 	-ms-flex-direction: column;
 	flex-direction: column;
-	border: 1px solid var(--boxShadowColor);
+	border: 1px solid var(--borderColor);
 	border-radius: 10px;
 	padding: 0.5rem;
 	margin: 0.3rem 0.5rem 0;
@@ -977,7 +994,7 @@ span.cancelGoBack {
 .installButton {
 	padding: 0.5rem 1rem;
 	font-size: 1.5rem;
-	background-color: var(--backgroundWhite);
+	background-color: var(--buttonWhite);
 	color: var(--nextBlue);
 	border-radius: 8px;
 	-webkit-box-shadow: 10px 4px 4px 3px var(--boxShadowColor);
@@ -1161,6 +1178,8 @@ span.cancelGoBack {
 	-webkit-transition: width 0.5s ease-in-out;
 	-o-transition: width 0.5s ease-in-out;
 	transition: width 0.5s ease-in-out;
+	color: var(--textColor);
+    background-color: var(--bodyBackground);
 }
 .commentsContainer {
 	overflow: auto;
@@ -1268,3 +1287,7 @@ span.cancelGoBack {
 		left: unset;
 	}
 }
+
+/* @media (prefers-color-scheme: dark) {
+	
+} */
