@@ -41,6 +41,10 @@ window.addEventListener("appinstalled", () => {
 	console.log("App installed! 🎉")
 	hideInstallationPromotion()
 })
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    let newColorScheme = e.matches ? "dark" : "light"
+	setAndChangeMode(newColorScheme)
+});
 
 
 document.querySelector(".whatIsThis button").addEventListener("click", async () => {
