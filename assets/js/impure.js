@@ -161,13 +161,21 @@ async function main() {
 	
 			let meows = await getPosts(coords)
 			if (meows == null) {
-				showStatus("You're Offline! 😢 Unable to refresh meows.")
+                
+                let syncedTime = await getLocalForage("lastSynced")
+				syncedTime =
+					syncedTime != null
+						? `<br> Displaying refreshed content: ${timeDifference(new Date().getTime(),syncedTime)} ago.`
+						: ""
+				
+                showStatus(`You're Offline! 😢 ${syncedTime}`)
 				NProgress.done()
 				return
 			} else if(meows.length == 0) {
 				meowCount = 0
 			}
 			await setLocalForage("meows", meows)
+            await setLocalForage("lastSynced", new Date().getTime())
 			NProgress.done()
 	
 			// If there are no meows in the IDB, 
