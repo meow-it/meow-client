@@ -39,7 +39,7 @@ window.addEventListener("beforeinstallprompt", async (e) => {
 })
 window.addEventListener("appinstalled", () => {
 	console.log("App installed! 🎉")
-	hideInstallationPromotion()
+	hideInstallationPromotion(true)
 })
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     let newColorScheme = e.matches ? "dark" : "light"

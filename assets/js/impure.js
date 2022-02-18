@@ -375,13 +375,22 @@ async function logoutUser () {
 	window.location.href = "./"
 }
 
-function hideInstallationPromotion () {
+function hideInstallationPromotion (needToRemoveFromOptions = false) {
 	try {
 		let installationPromotionCard = document.querySelector(".installationPromotionCard")
 		installationPromotionCard.style.display = "none"
 	} catch (err) {
 		console.log(`Couldn't find any div with class .installationPromotionCard 😢: ${err}`)
 	}
+
+    if(needToRemoveFromOptions) {
+        // delete the button from user option
+        try {
+            document.querySelector(".installPWAFromUser").remove()
+        } catch (err) {
+            console.log(`Couldn't find any button with class .installPWAFromUser 😢: ${err}`)
+        }
+    }
 }
 
 async function userSaidNOToInstall() {
