@@ -25,10 +25,29 @@ function toggleAccordion() {
 	}
 }
 
-
 function renderFirstVisit() {
 	setDisplayNone(elements)
 	elements.firstTimeVisit.style.display = "flex"
+}
+
+function setDisplayMode(mode) {
+    
+    let changes = returnCSSVariablesToChange()
+    
+    if (mode == "dark") {
+        changes.forEach(element => {
+            document.documentElement.style.setProperty(`--${element.variable}`, element.dark)
+        })
+    } else {
+        changes.forEach(element => {
+            document.documentElement.style.setProperty(`--${element.variable}`, element.white)
+        })
+    }
+}
+
+function setAndChangeMode(mode) {
+    localStorage.setItem("darkMode", mode)
+    setDisplayMode(mode)
 }
 
 async function main() {
@@ -588,4 +607,40 @@ async function refreshDBWithCreatedMeow(meow) {
 	let meowsFromIDB = await getLocalForage("meows")
 	meowsFromIDB.unshift(meow)
 	await setLocalForage("meows", meowsFromIDB)
+}
+
+function returnCSSVariablesToChange() {
+    return [
+		{
+			variable: "bodyBackground",
+			white: "#FFFFFF",
+			dark: "#000000"
+		},
+		{
+			variable: "boxShadowColor",
+			white: "#44444444",
+			dark: "#b0b0b01f"
+		},
+		{
+			variable: "backgroundWhite",
+			white: "#FFFFFF",
+			dark: "#000000"
+		},
+		{
+			variable: "textColor",
+			white: "#000000",
+			dark: "#d9d9d9"
+		},
+		{
+			variable: "darkPurpleForTime",
+			white: "#6f08ff",
+			dark: "#b17aff"
+		},
+		{
+			variable: "thumbBackgroundColor",
+			white: "#5f636857",
+			dark: "#ffffff80"
+		}
+		
+	]
 }
