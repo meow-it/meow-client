@@ -43,6 +43,9 @@ function setDisplayMode(mode) {
             document.documentElement.style.setProperty(`--${element.variable}`, element.white)
         })
     }
+
+    document.querySelector("meta[name=theme-color]").setAttribute("content", mode == "dark" ? "#000000" : "#ffffff")
+    
 }
 
 function setAndChangeMode(mode) {
