@@ -203,7 +203,7 @@ async function main() {
 				latitude: position.coords.latitude,
 				longitude: position.coords.longitude,
 				accuracy: position.coords.accuracy,
-				time: new Date().getTime()
+				time: isUpdated ? position.time : new Date().getTime() 
 			})
 	
 			let coords = {
@@ -211,7 +211,7 @@ async function main() {
 				longitude: position.coords.longitude,
 			}
 			
-			updatePlaceInfo(coords, position.coords.accuracy)
+			updatePlaceInfo(coords, position.coords.accuracy, false, isUpdated)
 			NProgress.set(0.7)
 	
 			let meows = await getPosts(coords)
