@@ -20,6 +20,8 @@
 	--rose: #ff5b5b;
 	--purple: #8e44ad;
 	--darkPurpleForTime: #6f08ff;
+	--darkGray: #222222;
+	--buyMeACoffeeYellow: #ffdd00;
 	--blueGray: #2c3e50;
 	--thumbBackground: #dadce0;
 	--thumbBackgroundColor: #5f636857;
@@ -735,7 +737,7 @@ span.cancelGoBack {
 	-ms-flex-pack: start;
 	justify-content: flex-start;
 	padding: 0.5rem;
-	height: 70vh;
+	height: 93vh;
 }
 
 .userInfo .optionsHolder {
@@ -756,7 +758,8 @@ span.cancelGoBack {
 	flex-direction: column;
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
-	justify-content: center;
+	justify-content: unset;
+	overflow-y: auto;
 	-webkit-box-flex: 1;
 	-ms-flex: 1;
 	flex: 1;
@@ -778,6 +781,7 @@ span.cancelGoBack {
 
 .userInfo .deleteCache,
 .userInfo .installPWAFromUser,
+.userInfo .buyMeACoffee,
 .userInfo .showFaqSpan {
 	margin-top: 1rem;
 	padding: 0.2em 1em;
@@ -804,6 +808,26 @@ span.cancelGoBack {
 
 .userInfo .installPWAFromUser span {
 	padding-top: 1rem;
+}
+
+.userInfo .buyMeACoffee {
+	background-color: var(--buyMeACoffeeYellow);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-wrap: wrap;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 0.5em;
+}
+
+.userInfo .buyMeACoffee span {
+	padding-right: 1rem;
+	color: var(--darkGray);
+	pointer-events: none;
 }
 
 .userInfo .showFaqSpan {
