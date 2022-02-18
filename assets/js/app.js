@@ -388,6 +388,8 @@ document.addEventListener("click", (e) => {
 		faqButtonWasPressed = true
 	} else if (e.target.classList.contains("postCommentButton")) {
 		postingComments(max)
+	} else if (e.target.classList.contains("buyMeACoffee")) {
+		buyMeACoffee()
 	}
 })
 
@@ -419,6 +421,11 @@ async function handleCommentsButtonClick(e) {
 			commentsContainer.innerHTML = html
 		})
 	})
+}
+
+function buyMeACoffee() {
+	let url = "https://www.buymeacoffee.com/tharunoptimus"
+	window.open(url, "_blank")
 }
 
 function handleCloseCommentsButtonClick() {
