@@ -675,7 +675,12 @@ function returnCSSVariablesToChange() {
 			variable: "thumbBackgroundColor",
 			white: "#5f636857",
 			dark: "#ffffff80"
-		}
+		},
+        {
+            variable: "postShadowColor",
+            white: "#00000000",
+            dark: "#333333"
+        }
 		
 	]
 }

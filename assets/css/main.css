@@ -4,6 +4,7 @@
 		#db469f 0%,
 		#2188ff 100%
 	);
+	--postShadowColor: #333333;
 	--bodyBackground: #FFFFFF;
 	--buttonWhite: #FFFFFF;
 	--imageBorder: #ffffff38;
@@ -937,6 +938,7 @@ span.cancelGoBack {
 	border-radius: 10px;
 	padding: 0.5rem;
 	margin: 0.3rem 0.5rem 0;
+	box-shadow: 0 0 0 1px var(--postShadowColor);
 }
 
 .installationPromotionCard {
@@ -1196,6 +1198,7 @@ span.cancelGoBack {
 	margin: 0.3rem 0.5rem;
 	border: 1px solid var(--boxShadowColor);
     border-radius: 5px;
+	box-shadow: 0 0 0 1px var(--postShadowColor);
 }
 .commentTop {
 	display: -webkit-box;
