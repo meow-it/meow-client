@@ -53,8 +53,23 @@ function setAndChangeMode(mode) {
 async function main() {
 
 	try {
+
+        NProgress.start()
+
+        // display mode preferences and rendering
+        let darkMode = localStorage.getItem("darkMode")
+        if (darkMode == null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setAndChangeMode("dark")
+            } else {
+                setAndChangeMode("light")
+            }
+        } else {
+            if(darkMode == "dark") {
+                setAndChangeMode("dark")
+            } else if(darkMode == "light") setAndChangeMode("light")
+        }
 		
-		NProgress.start()
 	
 		let firstTimeVisit = await getLocalForage("firstTimeVisit")
 	
