@@ -286,12 +286,21 @@ function doesElementWithClassNameExists(classname) {
 	return true
 }
 
-async function updatePlaceInfo(coords, accuracy, individual = false) {
+async function updatePlaceInfo(coords, accuracy, individual = false, isUpdated = false) {
+
+	let element = individual ? ".meowLocationText" : ".locationText"
+
+	if(isUpdated) {
+		let lastKnowPositionString = await getLocalForage("placeInfo")
+		let locationTextSpan = document.querySelector(element)
+		locationTextSpan.textContent = lastKnowPositionString
+		return
+	}
+
 	let placeInfo = await getPlaceInfo(coords)
 	if (placeInfo == null) return
 	let localityString = getLocationString(placeInfo)
 
-	let element = individual ? ".meowLocationText" : ".locationText"
 
 	let locationTextSpan = document.querySelector(element)
 	locationTextSpan.textContent = localityString
