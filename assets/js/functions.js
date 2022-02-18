@@ -707,23 +707,37 @@ async function getUpdatedPosition() {
  * @description Function returns a promise that resolves to an object with two properties:
  * - If the location was granted, it returns `{ false, true }`
  * - If the location was denied, it checks in the IDB for last known location. 
- * - It it exists and the time difference is less than 3 hours, it returns `{ true, true }`
- * - If the location was denied and there is no last known location, it returns `{ false, <argument permission> }`
+ * - It it exists it returns `{ true, true }`
+ * - If there is no last known location, it returns `{ false, <argument permission> }`
  */
 async function getBooleanForLocation(permission) {
 
 	if(permission) return { isUpdated: false, locationPermission: permission }
+
+	// Meow it decided that we don't need to constrain to 5 hours
+	// we just display a big status of time since last update of last known location
+	// change this variable to true if you want to enforce 5 hours
+	let needToCheck = false
+	let enforcedHours = 5 // hours until we need to check for a new location
 	
 	let lastKnownPosition = await getLocalForage("position")
 	if(lastKnownPosition != null) {
-		let graceHours = 5 // hours before we ask for location again
-		let milliSecondsToSubtract = graceHours * 60 * 60 * 1000
-		let lastKnownUpdatedTime = lastKnownPosition.time
-		if (lastKnownUpdatedTime > Date.now() - milliSecondsToSubtract) {
-			return {isUpdated: true, locationPermission: true}
-		} 
+		return needToCheck
+			? hasGivenHoursPassed(enforcedHours, lastKnownPosition.time)
+			: { isUpdated: true, locationPermission: true }
 	}
 	return {isUpdated: false, locationPermission: permission}
+}
+
+function hasGivenHoursPassed(hours, time) {
+	let graceHours = hours // hours before we ask for location again
+	let milliSecondsToSubtract = graceHours * 60 * 60 * 1000
+	let lastKnownUpdatedTime = time
+	if (lastKnownUpdatedTime > Date.now() - milliSecondsToSubtract) {
+		return {isUpdated: true, locationPermission: true}
+	} 
+		} 
+	} 
 }
 
 function timeDifference(current, previous) {

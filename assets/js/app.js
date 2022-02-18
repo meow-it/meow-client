@@ -259,7 +259,7 @@ async function main() {
 					let string = timeDifference(new Date().getTime(), position.time)
 
 					showStatus(`Using your last known location for refreshing the feed 🎉 
-								<br> Last updated ${string} ago 📆
+								<br> Last updated: ${string} ago 📆
 								<br> Turn on GPS to get the meows for your current location 📍
 							`)
 					setTimeout(() => {
@@ -293,6 +293,7 @@ async function updatePlaceInfo(coords, accuracy, individual = false, isUpdated =
 	if(isUpdated) {
 		let lastKnowPositionString = await getLocalForage("placeInfo")
 		let locationTextSpan = document.querySelector(element)
+		individual ? "" : locationTextSpan.dataset.accuracy = accuracy
 		locationTextSpan.textContent = lastKnowPositionString
 		return
 	}
