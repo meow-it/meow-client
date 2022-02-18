@@ -50,7 +50,13 @@ function setDisplayMode(mode) {
 
 function setAndChangeMode(mode) {
     localStorage.setItem("darkMode", mode)
+    let themeInput = document.querySelector(".themeInput")
+    mode == "dark" ? themeInput.setAttribute("checked", "checked") : themeInput.removeAttribute("checked")
     setDisplayMode(mode)
+}
+
+function changeTheme(e) {
+    e.target.hasAttribute("checked") ? setAndChangeMode("light") : setAndChangeMode("dark")
 }
 
 async function main() {

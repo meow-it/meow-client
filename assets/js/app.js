@@ -135,6 +135,8 @@ document.addEventListener("click", (e) => {
 		postingComments(max)
 	} else if (e.target.classList.contains("buyMeACoffee")) {
 		buyMeACoffee()
+	} else if (e.target.classList.contains("themeInput")) {
+		changeTheme(e)
 	}
 })
 document
