@@ -736,8 +736,6 @@ function hasGivenHoursPassed(hours, time) {
 	if (lastKnownUpdatedTime > Date.now() - milliSecondsToSubtract) {
 		return {isUpdated: true, locationPermission: true}
 	} 
-		} 
-	} 
 }
 
 function timeDifference(current, previous) {
