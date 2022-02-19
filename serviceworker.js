@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v21" // name of the current cache
+const CACHE = "content-v22" // name of the current cache
 const AVATARS = "avatars"
 const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
@@ -24,6 +24,9 @@ const AUTO_CACHE = [
 	"/assets/image/share.webp",
 	"/assets/image/unliked.webp",
 	"/assets/image/sadcat.webp",
+	
+	"/assets/image/write.png",
+	"/assets/image/coffee.png",
 	
 	"/assets/image/loading.gif",
 	"/assets/image/spinner.gif",

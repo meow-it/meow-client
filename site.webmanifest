@@ -7,7 +7,25 @@
 			"src": "./logo.png",
 			"type": "image/png",
 			"sizes": "512x512",
-			"purpose": "any maskable"
+			"purpose": "any"
+		},
+		{
+			"src": "./logo.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "maskable"
+		},
+		{
+			"src": "./logo192.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "any"
+		},
+		{
+			"src": "./logo192.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "maskable"
 		}
 	],
 	"start_url": "/",
@@ -82,6 +100,22 @@
 			"url": "url"
 		}
 	},
+	"shortcuts": [
+		{
+			"name": "Create Meow",
+			"short_name": "Create Meow",
+			"description": "Create a new meow to meow it!",
+			"url": "/?text",
+			"icons": [{ "src": "/assets/image/write.png", "sizes": "128x128", "type": "image/png" }]
+		},
+		{
+			"name": "Donate",
+			"short_name": "Donate",
+			"description": "Donate the app developer with buymeacoffee.com",
+			"url": "/?coffee",
+			"icons": [{ "src": "/assets/image/coffee.png", "sizes": "128x128",  "type": "image/png" }]
+		}
+	],
 	"orientation": "portrait-primary",
 	"categories": ["explore", "play", "location", "social"],
 	"lang": "en-US"
