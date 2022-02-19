@@ -144,6 +144,7 @@ async function main(data) {
 				else if(data.url != null) value = data.url
 				text = value
 
+				window.history.pushState({}, document.title, window.location.pathname)
 				requestAnimationFrame(() => {
 					handleCreateButtonClick()
 				})
