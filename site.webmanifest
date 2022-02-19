@@ -72,6 +72,15 @@
 			"label": "Filters Toxic Content - Safe for children"
 		}
 	],
+	"share_target": {
+		"action": "/",
+		"method": "GET",
+		"params": {
+			"title": "title",
+			"text": "text",
+			"url": "url"
+		}
+	},
 	"orientation": "portrait-primary",
 	"categories": ["explore", "play", "location", "social"],
 	"lang": "en-US"
