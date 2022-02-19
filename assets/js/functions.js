@@ -614,7 +614,6 @@ async function shareStuff(object) {
 			await navigator.share(object)
 		}
 	} catch (err) {
-		alert("Couldn't share the content 🙁")
 		console.log(err)
 	}
 }
