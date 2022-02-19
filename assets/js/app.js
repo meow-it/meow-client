@@ -1,3 +1,9 @@
+let ptr = PullToRefresh.init({
+	mainElement: "body",
+	onRefresh() {
+		window.location.reload()
+	},
+})
 let deferredPrompt
 let wasPromptDeferred = false
 let faqButtonWasPressed = false
@@ -18,21 +24,27 @@ let elements = {
 }
 let statusElements = {
 	currentFeedStatus: document.querySelector(".currentFeedStatus"),
-	locationHolder: document.querySelector(".locationHolder")
+	locationHolder: document.querySelector(".locationHolder"),
 }
 let geoPermissionCount = 0
 let faqItems = document.querySelectorAll(".accordion button")
-faqItems.forEach(item => item.addEventListener('click', toggleAccordion))
+faqItems.forEach((item) => item.addEventListener("click", toggleAccordion))
 let userItem = {}
 userItem.username = document.querySelector(".username")
 userItem.profilePicture = document.querySelector(".profilePicture")
 
 let params = new URLSearchParams(window.location.search)
 if (!params.has("meow")) {
-	if(params.has("coffee")) { window.location.href = "https://buymeacoffee.com/tharunoptimus" }
+	if (params.has("coffee")) {
+		window.location.href = "https://buymeacoffee.com/tharunoptimus"
+	}
 	let data = null
-	if(params.has("text") || params.has("url") || params.has("title")) {
-		data = { title: params.get("title"), text: params.get("text"), url: params.get("url") }
+	if (params.has("text") || params.has("url") || params.has("title")) {
+		data = {
+			title: params.get("title"),
+			text: params.get("text"),
+			url: params.get("url"),
+		}
 	}
 	main(data)
 } else {
@@ -46,49 +58,55 @@ window.addEventListener("appinstalled", () => {
 	console.log("App installed! 🎉")
 	hideInstallationPromotion(true)
 })
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    let newColorScheme = e.matches ? "dark" : "light"
-	setAndChangeMode(newColorScheme)
-});
+window
+	.matchMedia("(prefers-color-scheme: dark)")
+	.addEventListener("change", (e) => {
+		let newColorScheme = e.matches ? "dark" : "light"
+		setAndChangeMode(newColorScheme)
+	})
 
-
-document.querySelector(".whatIsThis button").addEventListener("click", async () => {
-	await setLocalForage("firstTimeVisit", true)
-	window.location.reload()
-})
+document
+	.querySelector(".whatIsThis button")
+	.addEventListener("click", async () => {
+		await setLocalForage("firstTimeVisit", true)
+		window.location.reload()
+	})
 document.querySelector(".learnMore").addEventListener("click", () => {
 	showFAQ()
 })
-document.querySelector(".commentInput").addEventListener("keydown", async (e) => {
-
-	if (e.key == "ENTER" || e.keyCode == 13) {
-		postingComments(max)
-	}
-	
-	let letterCount = e.target.value.length
-	let remaining = max - letterCount
-	if(remaining < 0) {
-		e.target.value = e.target.value.slice(0, max)
-		return
-	}	
-})
-document.querySelector(".givePermissionButton").addEventListener("click", (e) => {
-	navigator.geolocation.getCurrentPosition(
-		() => {
-			window.location.reload()
-		},
-		() => {
-			if (geoPermissionCount > 0) {
-				let text =
-					e.target.parentElement.querySelector(".learnMore")
-				text.textContent =
-					"You have denied access to your location. You can change this in your browser settings. Click here to learn more ↗"
-				text.classList.add("newAlert")
-			}
-			geoPermissionCount++
+document
+	.querySelector(".commentInput")
+	.addEventListener("keydown", async (e) => {
+		if (e.key == "ENTER" || e.keyCode == 13) {
+			postingComments(max)
 		}
-	)
-})
+
+		let letterCount = e.target.value.length
+		let remaining = max - letterCount
+		if (remaining < 0) {
+			e.target.value = e.target.value.slice(0, max)
+			return
+		}
+	})
+document
+	.querySelector(".givePermissionButton")
+	.addEventListener("click", (e) => {
+		navigator.geolocation.getCurrentPosition(
+			() => {
+				window.location.reload()
+			},
+			() => {
+				if (geoPermissionCount > 0) {
+					let text =
+						e.target.parentElement.querySelector(".learnMore")
+					text.textContent =
+						"You have denied access to your location. You can change this in your browser settings. Click here to learn more ↗"
+					text.classList.add("newAlert")
+				}
+				geoPermissionCount++
+			}
+		)
+	})
 document.addEventListener("click", (e) => {
 	if (e.target.classList.contains("likeButton")) {
 		handleLike(e)
@@ -117,7 +135,7 @@ document.addEventListener("click", (e) => {
 		handlePromotionClick()
 	} else if (e.target.classList.contains("cancelGoBack")) {
 		faqButtonWasPressed ? closeLocationFAQ(true) : closeLocationFAQ()
-	} else if (e.target.classList.contains("closeUserInfo")){
+	} else if (e.target.classList.contains("closeUserInfo")) {
 		closeUserInfo()
 	} else if (e.target.classList.contains("profilePicture")) {
 		showUserInfo()
@@ -147,4 +165,3 @@ document.addEventListener("click", (e) => {
 document
 	.querySelector(".meowInput")
 	.addEventListener("input", countCharactersInTextField)
-

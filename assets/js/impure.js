@@ -286,7 +286,7 @@ async function updatePlaceInfo(coords, accuracy, individual = false, isUpdated =
 }
 
 function hideStatus() {
-	statusElements.currentFeedStatus.style.top = "-3.125rem"
+	statusElements.currentFeedStatus.style.top = "-20rem"
 	statusElements.locationHolder.style.marginTop = "0px"
 }
 
