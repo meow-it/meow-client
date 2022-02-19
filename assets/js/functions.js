@@ -165,7 +165,7 @@ function generateComments(elements) {
 					<img data-id="${element._id}" class="${reviewClass}" src="${reviewIconSrc}" alt="Report Comment" height="25" width="25">
 				</div>
 			</div>
-			<span class="commentText ${toxic}">${escapeHtml(element.text)}</span>
+			<span class="commentText ${toxic}">${replaceURLs(escapeHtml(element.text))}</span>
 		</div>`
 	})
 
@@ -207,9 +207,7 @@ function generateMeows(elements) {
 					}" class="${reviewClass}" src="${reviewIcon}" alt="Report Message" height="30" width="30">
                 </div>
             </div>
-            <span class="meowContent ${toxic}">${escapeHtml(
-			element.text
-		)}</span>
+            <span class="meowContent ${toxic}">${replaceURLs(escapeHtml(element.text))}</span>
             <div class="meowBottom">
                 <div class="likeButtonContainer">
                     <img data-status="${likeStatus}" data-id="${
@@ -252,7 +250,7 @@ function generateMeow(element) {
                 <span class="timeMeowed">${time}</span>
             </div>
         </div>
-        <span class="meowContent ${toxic}">${escapeHtml(element.text)}</span>
+        <span class="meowContent ${toxic}">${replaceURLs(escapeHtml(element.text))}</span>
         <div class="meowBottom">
             <div class="likeButtonContainer">
                 <span class="likeCount">${like}</span>
