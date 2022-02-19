@@ -1,4 +1,9 @@
-let serverURLAPIEndpoint = `https://meow-ruby.vercel.app/api/`
+let serverURLAPIEndpoint = `https://meow-it.herokuapp.com/api/`
+pingServer()
+// pinging the server to wake up the dyno
+async function pingServer() {
+	await fetch(serverURLAPIEndpoint + "meow")
+}
 
 async function getLocalForage(key) {
 	try {
