@@ -59,7 +59,7 @@ function changeTheme(e) {
     e.target.hasAttribute("checked") ? setAndChangeMode("light") : setAndChangeMode("dark")
 }
 
-async function main() {
+async function main(data) {
 
 	try {
 
@@ -136,6 +136,19 @@ async function main() {
 			setDisplayNone(elements)
 
 			let text = getSavedTextData()
+			
+			if(data != null) {
+				let value = ""
+				if(data.text != null) value = data.text
+				else if(data.title != null) value = data.title
+				else if(data.url != null) value = data.url
+				text = value
+
+				requestAnimationFrame(() => {
+					handleCreateButtonClick()
+				})
+			}
+
 			document.querySelector(".meowInput").value = text
 	
 			let posts = await getPostsFromIndexedDB()

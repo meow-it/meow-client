@@ -29,7 +29,11 @@ userItem.profilePicture = document.querySelector(".profilePicture")
 
 let params = new URLSearchParams(window.location.search)
 if (!params.has("meow")) {
-	main()
+	let data = null
+	if(params.has("text") || params.has("url") || params.has("title")) {
+		data = { title: params.get("title"), text: params.get("text"), url: params.get("url") }
+	}
+	main(data)
 } else {
 	showMeow()
 }
