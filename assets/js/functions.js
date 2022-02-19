@@ -563,14 +563,27 @@ function escapeHtml(string) {
 	})
 }
 
-function timeDifference(current, previous) {
-	var msPerMinute = 60 * 1000
-	var msPerHour = msPerMinute * 60
-	var msPerDay = msPerHour * 24
-	var msPerMonth = msPerDay * 30
-	var msPerYear = msPerDay * 365
+function replaceURLs(message) {
+	if (!message) return
 
-	var elapsed = current - previous
+	let urlRegex = /(((https?:\/\/)|(www\.))[^\s]+)/g
+	return message.replace(urlRegex, function (url) {
+		let hyperlink = url
+		if (!hyperlink.match("^https?://")) {
+			hyperlink = "http://" + hyperlink
+		}
+		return `<a class='postLink' href="${hyperlink}" target="_blank" rel="noopener noreferrer">${url}</a>`
+	})
+}
+
+function timeDifference(current, previous) {
+	let msPerMinute = 60 * 1000
+	let msPerHour = msPerMinute * 60
+	let msPerDay = msPerHour * 24
+	let msPerMonth = msPerDay * 30
+	let msPerYear = msPerDay * 365
+
+	let elapsed = current - previous
 
 	if (elapsed < msPerMinute) {
 		if (elapsed / 1000 < 5) return "Just now"
