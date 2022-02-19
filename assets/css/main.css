@@ -701,7 +701,7 @@ span.cancelGoBack {
 	background: var(--statusBackgroundColor);
 	color: var(--fontWhite);
 	position: absolute;
-	top: -50px;
+	top: -50rem;
 	left: 0;
 	width: 100%;
 	height: -webkit-fit-content;
