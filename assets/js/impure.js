@@ -291,10 +291,16 @@ function hideStatus() {
 }
 
 function showStatus(message) {
-	statusElements.currentFeedStatus.innerHTML = message
-	statusElements.currentFeedStatus.style.top = "4.1875rem"
-	let feedHeight = getComputedStyle(statusElements.currentFeedStatus).height
-	statusElements.locationHolder.style.marginTop = feedHeight
+	hideStatus()
+	requestAnimationFrame(() => { 
+		requestAnimationFrame(() => { 
+			statusElements.currentFeedStatus.innerHTML = message
+			statusElements.currentFeedStatus.style.top = "4.1875rem"
+			let feedHeight = getComputedStyle(statusElements.currentFeedStatus).height
+			statusElements.locationHolder.style.marginTop = feedHeight
+	 	}) 
+	})
+	
 }
 
 async function showMeow() {
