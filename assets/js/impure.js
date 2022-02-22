@@ -654,11 +654,21 @@ async function postingComments(max) {
 
 }
 
-function incrementCommentCount(meowId) {
+async function incrementCommentCount(meowId) {
 	let spans = document.querySelectorAll(`[data-id="${meowId}"] .commentCount`)
 	let commentCount = parseInt(spans[0].innerHTML)
 	commentCount++
-	spans.forEach(span => span.innerHTML = commentCount)	
+	spans.forEach(span => span.innerHTML = commentCount)
+	
+	let meows = await getLocalForage("meows")
+	meows.forEach((element) => {
+		if (element._id == meowId) {
+			let random = Math.floor(Math.random() * (10 - 1 + 1)) + 1
+			element.comments.push(random)
+			return
+		}
+	})
+	await setLocalForage("meows", meows)
 }
 
 function closeMeowWhileOffline () {
