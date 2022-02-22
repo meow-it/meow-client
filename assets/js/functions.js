@@ -517,7 +517,7 @@ async function getPlaceInfo(coords) {
 function generateNoMeows() {
 	let html = ""
 	html += `<div class="noMeows">
-		<img src="./assets/image/nodata.gif" alt="No Meows Nearby" title="No Meows Nearby" height="200" width="200" >
+		<img src="./assets/image/nodata.gif" class="roundedGif10px" alt="No Meows Nearby" title="No Meows Nearby" height="200" width="200" >
         <span class="noMeowsText">No meows nearby 🙁</span>
         <span class="askUserToCreate">Create a new meow by clicking on the plus icon 😽</span>
     </div>`
@@ -657,12 +657,20 @@ function countCharactersInTextField(e) {
 }
 
 async function deleteCache() {
+	try {
+		if ("serviceWorker" in navigator) {
+			let registrations = await navigator.serviceWorker.getRegistrations()
+			registrations.forEach((registration) => registration.unregister())
+		}
+	} catch (err) {
+		console.log(`Something Happened: 😓`, err)
+	}
 	await caches.keys().then((keyList) => {
 		Promise.all(keyList.map((key) => {
 			caches.delete(key)
 		}))
 	})
-	alert("Request sent to clear browser cache! 🙌")
+	alert("Deleted the browser cache! 🙌")
 }
 
 async function getPostsFromIndexedDB() {
