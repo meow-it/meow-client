@@ -401,8 +401,8 @@ function closeUserInfo () {
 	elements.wrapper.style.display = "flex"
 }
 
-async function logoutUser () {
-	if(await deleteUser() != true) return
+async function logoutUser (dbCheck = true) {
+	if(dbCheck) { if(await deleteUser() != true) return }
 	await localforage.clear()
 	window.location.href = "./"
 }
@@ -497,6 +497,7 @@ async function createMeow() {
 		
 		if(meow._id == undefined) {
 			NProgress.done()
+			if(meow.status !== undefined && meow.status === false) await logoutUser(false)
 			return
 		}
 		
@@ -626,6 +627,9 @@ async function postingComments(max) {
 	let comment = await createNewComment({text, userId, meowId})
 	NProgress.set(0.7)
 	if(comment != null) {
+
+		if(comment.status !== undefined && comment.status === false) await logoutUser(false)
+
 		let html = generateComments([comment])
 		
 		addedToBG ? commentsContainer.removeChild(commentsContainer.firstChild) : null

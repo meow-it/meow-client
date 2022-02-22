@@ -162,6 +162,11 @@ async function syncScheduledMeows () {
 		scheduledMeows.forEach(async (meow) => {
 			let sentMeow = await newMeow(meow.text, meow.coords, meow.userid)
 			if(sentMeow._id == undefined) {
+				if(sentMeow.status !== undefined && sentMeow.status === false) {
+					await setLocalForage("meowQueue", null) 
+					await localforage.clear()
+					return
+				}
 				newQueue.push(meow)
 				return
 			}
@@ -183,6 +188,11 @@ async function syncScheduledComments() {
 		scheduledComments.forEach(async (element) => {
 			let sentComment = await createNewComment(element)
 			if(sentComment._id == undefined) {
+				if(sentComment.status !== undefined && sentComment.status === false) {
+					await setLocalForage("meowQueue", null) 
+					await localforage.clear()
+					return
+				}
 				newQueue.push(element)
 				return
 			}

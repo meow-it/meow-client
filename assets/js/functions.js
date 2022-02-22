@@ -829,13 +829,12 @@ async function findNearbyData(id) {
 
 async function deleteUser () {
 	try {
-		let id = await getLocalForage("user")._id
-		await fetch(`${serverURLAPIEndpoint}/register`, {
+		let user = await getLocalForage("user")
+		await fetch(`${serverURLAPIEndpoint}register/${user._id}`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({userId: id})
+			}
 		})
 
 		return true
