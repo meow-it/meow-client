@@ -813,3 +813,16 @@ async function getMeowFromIDB(_id) {
 	return meow
 }
 
+async function findNearbyData(id) {
+	let meow = await getMeowFromIDB(id)
+	if (meow == null) return null
+
+	let position = await getLocalForage("position")
+	if(position == null) return null
+	let meowPosition = {
+		longitude: meow.location.coordinates[0],
+		latitude: meow.location.coordinates[1]
+	}
+	let distance = await getDistanceFromLocation(position, meowPosition)
+	return distance
+}
