@@ -292,6 +292,8 @@ function hideStatus() {
 
 function showStatus(message) {
 	hideStatus()
+	let isWrapperVisible = getComputedStyle(elements.wrapper).display == "flex" 
+	if(!isWrapperVisible) return
 	requestAnimationFrame(() => { 
 		requestAnimationFrame(() => { 
 			statusElements.currentFeedStatus.innerHTML = message
