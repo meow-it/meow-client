@@ -789,3 +789,19 @@ async function findBGSYNCAndUpdate() {
 	await setLocalForage("backgroundSync", permission)
 	return permission
 }
+
+function getDistanceFromLocation(location1, location2) {
+    var R = 6371; // earth's radius in km
+    var dLat = toRad(location1.latitude - location2.latitude);
+    var dLon = toRad(location1.longitude - location2.longitude);
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(toRad(location1.latitude)) * Math.cos(toRad(location2.latitude)) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c;
+    return d;
+}
+
+function toRad(deg) {
+    return deg * (Math.PI/180);
+}
