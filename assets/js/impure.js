@@ -402,6 +402,7 @@ function closeUserInfo () {
 }
 
 async function logoutUser () {
+	if(await deleteUser() != true) return
 	await localforage.clear()
 	window.location.href = "./"
 }

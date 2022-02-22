@@ -826,3 +826,24 @@ async function findNearbyData(id) {
 	let distance = await getDistanceFromLocation(position, meowPosition)
 	return distance
 }
+
+async function deleteUser () {
+	try {
+		let id = await getLocalForage("user")._id
+		await fetch(`${serverURLAPIEndpoint}/register`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({userId: id})
+		})
+
+		return true
+
+	} catch (err) {
+		console.log(`Something went wrong deleting the user: ${err}`)
+		alert("Something went wrong. Please try again.")
+	}
+
+	return false
+}
