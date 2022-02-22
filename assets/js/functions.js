@@ -194,7 +194,7 @@ function generateMeows(elements) {
 		html += `<div class="meow" data-id="${element._id}">
             <div class="meowTop">
                 <div class="meowUserStuff">
-                    <img class="meowUserProfilePicture" src="${
+                    <img data-status="username" title="Click to show distance" data-id="${element._id}" class="meowUserProfilePicture" src="${
 						element.profilePic
 					}" alt="${element.name}" height="30" width="30">
                     <span class="meowUsername">${element.name}</span>

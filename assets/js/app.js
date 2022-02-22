@@ -160,6 +160,8 @@ document.addEventListener("click", (e) => {
 		buyMeACoffee()
 	} else if (e.target.classList.contains("themeInput")) {
 		changeTheme(e)
+	} else if(e.target.classList.contains("meowUserProfilePicture")) {
+		showProximityOfMeow(e)
 	}
 })
 document

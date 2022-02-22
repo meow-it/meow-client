@@ -712,3 +712,37 @@ function returnCSSVariablesToChange() {
 		
 	]
 }
+
+async function showProximityOfMeow(e) {
+	
+	let status = e.target.dataset.status
+	let element = e.target.parentElement.querySelector(".meowUsername")
+	if(status == "username") {
+		// It is showing the username, so show distance
+		let id = e.target.dataset.id
+		if(id == null) return
+	
+		let distance = await findNearbyData(id)
+		if(distance == null) return
+		distance = distance.toFixed(2)
+
+		e.target.dataset.status = "distance"
+		e.target.title = "Click to show User Name"
+
+		element.textContent = distance > 0.01 ? `${distance} km away` : "Nearby"
+	} else if(status == "distance") {
+		// It is showing the distance, so show username
+		let id = e.target.dataset.id
+		if(id == null) return
+
+		let meow = await getMeowFromIDB(id)
+		if(meow == null) return
+
+		e.target.dataset.status = "username"
+		e.target.title = "Click to show distance"
+		element.textContent = meow.name
+	}
+	
+
+
+}
