@@ -805,3 +805,11 @@ function getDistanceFromLocation(location1, location2) {
 function toRad(deg) {
     return deg * (Math.PI/180);
 }
+
+async function getMeowFromIDB(_id) {
+	let meows = await getLocalForage("meows")
+	if (meows == null) return null
+	let meow = meows.find((meow) => meow._id == _id)
+	return meow
+}
+
