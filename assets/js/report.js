@@ -43,3 +43,24 @@ async function main() {
 
 }
 
+async function reportContent () {
+    let values = getValues()
+    if(values == null) return
+    let text = document.querySelector(".textbox").value.trim()
+
+    values.text = text
+    values.consernedId = user._id
+
+    try {
+        let response = await submitReport(values)
+        if(response == null) {
+            alert("Something went wrong. Please try again.")
+            return
+        }
+        alert("Report submitted. Thank you!")
+        window.close()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
