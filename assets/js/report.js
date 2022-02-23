@@ -1,3 +1,4 @@
+let user = null
 function getValues() {
     let params = new URLSearchParams(window.location.search)
     if(!params.has("type")) return
@@ -64,3 +65,5 @@ async function reportContent () {
     }
 }
 
+main()
+document.querySelector(".reportButton").addEventListener("click", reportContent)
