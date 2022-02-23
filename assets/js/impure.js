@@ -772,6 +772,12 @@ async function showProximityOfMeow(e) {
 		element.textContent = meow.name
 	}
 	
+}
 
-
+function reportContent (e) {
+	let id = e.target.dataset.id
+	let type = e.target.dataset.type
+	let url = `${window.location.origin}/report?id=${id}&type=${type}`
+	console.log(url)
+	window.open(url, "_blank")
 }
