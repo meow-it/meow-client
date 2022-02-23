@@ -169,9 +169,13 @@ function generateComments(elements) {
 					<span class="commentedUserName">${name}</span>
 				</div>
 				<div class="commentOptions">
-					<span class="timeCommented">${time}</span>
-					${hide}
-					<img data-id="${element._id}" class="${reviewClass}" src="${reviewIconSrc}" alt="Report Comment" height="25" width="25">
+				
+				<span class="timeCommented">${time}</span>
+				${hide}
+				<img data-id="${element._id}" class="${reviewClass}" src="${reviewIconSrc}" alt="Report Comment" height="25" width="25">
+				<img data-id="${
+					element._id
+				}" data-type="comment" class="reportThis" src="./assets/image/report.webp" alt="Report This" height="30" width="30">
 				</div>
 			</div>
 			<span class="commentText ${toxic}">${replaceURLs(escapeHtml(element.text))}</span>
@@ -228,9 +232,12 @@ function generateMeows(elements) {
 					<img data-id="${element._id}" class="commentButton" src="./assets/image/comment.webp" alt="Comment Button" height="30" width="30">
 					<span data-id="${element._id}" class="commentCount">${element.comments.length}</span>
 				</div>
-                <img data-id="${
+				<img data-id="${
 					element._id
 				}" class="shareMeowButton" src="./assets/image/share.webp" alt="Share Meow" height="30" width="30">
+                <img data-id="${
+					element._id
+				}" data-type="meow" class="reportThis" src="./assets/image/report.webp" alt="Report This" height="35" width="35">
             </div>
         </div>`
 	})
