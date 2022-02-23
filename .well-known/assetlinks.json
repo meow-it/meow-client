@@ -1,0 +1,12 @@
+[
+	{
+		"relation": ["delegate_permission/common.handle_all_urls"],
+		"target": {
+			"namespace": "android_app",
+			"package_name": "dev.pages.meowit.twa",
+			"sha256_cert_fingerprints": [
+				"1C:FA:A5:48:11:E8:EE:A1:0F:38:08:4C:56:9F:05:68:AA:AA:2E:A0:AF:25:81:AD:7D:75:ED:3B:37:B6:F9:FC"
+			]
+		}
+	}
+]
