@@ -41,6 +41,7 @@ const AUTO_CACHE = [
 	"/assets/css/Galactico-Basic.woff",
 	
     "/assets/js/pullToRefresh.js",
+	"/assets/js/fingerprint.js",
     "/assets/js/app.js",
     "/assets/js/functions.js",
 	"/assets/js/impure.js",
