@@ -162,6 +162,8 @@ document.addEventListener("click", (e) => {
 		changeTheme(e)
 	} else if(e.target.classList.contains("meowUserProfilePicture")) {
 		showProximityOfMeow(e)
+	} else if(e.target.classList.contains("reportThis")) {
+		reportContent(e)
 	}
 })
 document
