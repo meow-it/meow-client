@@ -25,12 +25,21 @@ async function setLocalForage(key, value) {
 
 async function register() {
 	try {
+
+		let fp = new Fingerprint({
+			canvas: true,
+			ie_activex: true,
+			screen_resolution: true,
+		})
+		  
+		let fingerprint = fp.get()
+
 		let response = await fetch(serverURLAPIEndpoint + `register`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({}),
+			body: JSON.stringify({fingerprint}),
 		})
 		let responseJSON = await response.json()
 		setLocalForage("user", responseJSON)
