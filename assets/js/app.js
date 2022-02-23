@@ -15,7 +15,7 @@ let launchDisplayType = getPWADisplayMode()
 let installPWAButtonOnUserInfo = document.querySelector(".installPWAFromUser")
 let elements = {
 	newUser: document.querySelector(".newUserLoading"),
-	postsLoading: document.querySelector(".postsLoading"),
+	bannedUser: document.querySelector(".bannedUser"),
 	location: document.querySelector(".noLocationAccess"),
 	wrapper: document.querySelector(".wrapper"),
 	firstTimeVisit: document.querySelector(".firstTimeVisit"),

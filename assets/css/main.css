@@ -180,7 +180,7 @@ a {
 }
 
 .newUserLoading,
-.postsLoading,
+.bannedUser,
 .firstTimeVisit,
 .whyLocationInfo,
 .noLocationAccess {
@@ -459,6 +459,13 @@ span.cancelGoBack {
 	-ms-flex-pack: space-evenly;
 	justify-content: space-evenly;
 	padding-top: 3rem;
+}
+
+.bannedText {
+	text-align: center;
+	font-weight: 400;
+	font-size: 2.125rem;
+	color: var(--warningRed);
 }
 
 .loadingText {
@@ -1380,7 +1387,7 @@ span.cancelGoBack {
 	}
 
 	.newUserLoading,
-	.postsLoading,
+	.bannedUser,
 	.firstTimeVisit,
 	.whyLocationInfo,
 	.noLocationAccess,

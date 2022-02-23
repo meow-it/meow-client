@@ -94,8 +94,22 @@ async function main(data) {
 			requestAnimationFrame(() => {
 				elements.newUser.style.display = "flex"
 			})
+
+			let isBanned = await getLocalForage("banned")
+			if(isBanned == true) {
+				setDisplayNone(elements)
+				elements.bannedUser.style.display = "flex"
+				NProgress.done()
+				return
+			}
 	
 			user = await register()
+
+			if(user.status !== undefined && user.status == "banned") {
+				await setLocalForage("banned", true)
+				NProgress.done()
+				window.location.reload()
+			}
 	
 			if (user == null || user.status == false) {
 				NProgress.done()
