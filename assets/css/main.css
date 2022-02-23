@@ -160,6 +160,7 @@ a {
 .likeButton,
 .commentButton,
 .reportButton,
+.reportThis,
 .shareMeowButton,
 .hideMessage,
 .learnMore,
@@ -1347,7 +1348,8 @@ span.cancelGoBack {
 .timeCommented,
 .hideComment,
 .unHideComment,
-.reportComment {
+.reportComment,
+.commentOptions .reportThis {
 	padding-left: 1rem;
 }
 .timeCommented {
