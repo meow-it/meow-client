@@ -11,3 +11,35 @@ function getValues() {
 
     return { type, id }
 }
+
+async function main() {
+    let values = getValues()
+    user = await getLocalForage("user")
+    if(user == null) return
+    if(values == null) return
+
+    let content = null
+
+    if(values.type == "meow") {
+        try {
+            content = await getSingleMeow(values.id)
+        } catch (err) {
+            console.log(err)
+            return
+        }
+    } else if(values.type == "comment") {
+        try {
+            content = await getSingleComment(values.id)
+        } catch (err) {
+            console.log(err)
+            return
+        }
+    }
+
+    if(content == null) return
+
+    let html = values.type == "meow" ? generateMeows([content]) : generateComments([content])
+    document.querySelector(".contentContainer").innerHTML = html
+
+}
+
