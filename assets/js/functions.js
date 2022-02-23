@@ -450,6 +450,23 @@ async function getSingleMeow(id) {
 	}
 }
 
+async function getSingleComment(id) {
+	try {
+		let response = await fetch(serverURLAPIEndpoint + `comment/single/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
+		if (response.status !== 200) throw new Error("Something Happened: 😓")
+		let responseJSON = await response.json()
+		return responseJSON
+	} catch (err) {
+		console.log("Something Happened: 😓", err)
+		return null
+	}
+}
+
 function handleEye(e) {
 	let spanElement = null
 	let state = e.target.dataset.state
