@@ -879,3 +879,22 @@ async function deleteUser () {
 
 	return false
 }
+
+
+async function submitReport (data) {
+    try {
+		let response = await fetch(serverURLAPIEndpoint + `report`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+            body: JSON.stringify(data)
+		})
+		if (response.status !== 202) throw new Error("Something Happened: 😓")
+		let responseJSON = await response.json()
+		return responseJSON
+	} catch (err) {
+		console.log("Something Happened: 😓", err)
+		return null
+	}
+}
