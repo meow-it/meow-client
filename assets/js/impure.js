@@ -90,19 +90,24 @@ async function main(data) {
 	
 		let userFromStorage = await getLocalForage("user")
 	
+		let isBanned = await getLocalForage("banned")
+		if(isBanned == true) {
+			setDisplayNone(elements)
+			elements.bannedUser.style.display = "flex"
+			NProgress.done()
+
+			await localforage.removeItem("user")
+			await localforage.removeItem("banned")
+
+			return
+		}
+		
 		if (userFromStorage == null || userFromStorage.status == false) {
 			requestAnimationFrame(() => {
 				elements.newUser.style.display = "flex"
 			})
-
-			let isBanned = await getLocalForage("banned")
-			if(isBanned == true) {
-				setDisplayNone(elements)
-				elements.bannedUser.style.display = "flex"
-				NProgress.done()
-				return
-			}
-	
+			
+			
 			user = await register()
 
 			if(user.status !== undefined && user.status == "banned") {
