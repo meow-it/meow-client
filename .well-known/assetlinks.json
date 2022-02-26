@@ -1,12 +1,6 @@
-[
-	{
-		"relation": ["delegate_permission/common.handle_all_urls"],
-		"target": {
-			"namespace": "android_app",
-			"package_name": "dev.pages.meowit.twa",
-			"sha256_cert_fingerprints": [
-				"1C:FA:A5:48:11:E8:EE:A1:0F:38:08:4C:56:9F:05:68:AA:AA:2E:A0:AF:25:81:AD:7D:75:ED:3B:37:B6:F9:FC"
-			]
-		}
-	}
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "dev.pages.meowit.twa",
+                     "sha256_cert_fingerprints": ["F2:4E:C4:7A:D2:AF:8F:4B:BE:D8:C2:7F:35:80:B7:9D:BC:2A:EE:C5:3B:87:15:B6:01:BE:36:7F:30:A9:65:FA"] }
+      }
 ]
