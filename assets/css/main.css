@@ -30,6 +30,8 @@
 	--buyMeACoffeeYellow: #ffdd00;
 	--blueGray: #2c3e50;
 	--thumbBackground: #dadce0;
+	--fireShipGreen: #52e64f;
+	--sourceOrange: #e67e22;
 	--thumbBackgroundColor: #5f636857;
 	--transparent: #00000000;
 	--black: #000000;
@@ -173,6 +175,8 @@ a {
 .postCommentButton,
 .closeComments,
 .reportComment,
+.legal,
+.source,
 .goBackToHomeButton,
 .meowUserProfilePicture,
 .whatIsThis button,
@@ -825,6 +829,8 @@ span.cancelGoBack {
 .userInfo .installPWAFromUser,
 .userInfo .buyMeACoffee,
 .userInfo .themeChangeButton,
+.userInfo .legal,
+.userInfo .source,
 .userInfo .showFaqSpan {
 	margin-top: 1rem;
 	padding: 0.2em 1em;
@@ -887,6 +893,16 @@ span.cancelGoBack {
 
 .userInfo .themeChangeButton span:nth-child(1) {
 	padding-bottom: 1rem;
+}
+
+.userInfo .legal {
+	background-color: var(--fireShipGreen);
+	color: var(--black);
+}
+
+.userInfo .source {
+	background-color: var(--sourceOrange);
+	color: var(--white);
 }
 
 /* Display Theme Switch */

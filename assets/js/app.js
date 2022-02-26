@@ -164,6 +164,10 @@ document.addEventListener("click", (e) => {
 		showProximityOfMeow(e)
 	} else if(e.target.classList.contains("reportThis")) {
 		reportContent(e)
+	} else if (e.target.classList.contains("legal")) {
+		showLegal()
+	} else if (e.target.classList.contains("source")) {
+		showSource()
 	}
 })
 document
