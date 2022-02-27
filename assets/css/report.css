@@ -40,7 +40,7 @@ body {
 }
 
 .meow, .comment {
-    min-width: 400px;
+    min-width: 300px;
     pointer-events: none;
 }
 
