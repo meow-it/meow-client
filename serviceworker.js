@@ -5,6 +5,7 @@ const CACHE = "content-v24" // name of the current cache
 const AVATARS = "avatars"
 const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
+const REPORT_PAGE = "/report.html"
 let meowsUpdateBackgroundSyncTagName = 'meowsUpdateBackgroundSync'
 let commentsUpdateBackgroundSyncTagName = 'commentsUpdateBackgroundSync'
 let periodicMeowSyncTagName = 'periodicMeowSync'
@@ -12,6 +13,7 @@ let periodicMeowSyncTagName = 'periodicMeowSync'
 const AUTO_CACHE = [
 	OFFLINE,
 	"/",
+	REPORT_PAGE,
 	"/assets/image/add.webp",
 	"/assets/image/cancel.webp",
 	"/assets/image/cat-face.webp",
@@ -32,8 +34,10 @@ const AUTO_CACHE = [
 	"/assets/image/spinner.gif",
 	"/assets/image/error.gif",
 	"/assets/image/nodata.gif",
+	"/assets/image/done.gif",
 
 	"/assets/css/main.css",
+	"/assets/css/report.css",
 	"/assets/css/nprogress.css",
 	"/assets/css/SFRegular.woff",
 	"/assets/css/SFMedium.woff",
@@ -45,6 +49,7 @@ const AUTO_CACHE = [
     "/assets/js/app.js",
     "/assets/js/functions.js",
 	"/assets/js/impure.js",
+	"/assets/js/report.js",
 	"/assets/js/nprogress.js",
 	"/assets/js/localforage.js",
 
