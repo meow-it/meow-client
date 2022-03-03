@@ -421,7 +421,9 @@ function handleLocationIconClick(e) {
 	let parent = e.target.parentElement
 	let locationText = parent.querySelector(".locationText")
 	let accuracy = locationText.dataset.accuracy
-	alert(`Accuracy: ${accuracy}m`)
+	accuracy = parseFloat(accuracy).toFixed(2)
+	showStatus(`Location Accuracy: ${accuracy}m`)
+	setTimeout(hideStatus, 2000)
 }
 
 function getLocationString(placeInfo) {
@@ -689,7 +691,7 @@ function countCharactersInTextField(e) {
 	}
 }
 
-async function deleteCache() {
+async function deleteCache(e) {
 	try {
 		if ("serviceWorker" in navigator) {
 			let registrations = await navigator.serviceWorker.getRegistrations()
@@ -703,7 +705,7 @@ async function deleteCache() {
 			caches.delete(key)
 		}))
 	})
-	alert("Deleted the browser cache! 🙌")
+	e.target.innerText = "Assets Refreshed ✅"
 }
 
 async function getPostsFromIndexedDB() {

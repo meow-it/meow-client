@@ -140,7 +140,7 @@ document.addEventListener("click", (e) => {
 	} else if (e.target.classList.contains("profilePicture")) {
 		showUserInfo()
 	} else if (e.target.classList.contains("deleteCache")) {
-		deleteCache()
+		deleteCache(e)
 	} else if (e.target.classList.contains("logoutButton")) {
 		logoutUser()
 	} else if (e.target.classList.contains("goBackToHomeButton")) {
