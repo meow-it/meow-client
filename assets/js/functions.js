@@ -876,7 +876,6 @@ async function deleteUser () {
 
 	} catch (err) {
 		console.log(`Something went wrong deleting the user: ${err}`)
-		alert("Something went wrong. Please try again.")
 	}
 
 	return false
