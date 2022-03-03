@@ -5,14 +5,9 @@ async function getValues() {
     return data
 }
 
-    let type = params.get("type")
-
-    if(type != "meow" && type != "comment" ) return null
-
-    let id = params.get("id")
-    if(id == null || id == undefined || id == "") return null
-
-    return { type, id }
+async function deleteContentToReport () {
+    await setLocalForage("contentToReport", null)
+    return true
 }
 
 async function main() {
