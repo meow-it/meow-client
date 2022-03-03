@@ -93,14 +93,14 @@ body {
 }
 
 ::-webkit-scrollbar {
-	width: 16px;
+	width: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
 	background: var(--thumbBackground);
 	background-clip: padding-box;
 	border: 4px solid transparent;
-	border-radius: 8px;
+	border-radius: 30px;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	min-height: 50px;
@@ -242,9 +242,18 @@ a {
 }
 
 .firstTimeContent {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
 	flex-direction: column;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
 	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
 
@@ -784,7 +793,7 @@ span.cancelGoBack {
 	-ms-flex-pack: start;
 	justify-content: flex-start;
 	padding: 0.5rem;
-	height: 93vh;
+	height: 96vh;
 }
 
 .userInfo .optionsHolder {
@@ -867,6 +876,7 @@ span.cancelGoBack {
 	display: flex;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
+	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
@@ -881,15 +891,22 @@ span.cancelGoBack {
 }
 
 .userInfo .themeChangeButton {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-    align-items: center;
-    position: relative;
-    flex-direction: column;
-    padding: 1rem;
-    background-color: var(--black);
-    border: 1px solid var(--textColor);
-    border-radius: 10px;
-    color: var(--white);
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	position: relative;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	padding: 1rem;
+	background-color: var(--black);
+	border: 1px solid var(--textColor);
+	border-radius: 10px;
+	color: var(--white);
 }
 
 .userInfo .themeChangeButton span:nth-child(1) {
@@ -910,62 +927,83 @@ span.cancelGoBack {
 
 .switch-button {
 	background: rgba(255, 255, 255, 0.56);
-    border-radius: 30px;
-    overflow: hidden;
-    width: 85px;
-    text-align: center;
-    font-size: 18px;
-    color: black;
-    position: relative;
-    padding-right: 85px;
-    position: relative;
+	border-radius: 30px;
+	overflow: hidden;
+	width: 85px;
+	text-align: center;
+	font-size: 18px;
+	color: black;
+	position: relative;
+	padding-right: 85px;
+	position: relative;
 }
 .switch-button:before {
 	content: "Dark";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 85px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    pointer-events: none;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 85px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	z-index: 3;
+	pointer-events: none;
 }
 .switch-button-checkbox {
 	cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 2;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 2;
 }
 .switch-button-checkbox:checked + .switch-button-label:before {
+	-webkit-transform: translateX(85px);
+	-ms-transform: translateX(85px);
 	transform: translateX(85px);
+	-webkit-transition: -webkit-transform 300ms linear;
+	transition: -webkit-transform 300ms linear;
+	-o-transition: transform 300ms linear;
 	transition: transform 300ms linear;
+	transition: transform 300ms linear, -webkit-transform 300ms linear;
 }
 .switch-button-checkbox + .switch-button-label {
 	position: relative;
-    padding: 15px 0;
-    display: block;
-    user-select: none;
-    pointer-events: none;
+	padding: 15px 0;
+	display: block;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
 }
 .switch-button-checkbox + .switch-button-label:before {
 	content: "";
-    background: #fff;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    border-radius: 30px;
-    transform: translateX(0);
-    transition: transform 300ms;
+	background: #fff;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	border-radius: 30px;
+	-webkit-transform: translateX(0);
+	-ms-transform: translateX(0);
+	transform: translateX(0);
+	-webkit-transition: -webkit-transform 300ms;
+	transition: -webkit-transform 300ms;
+	-o-transition: transform 300ms;
+	transition: transform 300ms;
+	transition: transform 300ms, -webkit-transform 300ms;
 }
 .switch-button-checkbox + .switch-button-label .switch-button-label-span {
 	position: relative;
@@ -1004,6 +1042,7 @@ span.cancelGoBack {
 
 .profilePicture {
 	border: 1px solid var(--boxShadowColor);
+	-webkit-box-shadow: 0 0 3px 2px var(--imageBorder);
 	box-shadow: 0 0 3px 2px var(--imageBorder);
 	border-radius: 50%;
 }
@@ -1061,6 +1100,7 @@ span.cancelGoBack {
 	border-radius: 10px;
 	padding: 0.5rem;
 	margin: 0.3rem 0.5rem 0;
+	-webkit-box-shadow: 0 0 0 1px var(--postShadowColor);
 	box-shadow: 0 0 0 1px var(--postShadowColor);
 }
 
@@ -1322,6 +1362,7 @@ span.cancelGoBack {
 	margin: 0.3rem 0.5rem;
 	border: 1px solid var(--boxShadowColor);
 	border-radius: 5px;
+	-webkit-box-shadow: 0 0 0 1px var(--postShadowColor);
 	box-shadow: 0 0 0 1px var(--postShadowColor);
 }
 .commentTop {
@@ -1378,7 +1419,7 @@ span.cancelGoBack {
 
 @media screen and (max-height: 700px) {
 	.whatIsThis span {
-		font-size: 1rem;
+		font-size: 1.1rem;
 		font-weight: 400;
 	}
 	.welcomeText {
