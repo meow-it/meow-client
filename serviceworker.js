@@ -85,9 +85,12 @@ self.addEventListener("activate", (event) => {
 })
 
 function isCached(url) {
+	let origin = self.location.origin
 	if (url.includes("assets")) return true
-	if (url == self.location.origin + "/") return true
-	if (url.includes("logo.png") || url.includes("favicon.ico") || url.includes("manifest.json")) return true
+	if (url == `${origin}/`) return true
+	if (url == `${origin}/report`) return true
+	if (url == `${origin}/report.html`) return true
+	if (url.includes("logo.png") || url.includes("favicon.ico") || url.includes("site.webmanifest")) return true
 	return false
 }
 
