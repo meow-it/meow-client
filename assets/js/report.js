@@ -1,7 +1,9 @@
 let user = null
-function getValues() {
-    let params = new URLSearchParams(window.location.search)
-    if(!params.has("type")) return
+async function getValues() {
+    let data = await getLocalForage("contentToReport")
+    if(data == null) return null
+    return data
+}
 
     let type = params.get("type")
 
@@ -14,7 +16,7 @@ function getValues() {
 }
 
 async function main() {
-    let values = getValues()
+    let values = await getValues()
     user = await getLocalForage("user")
     if(user == null) return
     if(values == null) return
@@ -44,8 +46,9 @@ async function main() {
 
 }
 
-async function reportContent () {
-    let values = getValues()
+async function reportContent (e) {
+    
+    let values = await getValues()
     if(values == null) return
     let text = document.querySelector(".textbox").value.trim()
 
@@ -66,4 +69,4 @@ async function reportContent () {
 }
 
 main()
-document.querySelector(".reportButton").addEventListener("click", reportContent)
+document.querySelector(".buttonToReport").addEventListener("click", e => reportContent(e))

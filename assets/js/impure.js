@@ -779,11 +779,13 @@ async function showProximityOfMeow(e) {
 	
 }
 
-function reportContent (e) {
-	let id = e.target.dataset.id
-	let type = e.target.dataset.type
-	let url = `${window.location.origin}/report?id=${id}&type=${type}`
-	console.log(url)
+async function reportContent (e) {
+	let data = {
+		id : e.target.dataset.id,
+		type : e.target.dataset.type
+	}
+	await setLocalForage("contentToReport", data)
+	let url = `${window.location.origin}/report`
 	window.open(url, "_blank")
 }
 
