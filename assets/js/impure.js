@@ -654,14 +654,15 @@ async function postingComments(max) {
 		addedToBG ? commentsContainer.removeChild(commentsContainer.firstChild) : null
 
 		commentsContainer.innerHTML = replaceWithNewComment ? html : html + commentsContainer.innerHTML
-		inputTextBox.value = ""
-
+		
 		if(BG_IS_AVAILABLE && addedToBG) {
 			let commentsFromIDB = await getLocalForage("commentQueue")
 			if(commentsFromIDB != null) {
 				commentsFromIDB.pop()
 				await setLocalForage("commentQueue", commentsFromIDB)
 			}
+		} else {
+			inputTextBox.value = ""
 		}
 
 		if(!addedToBG) incrementCommentCount(meowId)
