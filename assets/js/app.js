@@ -166,8 +166,6 @@ document.addEventListener("click", (e) => {
 		reportContent(e)
 	} else if (e.target.classList.contains("legal")) {
 		showLegal()
-	} else if (e.target.classList.contains("source")) {
-		showSource()
 	}
 })
 document

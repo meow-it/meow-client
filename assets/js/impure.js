@@ -790,7 +790,3 @@ function reportContent (e) {
 function showLegal() {
 	window.open("https://meowit-legal.netlify.app/", "_blank")
 }
-
-function showSource() {
-	window.open("https://github.com/meow-it/meow-client", "_blank")
-}
