@@ -43,6 +43,9 @@ async function main() {
 
 async function reportContent (e) {
     
+    NProgress.start()
+    e.target.classList.add("disabledReportButton")
+
     let values = await getValues()
     if(values == null) return
     let text = document.querySelector(".textbox").value.trim()
@@ -50,15 +53,31 @@ async function reportContent (e) {
     values.text = text
     values.consernedId = user._id
 
+    NProgress.set(0.5)
+
     try {
         let response = await submitReport(values)
+        
         if(response == null) {
-            alert("Something went wrong. Please try again.")
-            return
+            throw new Error("Something went wrong")
         }
-        alert("Report submitted. Thank you!")
-        window.close()
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.querySelector(".wrapper").remove()
+                document.querySelector(".reportSuccessful").style.display = "flex"
+            })
+        })
+
+        NProgress.done()
+        
+        await deleteContentToReport()
+        setTimeout(() => window.close(), 2000)
+
     } catch (err) {
+        NProgress.done()
+        e.target.classList.remove("disabledReportButton")
+        document.querySelector(".errorMessage").innerText = "Could not report content. Try again later"
         console.log(err)
     }
 }
