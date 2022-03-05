@@ -107,13 +107,6 @@
 			"description": "Create a new meow to meow it!",
 			"url": "/?text",
 			"icons": [{ "src": "/assets/image/write.png", "sizes": "128x128", "type": "image/png" }]
-		},
-		{
-			"name": "Donate",
-			"short_name": "Donate",
-			"description": "Donate the app developer with buymeacoffee.com",
-			"url": "/?coffee",
-			"icons": [{ "src": "/assets/image/coffee.png", "sizes": "128x128",  "type": "image/png" }]
 		}
 	],
 	"orientation": "portrait-primary",

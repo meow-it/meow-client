@@ -727,8 +727,8 @@ span.cancelGoBack {
 	flex-direction: column;
 	-webkit-box-pack: center;
 	-ms-flex-pack: center;
-	justify-content: center;
 	position: relative;
+	min-height: 95vh;
 }
 
 .currentFeedStatus {
@@ -819,6 +819,8 @@ span.cancelGoBack {
 	-webkit-box-flex: 1;
 	-ms-flex: 1;
 	flex: 1;
+	padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
 }
 
 .userInfo .infoUserProfilePicture {
