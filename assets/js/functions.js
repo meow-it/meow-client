@@ -899,3 +899,50 @@ async function submitReport (data) {
 		return null
 	}
 }
+
+/**
+ * 
+ * @param {string} type The type of the content
+ * @param {string} text The text of the content
+ * @param {string} id The generated UUID for the content
+ * @returns {Promise<void>} Does not return anything
+ */
+async function saveTextData(type, text, id = null) {
+	if(type == "meow") {
+		await setLocalForage("lastMeow", {text, id})
+	} else if (type == "comment") {
+		await setLocalForage("lastComment", {text, id})
+	}
+}
+
+async function getSavedTextData(type) {
+	let content = null
+	if(type == "meow") {
+		content = await getLocalForage("lastMeow")
+	} else if(type == "comment") {
+		content = await getLocalForage("lastComment")
+	}
+	return content
+}
+
+async function saveLastSentContentId(type, id) {
+	if(type == "meow") {
+		await setLocalForage("lastMeowId", id)
+	} else if (type == "comment") {
+		await setLocalForage("lastCommentId", id)
+	}
+}
+
+async function getLastSentContentId(type) {
+	let id = null
+	if(type == "meow") {
+		id = await getLocalForage("lastMeowId")
+	} else if(type == "comment") {
+		id = await getLocalForage("lastCommentId")
+	}
+	return id
+}
+
+async function getRandomNumber() {
+	return await crypto.randomUUID()
+}
