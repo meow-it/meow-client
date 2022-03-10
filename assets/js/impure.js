@@ -165,7 +165,7 @@ async function main(data) {
 		} else {
 			setDisplayNone(elements)
 
-			let text = getSavedTextData()
+			let text = await getSavedTextData()
 			
 			if(data != null) {
 				let value = ""

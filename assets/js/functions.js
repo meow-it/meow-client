@@ -735,9 +735,10 @@ function clearTextData() {
 	localStorage.removeItem("text")
 }
 
-function getSavedTextData() {
+async function getSavedTextData() {
 	let text = localStorage.getItem("text")
-	return text
+	if(text != null) return text
+	return ""
 }
 
 async function getUpdatedPosition() {
