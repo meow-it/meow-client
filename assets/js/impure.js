@@ -262,7 +262,7 @@ async function main(data) {
 							`)
 					setTimeout(() => {
 						hideStatus()
-					}, 5000)
+					}, 4000)
 				}
 			})
 		})
