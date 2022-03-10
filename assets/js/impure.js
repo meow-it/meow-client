@@ -493,6 +493,7 @@ async function createMeow() {
 
 
 			let data = {
+				_id: uuid,
 				text,
 				userid: user._id,
 				coords: {
@@ -506,7 +507,6 @@ async function createMeow() {
 				...data,
 				likes: 0,
 				toxic: false,
-				_id: uuid,
 				comments: [],
 				createdAt: null,
 				updatedAt: new Date(),
@@ -573,6 +573,7 @@ async function createMeow() {
 		if(isBackgroundSyncAvailable) {
 
 			let data = {
+				_id: uuid,
 				text,
 				userid: user._id,
 				coords: {
@@ -638,11 +639,10 @@ async function postingComments(max) {
 
 	// if backgroundsync is available
 	if (BG_IS_AVAILABLE) {
-		let data = { text, userId, meowId }
+		let data = { text, userId, meowId, _id: uuid }
 		await addToBGSyncCommentsRegistry(data)
 		await saveTextData("comment", text, uuid)
 		let temporaryComment = { ...data, 
-			_id: uuid, 
 			isReviewed: false, 
 			toxic: false, 
 			createdAt: new Date(), 

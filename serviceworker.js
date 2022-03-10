@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v26" // name of the current cache
+const CACHE = "content-v27" // name of the current cache
 const AVATARS = "avatars"
 const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
@@ -167,11 +167,13 @@ async function syncScheduledMeows () {
 	let scheduledMeows = await getLocalForage("meowQueue")
 	let newQueue = []
 	if (scheduledMeows == null) return
+
 	if(scheduledMeows.length > 0){
 		scheduledMeows.forEach(async (meow) => {
 			let lastSentId = await getLastSentContentId("meow")
-			if(meow._id == lastSentId) return
-
+			let lastSentMeow = await getSavedTextData("meow")
+			if(meow._id == lastSentId || meow.text == lastSentMeow.text) return
+			
 			let sentMeow = await newMeow(meow.text, meow.coords, meow.userid)
 			if(sentMeow._id == undefined) {
 				if(sentMeow.status !== undefined && sentMeow.status === false) {
@@ -199,7 +201,8 @@ async function syncScheduledComments() {
 	if(scheduledComments.length > 0){
 		scheduledComments.forEach(async (comment) => {
 			let lastSentId = await getLastSentContentId("comment")
-			if(comment._id == lastSentId) return
+			let lastSentComment = await getSavedTextData("comment")
+			if(comment._id == lastSentId || comment.text == lastSentComment.text) return
 
 			let sentComment = await createNewComment(comment)
 			if(sentComment._id == undefined) {
