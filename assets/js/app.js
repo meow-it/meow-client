@@ -13,6 +13,7 @@ let user
 let meowCount = 0
 let launchDisplayType = getPWADisplayMode()
 let installPWAButtonOnUserInfo = document.querySelector(".installPWAFromUser")
+let meowsContainer = document.querySelector(".meowsContainer")
 let elements = {
 	newUser: document.querySelector(".newUserLoading"),
 	bannedUser: document.querySelector(".bannedUser"),
@@ -171,3 +172,5 @@ document.addEventListener("click", (e) => {
 document
 	.querySelector(".meowInput")
 	.addEventListener("input", countCharactersInTextField)
+
+meowsContainer.addEventListener("scroll", saveMeowScroll)

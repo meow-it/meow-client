@@ -134,7 +134,7 @@ async function main(data) {
 	
 			setTimeout(() => {
 				elements.newUser.style.display = "none"
-				elements.wrapper.style.display = "flex"
+				showWrapper()
 				return main()
 			}, 3000)
 	
@@ -190,7 +190,7 @@ async function main(data) {
 	
 			requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
-					elements.wrapper.style.display = "flex"
+					showWrapper()
 					NProgress.done()
 				})
 			})
@@ -282,6 +282,11 @@ function doesElementWithClassNameExists(classname) {
 	let element = document.querySelector(`.${classname}`)
 	if (element == null) return false
 	return true
+}
+
+function showWrapper () {
+	elements.wrapper.style.display = "flex"
+	scrollMeows()
 }
 
 async function updatePlaceInfo(coords, accuracy, individual = false, isUpdated = false) {
@@ -378,7 +383,7 @@ function buyMeACoffee() {
 
 function handleCloseCommentsButtonClick() {
 	document.querySelector(".commentsModalContainer").style.display = "none"
-	elements.wrapper.style.display = "flex"
+	showWrapper()
 	document.querySelector(".commentMeowContainer").innerHTML = ""
 	document.querySelector(".commentsContainer").innerHTML = ""
 }
@@ -393,7 +398,7 @@ function handleCloseNewMeowModal() {
 	if(doesElementWithClassNameExists("newMeowStatusMessage")) document.querySelector(".newMeowStatusMessage").style.display = "none"
 	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
 	newMeowModalContainer.style.display = "none"
-	elements.wrapper.style.display = "flex"
+	showWrapper()
 }
 
 function handlePromotionClick() {
@@ -420,7 +425,7 @@ function showFAQ() {
 
 function closeUserInfo () {
 	setDisplayNone(elements)
-	elements.wrapper.style.display = "flex"
+	showWrapper()
 }
 
 async function logoutUser (dbCheck = true) {
@@ -592,7 +597,7 @@ async function createMeow() {
 			meowCount++
 			setTimeout(() => {
 				setDisplayNone(elements)
-				elements.wrapper.style.display = "flex"
+				showWrapper()
 			}, 3000)
 		} else {
 			requestAnimationFrame(() => {
@@ -710,7 +715,7 @@ function closeMeowWhileOffline () {
 	newMeowModalContainer.style.display = "none"
 	newMeowStatusMessage.style.display = "none"
 
-	elements.wrapper.style.display = "flex"
+	showWrapper()
 }
 
 async function refreshDBWithCreatedMeow(meow) {
