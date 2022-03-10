@@ -477,7 +477,10 @@ async function createMeow() {
 		coords = position.coords
 	}
 
+	let previousMeow = await getSavedTextData("meow")
+	if(previousMeow.text == text) return
 	let uuid = await getRandomNumber()
+
 	if(navigator.onLine) {
 
 		let addedToBG = false
