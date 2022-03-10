@@ -70,7 +70,7 @@ self.addEventListener("activate", (event) => {
 		caches
 			.keys()
 			.then((cacheNames) => {
-				return cacheNames.filter((cacheName) => CACHE !== cacheName || AVATARS !== cacheName)
+				return cacheNames.filter((cacheName) => CACHE !== cacheName && AVATARS !== cacheName)
 			})
 			.then((unusedCaches) => {
 				console.log("DESTROYING CACHE", unusedCaches.join(","))
