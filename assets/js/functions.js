@@ -292,7 +292,7 @@ function generateInstallationPromotionDiv() {
 			Install to get the most out of Meow It!
 		</span>
 		<span class="noFearHeading">
-			Installing uses almost no storage and provides a quick way to return to this app including the ability to send meows even offline!
+			Installing uses almost no storage and provides a quick way to return to this app.
 		</span>
 		<div class="installationPromotionButtonsContainer">
 			<span class="notNowButton">Not now</span>
