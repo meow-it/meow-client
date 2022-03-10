@@ -65,6 +65,17 @@ async function main(data) {
 
         NProgress.start()
 
+		// hide Install App button if not applicable
+		if(launchDisplayType == "twa" || launchDisplayType == "standalone" || isMobileSafari()) {
+			installPWAButtonOnUserInfo.style.display = "none"
+		}
+
+		if(wasPromptDeferred == true) {
+			if(!doesElementWithClassNameExists("installationPromotionCard")) {
+				showInstallPromotion()
+			}
+		}
+
         // display mode preferences and rendering
         let darkMode = localStorage.getItem("darkMode")
         if (darkMode == null) {
@@ -238,16 +249,7 @@ async function main(data) {
 		
 		requestAnimationFrame(() => {
 			requestAnimationFrame(async () => {
-				if(launchDisplayType == "twa" || launchDisplayType == "standalone") {
-					installPWAButtonOnUserInfo.style.display = "none"
-				}
-
-				if(wasPromptDeferred == true) {
-					if(!doesElementWithClassNameExists("installationPromotionCard")) {
-						showInstallPromotion()
-					}
-				}
-
+				
 				if(isUpdated) {
 
 					let position = await getLocalForage("position")
@@ -792,4 +794,8 @@ async function reportContent (e) {
 
 function showLegal() {
 	window.open("https://meowit-legal.netlify.app/", "_blank")
+}
+
+function isMobileSafari() {
+    return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/)
 }
