@@ -169,6 +169,9 @@ async function syncScheduledMeows () {
 	if (scheduledMeows == null) return
 	if(scheduledMeows.length > 0){
 		scheduledMeows.forEach(async (meow) => {
+			let lastSentId = await getLastSentContentId("meow")
+			if(meow._id == lastSentId) return
+
 			let sentMeow = await newMeow(meow.text, meow.coords, meow.userid)
 			if(sentMeow._id == undefined) {
 				if(sentMeow.status !== undefined && sentMeow.status === false) {

@@ -477,11 +477,14 @@ async function createMeow() {
 		coords = position.coords
 	}
 
+	let uuid = await getRandomNumber()
 	if(navigator.onLine) {
 
 		let addedToBG = false
 
 		if(isBackgroundSyncAvailable) {
+
+
 			let data = {
 				text,
 				userid: user._id,
@@ -490,12 +493,13 @@ async function createMeow() {
 					longitude: coords.longitude,
 				}
 			}
-			await addToBGSyncMeowRegistry(data)	
+			await addToBGSyncMeowRegistry(data)
+			await saveTextData("meow", text, uuid)
 			let temporaryMeow = {
 				...data,
 				likes: 0,
 				toxic: false,
-				_id: "temporaryMeow",
+				_id: uuid,
 				comments: [],
 				createdAt: new Date(),
 				updatedAt: new Date(),
@@ -516,17 +520,18 @@ async function createMeow() {
 
 		let meow = await newMeow(text, coords, user._id)
 
-		
 		if(meow._id == undefined) {
 			NProgress.done()
 			if(meow.status !== undefined && meow.status === false) await logoutUser(false)
 			return
 		}
+
+		await saveLastSentContentId("meow", uuid)
 		
 		if(isBackgroundSyncAvailable) {
 			if(addedToBG) {
 				let queue = await getLocalForage("meowQueue")
-				queue.pop()
+				queue = queue.filter((element) => uuid !== element._id)
 				await setLocalForage("meowQueue", queue)
 				meowsContainer.removeChild(meowsContainer.firstChild)
 			}
@@ -569,6 +574,8 @@ async function createMeow() {
 				}
 			}
 			await addToBGSyncMeowRegistry(data)	
+			await saveTextData("meow", text)
+
 			requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
 					newMeowStatusMessage.style.display = "flex"
