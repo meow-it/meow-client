@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v25" // name of the current cache
+const CACHE = "content-v26" // name of the current cache
 const AVATARS = "avatars"
 const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
@@ -197,15 +197,18 @@ async function syncScheduledComments() {
 	if (scheduledComments == null) return
 	
 	if(scheduledComments.length > 0){
-		scheduledComments.forEach(async (element) => {
-			let sentComment = await createNewComment(element)
+		scheduledComments.forEach(async (comment) => {
+			let lastSentId = await getLastSentContentId("comment")
+			if(comment._id == lastSentId) return
+
+			let sentComment = await createNewComment(comment)
 			if(sentComment._id == undefined) {
 				if(sentComment.status !== undefined && sentComment.status === false) {
 					await setLocalForage("meowQueue", null) 
 					await localforage.clear()
 					return
 				}
-				newQueue.push(element)
+				newQueue.push(comment)
 				return
 			}
 		})

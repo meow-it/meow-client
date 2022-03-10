@@ -627,13 +627,15 @@ async function postingComments(max) {
 	let postingCommentSpinner = document.querySelector(".postingCommentSpinner")
 	let replaceWithNewComment = doesChildExists(commentsContainer, ".loadingComments")
 	postingCommentSpinner.style.display = "block"
+	let uuid = await getRandomNumber()
 
 	// if backgroundsync is available
 	if (BG_IS_AVAILABLE) {
 		let data = { text, userId, meowId }
 		await addToBGSyncCommentsRegistry(data)
+		await saveTextData("comment", text, uuid)
 		let temporaryComment = { ...data, 
-			_id: "", 
+			_id: uuid, 
 			isReviewed: false, 
 			toxic: false, 
 			createdAt: new Date(), 
@@ -645,7 +647,7 @@ async function postingComments(max) {
 		addedToBG = true
 		inputTextBox.value = ""
 		postingCommentSpinner.style.display = "none"
-		incrementCommentCount(meowId)
+		await incrementCommentCount(meowId)
 
 	}
 
@@ -654,6 +656,7 @@ async function postingComments(max) {
 	if(comment != null) {
 
 		if(comment.status !== undefined && comment.status === false) await logoutUser(false)
+		await saveLastSentContentId("comment", uuid)
 
 		let html = generateComments([comment])
 		
@@ -664,14 +667,14 @@ async function postingComments(max) {
 		if(BG_IS_AVAILABLE && addedToBG) {
 			let commentsFromIDB = await getLocalForage("commentQueue")
 			if(commentsFromIDB != null) {
-				commentsFromIDB.pop()
+				commentsFromIDB = commentsFromIDB.filter((element) => uuid != element._id)
 				await setLocalForage("commentQueue", commentsFromIDB)
 			}
 		} else {
 			inputTextBox.value = ""
 		}
 
-		if(!addedToBG) incrementCommentCount(meowId)
+		if(!addedToBG) await incrementCommentCount(meowId)
 
 	}
 	NProgress.done()
