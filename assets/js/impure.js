@@ -70,12 +70,6 @@ async function main(data) {
 			installPWAButtonOnUserInfo.style.display = "none"
 		}
 
-		if(wasPromptDeferred == true) {
-			if(!doesElementWithClassNameExists("installationPromotionCard")) {
-				showInstallPromotion()
-			}
-		}
-
         // display mode preferences and rendering
         let darkMode = localStorage.getItem("darkMode")
         if (darkMode == null) {
@@ -250,6 +244,12 @@ async function main(data) {
 		
 		requestAnimationFrame(() => {
 			requestAnimationFrame(async () => {
+
+				if(wasPromptDeferred == true) {
+					if(!doesElementWithClassNameExists("installationPromotionCard")) {
+						showInstallPromotion()
+					}
+				}
 				
 				if(isUpdated) {
 
@@ -286,7 +286,6 @@ function doesElementWithClassNameExists(classname) {
 
 function showWrapper () {
 	elements.wrapper.style.display = "flex"
-	scrollMeows()
 }
 
 async function updatePlaceInfo(coords, accuracy, individual = false, isUpdated = false) {
