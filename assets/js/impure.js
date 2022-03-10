@@ -233,7 +233,8 @@ async function main(data) {
 	
 			// If there are no meows in the IDB, 
 			// or if the first post from network is different from the first post from IDB
-			if(meowCount == 0 || posts[0]._id == meows[0]._id) {
+			// Issue: 2
+			if(meowCount == 0 || posts[0]._id == meows[0]._id && posts.length == meows.length) {
 				let html = meows.length != 0 ? generateMeows(meows) : generateNoMeows()
 				document.querySelector(".meowsContainer").innerHTML = html
 			} else {
