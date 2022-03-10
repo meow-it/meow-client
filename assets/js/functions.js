@@ -188,7 +188,9 @@ function generateComments(elements) {
 function generateMeows(elements) {
 	let html = ""
 	elements.forEach((element) => {
-		let time = timeDifference(new Date(), new Date(element.createdAt))
+		let time = element.createdAt != null 
+			? timeDifference(new Date(), new Date(element.createdAt))
+			: "Posting..."
 		let hide = element.toxic
 			? `<img data-id="${element._id}" data-state="hidden" class="hideMessage" src="./assets/image/hide.webp" alt="Unhide Message" height="30" width="30">`
 			: ""

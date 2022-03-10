@@ -483,7 +483,7 @@ async function createMeow() {
 	}
 
 	let previousMeow = await getSavedTextData("meow")
-	if(previousMeow.text == text) return
+	if(previousMeow != null && previousMeow.text == text) return
 	let uuid = await getRandomNumber()
 
 	if(navigator.onLine) {
@@ -509,7 +509,7 @@ async function createMeow() {
 				toxic: false,
 				_id: uuid,
 				comments: [],
-				createdAt: new Date(),
+				createdAt: null,
 				updatedAt: new Date(),
 				name: user.name,
 				profilePic: user.profilePic,
