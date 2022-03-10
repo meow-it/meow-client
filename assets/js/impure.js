@@ -558,51 +558,47 @@ async function createMeow() {
 		let textSpan = newMeowStatusMessage.querySelectorAll("span")[0]
 		let buttonSpan = newMeowStatusMessage.querySelector(".goBackToHomeButton")
 
-		if(window.chrome == undefined) {
+		if(isBackgroundSyncAvailable) {
+
+			let data = {
+				text,
+				userid: user._id,
+				coords: {
+					latitude: coords.latitude,
+					longitude: coords.longitude,
+				}
+			}
+			await addToBGSyncMeowRegistry(data)	
 			requestAnimationFrame(() => {
 				requestAnimationFrame(() => {
 					newMeowStatusMessage.style.display = "flex"
-					textSpan.innerHTML = "You're Offline! Try sending the meow when you're online. 😞 Bruh, Try using Chromium Browsers for a rich offline experience!"
+					newMeowStatusMessage.style.backgroundColor = "#0070f3"
+					textSpan.innerHTML = "You're Offline! But don't worry 🤠 Your meow is scheduled to be sent automatically 🤖 when your device gets connected to the internet 🌐"
+					buttonSpan.style.color = "#0070f3"
+				})
+			})
+			textField.value = ""
+			clearTextData()
+			meowCount++
+			setTimeout(() => {
+				setDisplayNone(elements)
+				elements.wrapper.style.display = "flex"
+			}, 3000)
+		} else {
+			requestAnimationFrame(() => {
+				requestAnimationFrame(() => {
+					newMeowStatusMessage.style.display = "flex"
+					newMeowStatusMessage.style.backgroundColor = "#f3624c"
+					textSpan.style.fontSize = "1.2rem"
+					let textToShow = window.chrome == undefined 
+						?	"You're Offline! Try sending the meow when you're online. 😞 Bruh, Try using Chromium Browsers for a rich offline experience!" 
+						:	"You're Offline! Background Sync is not allowed in your browser. Try allowing it in site settings to schedule this meow to be posted automatically in the background when your device gets connected to the internet or try sending this meow when you're online. 😞"
+					textSpan.innerHTML = textToShow
 					buttonSpan.style.color = "#f3624c"
 				})
 			})
-		} else {
-
-			if(isBackgroundSyncAvailable) {
-
-				let data = {
-					text,
-					userid: user._id,
-					coords: {
-						latitude: coords.latitude,
-						longitude: coords.longitude,
-					}
-				}
-				await addToBGSyncMeowRegistry(data)	
-				requestAnimationFrame(() => {
-					requestAnimationFrame(() => {
-						newMeowStatusMessage.style.display = "flex"
-						newMeowStatusMessage.style.backgroundColor = "#0070f3"
-						textSpan.innerHTML = "You're Offline! But don't worry 🤠 Your meow is scheduled to be sent automatically 🤖 when your device gets connected to the internet 🌐"
-						buttonSpan.style.color = "#0070f3"
-					})
-				})
-				textField.value = ""
-				clearTextData()
-				meowCount++
-			} else {
-				requestAnimationFrame(() => {
-					requestAnimationFrame(() => {
-						newMeowStatusMessage.style.display = "flex"
-						newMeowStatusMessage.style.backgroundColor = "#f3624c"
-						textSpan.style.fontSize = "1.2rem"
-						textSpan.innerHTML = "You're Offline! Background Sync is not allowed in your browser. Try allowing it in site settings to schedule this meow to be posted automatically in the background when your device gets connected to the internet or try sending this meow when you're online. 😞"
-						buttonSpan.style.color = "#f3624c"
-					})
-				})
-			}
-
 		}
+
 		NProgress.done()
 	}
 
