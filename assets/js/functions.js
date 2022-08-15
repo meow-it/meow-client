@@ -26,13 +26,17 @@ async function setLocalForage(key, value) {
 async function register() {
 	try {
 
-		let fp = new Fingerprint({
-			canvas: true,
-			ie_activex: true,
-			screen_resolution: true,
-		})
+		// let fp = new Fingerprint({
+		// 	canvas: true,
+		// 	ie_activex: true,
+		// 	screen_resolution: true,
+		// })
 		  
-		let fingerprint = fp.get()
+		// let fingerprint = fp.get()
+
+		let client = new ClientJS(); // Create A New Client Object
+		let fingerprint = client.getFingerprint(); // Calculate Device/Browser Fingerprint
+		console.log(fingerprint)
 
 		let response = await fetch(serverURLAPIEndpoint + `register`, {
 			method: "POST",
