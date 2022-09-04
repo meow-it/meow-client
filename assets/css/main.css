@@ -347,6 +347,10 @@ a {
 	padding: 0.5rem 0 0;
 }
 
+.whatIsThis .noAccountNeededSpan {
+	font-size: 1em;
+    padding-top: 0;
+}
 
 .whatIsThis button {
     padding: 0.2em 0.5em;
