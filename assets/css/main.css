@@ -185,6 +185,45 @@ a {
 	cursor: pointer;
 }
 
+.createNewMeowButton:hover, .createNewMeowButton:focus, .createNewMeowButton:active,
+.showFaqSpan:hover, .showFaqSpan:focus, .showFaqSpan:active,
+.cancelMeow:hover, .cancelMeow:focus, .cancelMeow:active,
+.profilePicture:hover, .profilePicture:focus, .profilePicture:active,
+.createMeow:hover, .createMeow:focus, .createMeow:active,
+.deleteCache:hover, .deleteCache:focus, .deleteCache:active,
+.installPWAFromUser:hover, .installPWAFromUser:focus, .installPWAFromUser:active,
+.currentLocation:hover, .currentLocation:focus, .currentLocation:active,
+.closeUserInfo:hover, .closeUserInfo:focus, .closeUserInfo:active,
+.likeButton:hover, .likeButton:focus, .likeButton:active,
+.commentButton:hover, .commentButton:focus, .commentButton:active,
+.reportButton:hover, .reportButton:focus, .reportButton:active,
+.reportThis:hover, .reportThis:focus, .reportThis:active,
+.reportButton:hover, .reportButton:focus, .reportButton:active,
+.shareMeowButton:hover, .shareMeowButton:focus, .shareMeowButton:active,
+.hideMessage:hover, .hideMessage:focus, .hideMessage:active,
+.learnMore:hover, .learnMore:focus, .learnMore:active,
+.givePermissionButton:hover, .givePermissionButton:focus, .givePermissionButton:active,
+.cancelGoBack:hover, .cancelGoBack:focus, .cancelGoBack:active,
+.logoutButton:hover, .logoutButton:focus, .logoutButton:active,
+.notNowButton:hover, .notNowButton:focus, .notNowButton:active,
+.installButton:hover, .installButton:focus, .installButton:active,
+.buyMeACoffee:hover, .buyMeACoffee:focus, .buyMeACoffee:active,
+.postCommentButton:hover, .postCommentButton:focus, .postCommentButton:active,
+.closeComments:hover, .closeComments:focus, .closeComments:active,
+.reportComment:hover, .reportComment:focus, .reportComment:active,
+.legal:hover, .legal:focus, .legal:active,
+.source:hover, .source:focus, .source:active,
+.goBackToHomeButton:hover, .goBackToHomeButton:focus, .goBackToHomeButton:active,
+.meowUserProfilePicture:hover, .meowUserProfilePicture:focus, .meowUserProfilePicture:active,
+.promotion:hover, .promotion:focus, .promotion:active {
+	-webkit-transform: scale(1.08);
+	    -ms-transform: scale(1.08);
+	        transform: scale(1.08);
+	-webkit-transition: scale 0.2s linear;
+	-o-transition: scale 0.2s linear;
+	transition: scale 0.2s linear;
+}
+
 .newUserLoading,
 .bannedUser,
 .firstTimeVisit,
