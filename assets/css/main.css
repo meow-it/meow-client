@@ -734,6 +734,10 @@ span.cancelGoBack {
 	font-weight: 600;
 }
 
+.meowInputCharactersRemainingNumber {
+	font-size: 2rem;
+}
+
 .wrapper {
 	display: none;
 	-webkit-box-orient: vertical;
