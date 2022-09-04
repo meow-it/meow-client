@@ -1,7 +1,7 @@
 importScripts("/assets/js/localforage.js")
 importScripts("/assets/js/functions.js")
 
-const CACHE = "content-v27" // name of the current cache
+const CACHE = "content-v28" // name of the current cache
 const AVATARS = "avatars"
 const DEFAULT_AVATAR = "./assets/image/kitty.webp"
 const OFFLINE = "/offline.html"
@@ -52,6 +52,7 @@ const AUTO_CACHE = [
 	"/assets/js/report.js",
 	"/assets/js/nprogress.js",
 	"/assets/js/localforage.js",
+	"/assets/js/noGoBack.js",
 
 	"./site.webmanifest"
 ]
