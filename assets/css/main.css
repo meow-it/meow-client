@@ -14,6 +14,7 @@
 	--faqItemWhiteColor: #e5e5e5;
 	--faqItemColor: #03b5d2;
 	--nextBlue: #0070f3;
+	--nextBlueHover: #005ac2;
 	--backgroundWhite: #ffffff;
 	--boxShadowColor: #44444444;
 	--statusBackgroundColor: #f3624c;
@@ -98,6 +99,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
 	background: var(--thumbBackground);
+	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
 	border: 4px solid transparent;
 	border-radius: 30px;
@@ -154,6 +156,7 @@ a {
 .createNewMeowButton,
 .showFaqSpan,
 .cancelMeow,
+.profilePicture,
 .createMeow,
 .deleteCache,
 .installPWAFromUser,
@@ -363,17 +366,22 @@ a {
     margin-right: auto;
     cursor: pointer;
     background-position: center;
+    -webkit-transition: background 0.8s;
+    -o-transition: background 0.8s;
     transition: background 0.8s;
 }
 
 .whatIsThis button:hover {
     background-color: var(--nextBlueHover);
+    background: var(--nextBlueHover) -o-radial-gradient(circle, transparent 1%, var(--nextBlueHover) 1%) center/15000%;
     background: var(--nextBlueHover) radial-gradient(circle, transparent 1%, var(--nextBlueHover) 1%) center/15000%;
 }
 
 .whatIsThis button:active {
     background-color: var(--nextBlue);
     background-size: 100%;
+    -webkit-transition: background 0s;
+    -o-transition: background 0s;
     transition: background 0s;
 }
 
@@ -1245,6 +1253,14 @@ span.cancelGoBack {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
+}
+
+.meowUserProfilePicture {
+	border-radius: 50%;
+}
+
+.commentingUserProfilePicture {
+	border-radius: 50%;
 }
 
 .meowOptionsStuff {
