@@ -553,10 +553,12 @@ async function getPlaceInfo(coords) {
 
 function generateNoMeows() {
 	let html = ""
+	let noDataText = "Nothing to show."
+	let encourageText = "Tell something awesome by clicking on the plus icon 😎"
 	html += `<div class="noMeows">
 		<img src="./assets/image/nodata.gif" class="roundedGif10px" alt="No Meows Nearby" title="No Meows Nearby" height="200" width="200" >
-        <span class="noMeowsText">No meows nearby 🙁</span>
-        <span class="askUserToCreate">Create a new meow by clicking on the plus icon 😽</span>
+        <span class="noMeowsText">${noDataText}</span>
+        <span class="askUserToCreate">${encourageText}</span>
     </div>`
 	return html
 }
@@ -665,8 +667,8 @@ function countCharactersInTextField(e) {
 
 	
 	let colorOne = "#0070f3"
-	let colorTwo = "#f35d00"
-	let colorThree = "#ea2027"
+	let colorTwo = "#aa00ff"
+	let colorThree = "#e51f26"
 
 	let textField = e.target
 	let letterCount = textField.value.length
