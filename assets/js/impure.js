@@ -391,6 +391,8 @@ function handleCreateButtonClick() {
 	setDisplayNone(elements)
 	let newMeowModalContainer = document.querySelector(".newMeowModalContainer")
 	newMeowModalContainer.style.display = "block"
+	let text = window.localStorage.getItem("text")
+	document.querySelector(".meowInput").defaultValue = text
 }
 
 function handleCloseNewMeowModal() {
