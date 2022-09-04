@@ -305,22 +305,37 @@ a {
 	padding: 0.5rem 0 0;
 }
 
+
 .whatIsThis button {
-	padding: 0.2em 0.5em;
-	border-radius: 8px;
-	font-size: 1.8rem;
-	color: var(--fontWhite);
-	background-color: var(--nextBlue);
-	border: 0;
-	outline: none;
-	margin-top: 1rem;
-	-webkit-box-shadow: 4px 4px 3px 1px var(--boxShadowColor);
-	box-shadow: 4px 4px 3px 1px var(--boxShadowColor);
-	width: -webkit-fit-content;
-	width: -moz-fit-content;
-	width: fit-content;
-	margin-left: auto;
-	margin-right: auto;
+    padding: 0.2em 0.5em;
+    border-radius: 8px;
+    font-size: 1.8rem;
+    color: var(--white);
+    background-color: var(--nextBlue);
+    border: 0;
+    outline: none;
+    margin-top: 1rem;
+    -webkit-box-shadow: 4px 4px 3px 1px var(--boxShadowColor);
+    box-shadow: 4px 4px 3px 1px var(--boxShadowColor);
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    background-position: center;
+    transition: background 0.8s;
+}
+
+.whatIsThis button:hover {
+    background-color: var(--nextBlueHover);
+    background: var(--nextBlueHover) radial-gradient(circle, transparent 1%, var(--nextBlueHover) 1%) center/15000%;
+}
+
+.whatIsThis button:active {
+    background-color: var(--nextBlue);
+    background-size: 100%;
+    transition: background 0s;
 }
 
 .cancelGoBack {

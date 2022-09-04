@@ -68,8 +68,11 @@ window
 document
 	.querySelector(".whatIsThis button")
 	.addEventListener("click", async () => {
-		await setLocalForage("firstTimeVisit", true)
-		window.location.reload()
+		NProgress.start()
+		setTimeout(async() => {
+			await setLocalForage("firstTimeVisit", true)
+			window.location.reload()
+		}, 1000)
 	})
 document.querySelector(".learnMore").addEventListener("click", () => {
 	showFAQ()
