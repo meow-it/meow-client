@@ -212,7 +212,7 @@ async function main(data) {
                 let syncedTime = await getLocalForage("lastSynced")
 				syncedTime =
 					syncedTime != null
-						? `<br> Displaying refreshed content: ${timeDifference(new Date().getTime(),syncedTime)} ago.`
+						? `<br> Last refreshed: ${timeDifference(new Date().getTime(),syncedTime)} ago.`
 						: ""
 				
                 showStatus(`You're Offline! 😢 ${syncedTime}`)
