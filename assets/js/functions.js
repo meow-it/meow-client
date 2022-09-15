@@ -1,4 +1,4 @@
-let serverURLAPIEndpoint = `https://meow-it.herokuapp.com/api/`
+let serverURLAPIEndpoint = `https://meowit.hop.sh//api/`
 pingServer()
 // pinging the server to wake up the dyno
 async function pingServer() {
