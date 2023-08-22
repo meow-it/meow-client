@@ -375,11 +375,6 @@ async function handleCommentsButtonClick(e) {
 	})
 }
 
-function buyMeACoffee() {
-	let url = "https://www.buymeacoffee.com/tharunoptimus"
-	window.open(url, "_blank")
-}
-
 function handleCloseCommentsButtonClick() {
 	document.querySelector(".commentsModalContainer").style.display = "none"
 	showWrapper()

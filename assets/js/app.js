@@ -35,9 +35,6 @@ userItem.profilePicture = document.querySelector(".profilePicture")
 
 let params = new URLSearchParams(window.location.search)
 if (!params.has("meow")) {
-	if (params.has("coffee")) {
-		window.location.href = "https://buymeacoffee.com/tharunoptimus"
-	}
 	let data = null
 	if (params.has("text") || params.has("url") || params.has("title")) {
 		data = {
