@@ -1,4 +1,4 @@
-let serverURLAPIEndpoint = `https://meowit.denzi.me/api/`
+let serverURLAPIEndpoint = `https://meowit.cybernode.dev/api/`
 pingServer()
 // pinging the server to wake up the dyno
 async function pingServer() {
