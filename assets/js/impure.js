@@ -302,8 +302,7 @@ async function updatePlaceInfo(coords, accuracy, individual = false, isUpdated =
 
 	let placeInfo = await getPlaceInfo(coords)
 	if (placeInfo == null) return
-	let localityString = getLocationString(placeInfo)
-
+	let localityString = placeInfo.displayName
 
 	let locationTextSpan = document.querySelector(element)
 	locationTextSpan.textContent = localityString

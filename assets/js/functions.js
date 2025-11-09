@@ -539,9 +539,8 @@ async function handleShareButton(e) {
 
 async function getPlaceInfo(coords) {
 	try {
-		let PlaceAPIEndpoint = "https://api.bigdatacloud.net/data/reverse-geocode-client"
 		let response = await fetch(
-			`${PlaceAPIEndpoint}?latitude=${coords.latitude}&longitude=${coords.longitude}&localityLanguage=en`
+			`${serverURLAPIEndpoint}reverse-geocode/${coords.latitude}/${coords.longitude}`
 		)
 		let responseJSON = await response.json()
 		return responseJSON
